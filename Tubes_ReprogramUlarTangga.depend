@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1623400237 source:d:\one drive - ikram m b a\onedrive - politeknik negeri bandung\semester 2\7. sda pr\9 juni 2021\kelas_tugas1_47 dan lubban a.jihad_62_43\kelas_tugas1_47 dan lubban a.jihad_62_43\kel 2\main.cpp
+	"maps.h"
+
+1623398891 d:\one drive - ikram m b a\onedrive - politeknik negeri bandung\semester 2\7. sda pr\9 juni 2021\kelas_tugas1_47 dan lubban a.jihad_62_43\kelas_tugas1_47 dan lubban a.jihad_62_43\kel 2\maps.h
+	<stdio.h>
+	<windows.h>
+	<math.h>
+	<conio.h>
+	<stdbool.h>
+	<time.h>
+
+1623399895 source:d:\one drive - ikram m b a\onedrive - politeknik negeri bandung\semester 2\7. sda pr\9 juni 2021\kelas_tugas1_47 dan lubban a.jihad_62_43\kelas_tugas1_47 dan lubban a.jihad_62_43\kel 2\maps.cpp
+	"maps.h"
+
