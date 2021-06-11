@@ -1,4 +1,4 @@
-#include "maps.h"
+#include "header.h"
 
 int PilihanUser;
 bool ulangi=true;
@@ -10,14 +10,17 @@ int main() {
 		system("color b");//mengatur warna font
 		system("MODE 120,50");//mengatur ukuran windows
 
-		gotoxy(39,5);		printf("_____________________________________________");
-		gotoxy(40,15);		printf("____________________________________________");
+		//mencetak sisi atas dan bawah kotak
+		gotoxy(39,5);       printf("_____________________________________________");
+		gotoxy(40,15);      printf("___________________________________________");
 
+		//mencetak sisi kiri dan kanan kotak
 		for(y=6;y<=15;y++){
 			gotoxy(39,y);		printf("|");
 			gotoxy(83,y);		printf("|");
 		}
 
+		//mencetak isi tulisan dalam kotak
 		gotoxy(47,7);		printf(">>>>>| Game Ular Tangga |<<<<<<");
 		gotoxy(43,8);		printf("______________________________________");
 		gotoxy(45,10);		printf("1. Bermain Sendiri");

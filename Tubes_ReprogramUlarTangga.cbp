@@ -17,9 +17,16 @@
 			<Add library="gdi32" />
 			<Add library="user32" />
 		</Linker>
+		<Unit filename="header.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="maps.cpp" />
 		<Unit filename="maps.h" />
+		<Unit filename="menu.cpp" />
+		<Unit filename="menu.h" />
+		<Unit filename="permainan.cpp" />
+		<Unit filename="permainan.h" />
+		<Unit filename="umum.cpp" />
+		<Unit filename="umum.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
