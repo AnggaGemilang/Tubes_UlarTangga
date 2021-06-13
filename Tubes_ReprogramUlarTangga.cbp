@@ -17,7 +17,10 @@
 			<Add library="gdi32" />
 			<Add library="user32" />
 		</Linker>
+		<Unit filename="boolean.h" />
 		<Unit filename="header.h" />
+		<Unit filename="linkedlist.cpp" />
+		<Unit filename="linkedlist.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="maps.cpp" />
 		<Unit filename="maps.h" />

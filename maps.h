@@ -1,6 +1,8 @@
 #ifndef maps_H
 #define maps_H
 
+#include "header.h"
+
 //	1. Modul menampilkan box header untuk judul permainan
 void PapanInfo();
 
@@ -17,5 +19,15 @@ void PapanGame();
 //	5. Modul fungsi untuk mengocok dadu
 int KocokDadu();
 
+//	6. Modul prosedur untuk membuat map
+void buatMap(List * L1);
+
+//	7. Modul prosedur untuk menampilkan map
+void tampilkanMap(List L);
+
+//	8. Modul prosedur untuk mengenerate simbol
+simboltype generateSimbol(infotype baris, infotype kolom);
+
+void tampilkanSimbol(infotype counter, simboltype Simbol);
 
 #endif

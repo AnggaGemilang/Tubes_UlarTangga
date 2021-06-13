@@ -9,24 +9,24 @@ void BermainSendiri() {
     int JumlahAI, y;
 
     //mencetak sisi atas dan bawah kotak
-    gotoxy(39,5);       printf("_____________________________________________");
-    gotoxy(40,15);      printf("___________________________________________");
+    gotoxy(62,5);		printf("____________________________________________");
+	gotoxy(62,15);		printf("____________________________________________");
 
     //mencetak sisi kiri dan kanan kotak
     for(y=6;y<=15;y++){
-        gotoxy(39,y);		printf("|");
-		gotoxy(83,y);		printf("|");
+        gotoxy(61,y);		printf("|");
+		gotoxy(106,y);		printf("|");
 	}
 
 	//mencetak isi tulisan dalam kotak
-    gotoxy(53,7);       printf("Pilih Jumlah Lawan");
-    gotoxy(43,8);		printf("______________________________________");
-    gotoxy(45,10);      printf("1. VS 1 KOMPUTER");
-    gotoxy(45,11);      printf("2. VS 2 KOMPUTER");
-    gotoxy(45,12);      printf("3. VS 3 KOMPUTER");
-    gotoxy(45,13);      printf("4. Kembali");
+    gotoxy(69,7);		printf(">>>>| Pilih Jumlah Lawan |<<<<");
+	gotoxy(65,8);		printf("______________________________________");
+	gotoxy(67,10);		printf("1. VS 1 KOMPUTER");
+	gotoxy(67,11);		printf("2. VS 2 KOMPUTER");
+	gotoxy(67,12);		printf("3. VS 3 KOMPUTER");
+	gotoxy(67,13);		printf("4. Kembali");
 
-    pilihan=Cursor(4,42,10); //User memilih menu menggunakan tombol keyboard atas atau bawah
+    pilihan = Cursor(4,64,10); //User memilih menu menggunakan tombol keyboard atas atau bawah
 
     switch(pilihan) {
     case 1 || 2 || 3:
@@ -37,7 +37,6 @@ void BermainSendiri() {
         //Jumlah pemain dan jumlah pemain komputer "dilempar" ke modul yang bernama "Permainan"
         Permainan(1, JumlahAI);
     case 4:
-        return;
         break;
     }
 }
@@ -49,24 +48,24 @@ void BermainBersamaTeman() {
     int JumlahPemain, y;
 
     //mencetak sisi atas dan bawah kotak
-    gotoxy(39,5);       printf("_____________________________________________");
-    gotoxy(40,15);      printf("___________________________________________");
+    gotoxy(62,5);		printf("____________________________________________");
+	gotoxy(62,15);		printf("____________________________________________");
 
     //mencetak sisi kiri dan kanan kotak
     for(y=6;y<=15;y++){
-        gotoxy(39,y);		printf("|");
-		gotoxy(83,y);		printf("|");
+        gotoxy(61,y);		printf("|");
+		gotoxy(106,y);		printf("|");
 	}
 
 	//mencetak isi tulisan dalam kotak
-    gotoxy(53,7);       printf("Pilih Jumlah Pemain");
-    gotoxy(43,8);		printf("______________________________________");
-    gotoxy(45,10);      printf("1. 2 Pemain");
-    gotoxy(45,11);      printf("2. 3 Pemain");
-    gotoxy(45,12);      printf("3. 4 Pemain");
-    gotoxy(45,13);      printf("4. Kembali");
+    gotoxy(69,7);		printf(">>>>| Pilih Jumlah Pemain |<<<<");
+	gotoxy(65,8);		printf("______________________________________");
+	gotoxy(67,10);		printf("1. 2 Pemain");
+	gotoxy(67,11);		printf("2. 3 Pemain");
+	gotoxy(67,12);		printf("3. 4 Pemain");
+	gotoxy(67,13);		printf("4. Kembali");
 
-    pilihan=Cursor(4,42,10); //User memilih menu menggunakan tombol keyboard atas atau bawah
+    pilihan = Cursor(4,64,10); //User memilih menu menggunakan tombol keyboard atas atau bawah
 
     switch(pilihan) {
     case 1 || 2 || 3:
@@ -77,7 +76,6 @@ void BermainBersamaTeman() {
         //Jumlah pemain dan jumlah pemain komputer "dilempar" ke modul yang bernama "Permainan"
         Permainan(JumlahPemain,0);
     case 4:
-        return;
         break;
     }
 }
@@ -96,6 +94,8 @@ void CaraMain() {
     } else {
         gotoxy(43,10);       printf("File Tata Cara Bermain Tidak Ditemukan!");
     }
+
+    _getch();
 
     fclose(fp);
 }
