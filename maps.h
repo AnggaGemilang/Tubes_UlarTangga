@@ -6,28 +6,19 @@
 //	1. Modul menampilkan box header untuk judul permainan
 void PapanInfo();
 
-//	2. Modul membuat papan permainan buta (tanpa simbol ular ataupun tangga)
-void PapanButa();
-
-//	3. Modul untuk meletakkan simbol ular dan tangga
-void SimbolUlarDanTangga();
-
-//	4. Modul untuk menampilkan papan ermainan secara utuh (Ada hiasan Header
-//		judul permainan, dan ada simbol ular dan tangga)
-void PapanGame();
-
-//	5. Modul fungsi untuk mengocok dadu
+//	2. Modul fungsi untuk mengocok dadu
 int KocokDadu();
 
-//	6. Modul prosedur untuk membuat map
+//	3. Modul prosedur untuk membuat map
 void buatMap(List * L1);
 
-//	7. Modul prosedur untuk menampilkan map
+//	4. Modul prosedur untuk menampilkan map
 void tampilkanMap(List L);
 
-//	8. Modul prosedur untuk mengenerate simbol
+//	5. Modul prosedur untuk mengenerate simbol
 simboltype generateSimbol(infotype baris, infotype kolom);
 
+//	6. Modul prosedur untuk menampilkan simbol
 void tampilkanSimbol(infotype counter, simboltype Simbol);
 
 #endif

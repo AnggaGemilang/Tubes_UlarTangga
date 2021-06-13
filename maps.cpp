@@ -41,190 +41,7 @@ void PapanInfo() {
 }
 
 //==============================================================
-//	2. Modul membuat papan permainan buta (tanpa simbol ular
-//                          ataupun tangga)
-//==============================================================
-void PapanButa() {
-    int x,y,i,j,nomor;
-//    board vertikal
-    for (i=0; i<=10; i++) {
-        for (j=0; j<39; j++) {
-            gotoxy(x=4+(6*i),y=5+j);
-            printf("บ");
-        }
-    }
-
-//    board horizontal
-	for (i=0; i<11; i++) {
-		for (j=0; j<10; j++) {	gotoxy(x=4+(6*j),y=4+(4*i));	printf("ฮอออออฮ");	}
-	}
-
-//    NOMOR
-    for (i=0; i<10; i++) {
-        for (j=0; j<10; j++) {
-            gotoxy(x=5+(6*j),y=41-(4*i));
-            nomor=((i+1)/2)*20+((i+1)%2)+(pow(-1,((i+1)-1))*((j+1)-1));
-            printf("%d",nomor);
-        }
-    }
-}
-
-//==============================================================
-//      3. Modul untuk meletakkan simbol ular dan tangga
-//==============================================================
-void SimbolUlarDanTangga() {
-    int x,y;
-    //Posisi Ular (Ekor)
-    gotoxy(x=45,y=41);
-    setcolor(8);
-    printf("ฏ");
-    setcolor(7);
-    gotoxy(x=15,y=37);
-    setcolor(9);
-    printf("ฏ");
-    setcolor(7);
-    gotoxy(x=27,y=33);
-    setcolor(10);
-    printf("ฏ");
-    setcolor(7);
-    gotoxy(x=45,y=29);
-    setcolor(11);
-    printf("ฏ");
-    setcolor(7);
-    gotoxy(x=9,y=21);
-    setcolor(12);
-    printf("ฏ");
-    setcolor(7);
-    gotoxy(x=51,y=13);
-    setcolor(13);
-    printf("ฏ");
-    setcolor(7);
-    gotoxy(x=39,y=13);
-    setcolor(14);
-    printf("ฏ");
-    setcolor(7);
-    gotoxy(x=21,y=13);
-    setcolor(15);
-    printf("ฏ");
-    setcolor(7);
-
-
-    //Posisi Ular ( Kepala)
-    gotoxy(x=27,y=37);
-    setcolor(8);
-    printf("ฎ");
-    setcolor(7);
-    gotoxy(x=15,y=17);
-    setcolor(9);
-    printf("ฎ");
-    setcolor(7);
-    gotoxy(x=45,y=9);
-    setcolor(10);
-    printf("ฎ");
-    setcolor(7);
-    gotoxy(x=45,y=21);
-    setcolor(11);
-    printf("ฎ");
-    setcolor(7);
-    gotoxy(x=27,y=17);
-    setcolor(12);
-    printf("ฎ");
-    setcolor(7);
-    gotoxy(x=51,y=5);
-    setcolor(13);
-    printf("ฎ");
-    setcolor(7);
-    gotoxy(x=39,y=5);
-    setcolor(14);
-    printf("ฎ");
-    setcolor(7);
-    gotoxy(x=15,y=5);
-    setcolor(15);
-    printf("ฎ");
-    setcolor(7);
-
-    //Posisi Tangga (Awal Naik)
-    gotoxy(x=27,y=41);
-    setcolor(8);
-    printf("Û");
-    setcolor(7);
-    gotoxy(x=57,y=41);
-    setcolor(9);
-    printf("Û");
-    setcolor(7);
-    gotoxy(x=9,y=37);
-    setcolor(10);
-    printf("Û");
-    setcolor(7);
-    gotoxy(x=51,y=33);
-    setcolor(11);
-    printf("Û");
-    setcolor(7);
-    gotoxy(x=9,y=29);
-    setcolor(12);
-    printf("Û");
-    setcolor(7);
-    gotoxy(x=63,y=21);
-    setcolor(13);
-    printf("Û");
-    setcolor(7);
-    gotoxy(x=21,y=17);
-    setcolor(14);
-    printf("Û");
-    setcolor(7);
-    gotoxy(x=63,y=13);
-    setcolor(15);
-    printf("Û");
-    setcolor(7);
-
-    //Posisi Tangga (Akhir Naik)
-    gotoxy(x=45,y=37);
-    setcolor(8);
-    printf("Û");
-    setcolor(7);
-    gotoxy(x=63,y=29);
-    setcolor(9);
-    printf("Û");
-    setcolor(7);
-    gotoxy(x=21,y=29);
-    setcolor(10);
-    printf("Û");
-    setcolor(7);
-    gotoxy(x=27,y=9);
-    setcolor(11);
-    printf("Û");
-    setcolor(7);
-    gotoxy(x=15,y=21);
-    setcolor(12);
-    printf("Û");
-    setcolor(7);
-    gotoxy(x=45,y=17);
-    setcolor(13);
-    printf("Û");
-    setcolor(7);
-    gotoxy(x=9,y=9);
-    setcolor(14);
-    printf("Û");
-    setcolor(7);
-    gotoxy(x=63,y=5);
-    setcolor(15);
-    printf("Û");
-    setcolor(7);
-
-}
-
-//==============================================================
-//  4. Modul untuk menampilkan papan ermainan secara utuh (Ada
-// hiasan Header judul permainan, dan ada simbol ular dan tangga)
-//==============================================================
-void PapanGame() {
-    PapanInfo();
-    PapanButa();
-    SimbolUlarDanTangga();
-}
-
-//==============================================================
-//             5. Modul fungsi untuk mengocok dadu
+//             2. Modul fungsi untuk mengocok dadu
 //==============================================================
 int KocokDadu() {
     srand(time(NULL));
@@ -308,7 +125,7 @@ int KocokDadu() {
 }
 
 //==============================================================
-//             6. Modul prosedur untuk membuat map
+//             3. Modul prosedur untuk membuat map
 //==============================================================
 void buatMap(List * L1)
 {
@@ -365,7 +182,7 @@ void buatMap(List * L1)
 
 
 //==============================================================
-//             7. Modul prosedur untuk menampilkan map
+//             4. Modul prosedur untuk menampilkan map
 //==============================================================
 void tampilkanMap(List L)
 {
@@ -379,11 +196,13 @@ void tampilkanMap(List L)
 	else
 	{
 		P1 = First(L);
+		printf("\n\n\n\n");
 		while(P1 != Nil)
 		{
-            printf("ฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮ\n");
+            printf("    ฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮ\n");
+            printf("    ");
 			P2=P1;
-			while (P2 != Nil)
+			while(P2 != Nil)
 			{
                 printf("บ");
 				printf ("%d", Info(P2));
@@ -404,16 +223,16 @@ void tampilkanMap(List L)
 				P2 = Next(P2);
 			}
             printf("บ");
-			printf("\nบ     บ     บ     บ     บ     บ     บ     บ     บ     บ     บ");
-			printf("\nบ     บ     บ     บ     บ     บ     บ     บ     บ     บ     บ\n");
+			printf("\n    บ     บ     บ     บ     บ     บ     บ     บ     บ     บ     บ");
+			printf("\n    บ     บ     บ     บ     บ     บ     บ     บ     บ     บ     บ\n");
 			P1 = baris(P1);
 		}
-        printf("ฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮ\n");
+        printf("    ฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮ\n");
 	}
 }
 
 //==============================================================
-//             8. Modul fungsi untuk mengenerate simbol
+//             5. Modul fungsi untuk mengenerate simbol
 //==============================================================
 simboltype generateSimbol(infotype baris, infotype kolom)
 {
@@ -544,6 +363,9 @@ simboltype generateSimbol(infotype baris, infotype kolom)
     return ' ';
 }
 
+//==============================================================
+//             6. Modul prosedur untuk menampilkan simbol
+//==============================================================
 void tampilkanSimbol(infotype counter, simboltype Simbol)
 {
     if(counter == 1)
@@ -650,5 +472,5 @@ void tampilkanSimbol(infotype counter, simboltype Simbol)
     {
         cout << "  " << Simbol;
     }
-    setcolor(7);
+    setcolor(11);
 }

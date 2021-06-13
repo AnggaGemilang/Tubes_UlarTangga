@@ -5,7 +5,7 @@
 void gotoxy(int x, int y);
 
 // 2. Modul ganti warna
-void setcolor (unsigned short color);
+void setcolor(unsigned short color);
 
 // 3. Modul fugsi untuk menggerakkan cursor
 int Cursor(int BanyakPilihan,int x,int y);

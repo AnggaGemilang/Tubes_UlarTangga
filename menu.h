@@ -5,10 +5,10 @@
 //void MenuUtama();
 
 //	1. Mode Single Player 'Bermain Sendiri'
-void BermainSendiri();
+void BermainSendiri(List * map);
 
 //	2. Mode Multi Player 'Bermain Bersama Teman'
-void BermainBersamaTeman();
+void BermainBersamaTeman(List * map);
 
 //	3. Menampilkan Tatacara bermain permainan
 void CaraMain();

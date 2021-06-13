@@ -9,11 +9,8 @@ int main() {
 	ShowWindow(GetConsoleWindow(),SW_MAXIMIZE); // mengatur display agar fullscreen
 
 	List map;
-    CreateList(&map);
-	buatMap(&map);
-    tampilkanMap(map);
 
-/*	do {
+	do {
 		system("color b");//mengatur warna font
 		system("MODE 120,50");//mengatur ukuran windows
 
@@ -40,11 +37,11 @@ int main() {
 		switch(PilihanUser) {
 			case 1:
 				system("cls");
-				BermainSendiri();
+				BermainSendiri(&map);
 				break;
 			case 2:
 				system("cls");
-				BermainBersamaTeman();
+				BermainBersamaTeman(&map);
 				break;
 			case 3:
 				system("cls");
@@ -56,8 +53,7 @@ int main() {
 				break;
 			//tidak ada default karena bisa dijamin pilihan user tidak akan keluar dari pilihan yang disediakan
 		}
-
-	} while(true); */
+	} while(true);
 
 	return 0;
 

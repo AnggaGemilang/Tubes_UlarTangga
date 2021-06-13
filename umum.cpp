@@ -27,16 +27,10 @@ int Cursor(int BanyakPilihan,int x,int y) {
     gotoxy(x,y);
     printf("%c",62);
 
-//    Ascii dari
-//    Up key - 224 72
-//    Down key - 224 80
-//    Left key - 224 75
-//    Right key - 224 77
-
     do {
         cursor=_getch();//diganti jadi _getch(); karena jika menggunakan getch(); ada error drawing operation was attempted when there was no current window error while using getch() in C saat runtime
 
-        if(cursor == 80) {//down key
+        if(cursor == DOWN_KEY) {//down key
             if(Pilih+1 > BanyakPilihan) {
                 gotoxy(x,y);
                 printf(" ");
@@ -54,7 +48,7 @@ int Cursor(int BanyakPilihan,int x,int y) {
             }
         }
 
-        if(cursor == 72) {//up key
+        if(cursor == UP_KEY) {//up key
             if(Pilih-1 == 0) {
                 gotoxy(x,y);
                 printf(" ");

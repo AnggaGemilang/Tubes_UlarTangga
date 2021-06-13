@@ -3,35 +3,24 @@
 //==============================================================
 //                      1. Inti Permainan
 //==============================================================
-void Permainan(int PemainYangBermain,int AIYangBermain) {
-    PapanGame();
+void Permainan(int PemainYangBermain, int AIYangBermain, List * map) {
+    CreateList(&(*map));
+	buatMap(&(*map));
+    tampilkanMap(*map);
+    PapanInfo();
+
     int i,j,k,l,m,n,o,p,q,
-
-        DapetDadu,
-        GiliranPemain=PemainYangBermain,
-        GiliranAI=AIYangBermain,
-
-        Status=1,
-        StatusSelesai=0,
-        StatusUlang=0,
-        AngkaPetak,
-        Sebelum,
-        Sesudah,
-        SebelumAI=0,
-        SesudahAI=0;
-
-    //data komposit untuk rute pemain dan komputer
-    struct	{
-        int Rute;
-    }	Pemain[4],AI[4];
-
-    //data komposit untuk koordinat tiap pemain atau komputer pada tiap petak papan
-    struct  {
-        struct  {
-            int x;
-            int y;
-        } SiPemain[4],SiAI[4];
-    } PapanPermainan[100];
+    DapetDadu,
+    GiliranPemain=PemainYangBermain,
+    GiliranAI=AIYangBermain,
+    Status=1,
+    StatusSelesai=0,
+    StatusUlang=0,
+    AngkaPetak,
+    Sebelum,
+    Sesudah,
+    SebelumAI=0,
+    SesudahAI=0;
 
     //mengisi tiap petak papan dengan koordinat tiap pemain atau komputer
     for (n=0; n<4; n++) {

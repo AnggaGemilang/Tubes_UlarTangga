@@ -18,10 +18,10 @@
 #include "permainan.h"
 #include "boolean.h"
 
-#define UpKey 72
-#define DownKey 80
-#define LeftKey 75
-#define RightKey 77
+#define UP_KEY 72
+#define DOWN_KEY 80
+#define LEFT_KEY 75
+#define RIGHT_KEY 77
 
 #define Nil NULL
 #define Simbol(P) (P)->simbol

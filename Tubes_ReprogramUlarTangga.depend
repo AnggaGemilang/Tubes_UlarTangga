@@ -101,7 +101,7 @@
 1623560656 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\linkedlist.cpp
 	"header.h"
 
-1623560537 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\header.h
+1623581059 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\header.h
 	<stdio.h>
 	<iostream>
 	<limits.h>
@@ -121,30 +121,30 @@
 1623560612 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\linkedlist.h
 	"header.h"
 
-1623560843 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\maps.h
+1623583310 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\maps.h
 	"header.h"
 
-1623463621 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\umum.h
+1623583475 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\umum.h
 
-1623463621 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\menu.h
+1623582311 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\menu.h
 
-1623463621 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\permainan.h
+1623582296 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\permainan.h
 
 1623463777 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\boolean.h
 
-1623549655 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\main.cpp
+1623583537 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\main.cpp
 	"header.h"
 
-1623571301 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\maps.cpp
+1623583367 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\maps.cpp
 	"header.h"
 
-1623548226 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\menu.cpp
+1623584307 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\menu.cpp
 	"header.h"
 
-1623463621 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\permainan.cpp
+1623582532 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\permainan.cpp
 	"header.h"
 
-1623463621 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\umum.cpp
+1623581035 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\umum.cpp
 	"header.h"
 
 1623549655 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga - copy\main.cpp

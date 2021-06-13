@@ -5,7 +5,7 @@ int pilihan;
 //==============================================================
 //             1. Mode Single Player 'Bermain Sendiri'
 //==============================================================
-void BermainSendiri() {
+void BermainSendiri(List * map) {
     int JumlahAI, y;
 
     //mencetak sisi atas dan bawah kotak
@@ -29,14 +29,20 @@ void BermainSendiri() {
     pilihan = Cursor(4,64,10); //User memilih menu menggunakan tombol keyboard atas atau bawah
 
     switch(pilihan) {
-    case 1 || 2 || 3:
+    case 1 :
+    case 2 :
+    case 3 :
+
         //Pemilihan jumlah pemain komputer dilakukan dengan menggunakan tombol atas atau bawah keyboard
         JumlahAI = pilihan;
+
         system("cls");
 
         //Jumlah pemain dan jumlah pemain komputer "dilempar" ke modul yang bernama "Permainan"
-        Permainan(1, JumlahAI);
+        Permainan(1, JumlahAI, &(*map));
+        break;
     case 4:
+        return;
         break;
     }
 }
@@ -44,7 +50,7 @@ void BermainSendiri() {
 //==============================================================
 //         2. Mode Multi Player 'Bermain Bersama Teman'
 //==============================================================
-void BermainBersamaTeman() {
+void BermainBersamaTeman(List * map) {
     int JumlahPemain, y;
 
     //mencetak sisi atas dan bawah kotak
@@ -68,15 +74,21 @@ void BermainBersamaTeman() {
     pilihan = Cursor(4,64,10); //User memilih menu menggunakan tombol keyboard atas atau bawah
 
     switch(pilihan) {
-    case 1 || 2 || 3:
-        //Pelilihan jumlah pemain yang dilawan dilakukan dengan menggunakan tombol atas atau bawah keyboard
-        JumlahPemain = pilihan+1;
-        system("cls");
+        case 1:
+        case 2:
+        case 3:
 
-        //Jumlah pemain dan jumlah pemain komputer "dilempar" ke modul yang bernama "Permainan"
-        Permainan(JumlahPemain,0);
-    case 4:
-        break;
+            //Pelilihan jumlah pemain yang dilawan dilakukan dengan menggunakan tombol atas atau bawah keyboard
+            JumlahPemain = pilihan+1;
+
+            system("cls");
+
+            //Jumlah pemain dan jumlah pemain komputer "dilempar" ke modul yang bernama "Permainan"
+            Permainan(JumlahPemain,0, &(*map));
+            break;
+        case 4:
+            return;
+            break;
     }
 }
 
