@@ -23,7 +23,7 @@ void CreateList (List * L)
 }
 
 /**** Manajemen Memory ****/
-address Alokasi (infotype X, simboltype Y)
+address Alokasi (infotype nPetak, simboltype simbolUT, int x, int y)
 /* Mengirimkan address hasil alokasi sebuah elemen */
 /* Jika alokasi berhasil, maka address != Nil, 	   */
 /*	dan misalnya menghasilkan P, maka Info(P) = X, Next(P) = Nil */
@@ -35,12 +35,87 @@ address Alokasi (infotype X, simboltype Y)
 	P = (address) malloc (sizeof (ElmtList));
 	if (P != Nil)		/* Alokasi berhasil */
 	{
-	    Simbol(P) = Y;
-		Info(P) = X;
+	    Simbol(P) = simbolUT;
+		Info(P) = nPetak;
+		P->x = x;
+		P->y = y;
 		Next(P) = Nil;
 		baris(P) = Nil;
 	}
 	return (P);
+}
+
+void CreateListP (ListP * LP){
+	First(*LP) = Nil;
+}
+
+addressP AlokasiP (infotype X, infotype Y)
+/* Mengirimkan address hasil alokasi sebuah elemen */
+/* Jika alokasi berhasil, maka address != Nil, 	   */
+/*	dan misalnya menghasilkan P, maka Info(P) = X, Next(P) = Nil */
+/* Jika alokasi gagal, mengirimkan Nil */
+{
+	/* Kamus Lokal */
+	addressP P;
+	/* Algoritma */
+	P = (addressP) malloc (sizeof (lokasiBidak));
+	if (P != Nil)		/* Alokasi berhasil */
+	{
+		Info(P) = X;
+		posisi(P) = Y;
+		Next(P) = Nil;
+	}
+	return (P);
+}
+
+void InsertLastP (ListP * LP, addressP PP)
+/* IS : L sembarang, P sudah dialokasi */
+/* FS : P ditambahkan sebagai elemen terakhir yang baru */
+{
+	/* Kamus Lokal */
+	addressP LastP;
+
+	/* Algoritma */
+	if (First(*LP) != Nil)
+	{
+		LastP = First(*LP);
+		while (Next(LastP) != Nil)
+		{
+			LastP = Next(LastP);
+		}
+		Next(LastP) = PP;
+	}
+	else
+	{
+		First(*LP) = PP;
+	}
+}
+
+addressP SearchP (ListP LP, infotype X)
+/* Mencari apakah ada elemen list dengan Info(P) = X */
+/* Jika ada, mengirimkan address elemen tsb. */
+/* Jika tidak ada, mengirimkan Nil */
+/* Menggunakan variabel bertype boolean */
+{
+	/* Kamus Lokal */
+	addressP PP;
+	boolean found =  false;
+	/* algoritma */
+	PP = First(LP);
+
+	while ((PP != Nil) && (!found))
+	{
+		if (Info(PP) == X)
+		{
+			found = true;
+		}
+		else
+		{
+			PP = Next(PP);
+		}
+	}	/* P = Nil atau Ketemu */
+
+	return (PP);
 }
 
 void DeAlokasi (address P)
@@ -62,22 +137,26 @@ address Search (List L, infotype X)
 /* Menggunakan variabel bertype boolean */
 {
 	/* Kamus Lokal */
-	address P;
+	address P, down;
 	boolean found =  false;
 	/* algoritma */
-	P = First(L);
-	while ((P != Nil) && (!found))
-	{
-		if (Info(P) == X)
-		{
-			found = true;
-		}
-		else
-		{
-			P = Next(P);
-		}
-	}	/* P = Nil atau Ketemu */
+	down = First(L);
 
+	while ((down != Nil) && (!found)){
+		P = down;
+		while ((P != Nil) && (!found))
+		{
+			if (Info(P) == X)
+			{
+				found = true;
+			}
+			else
+			{
+				P = Next(P);
+			}
+		}	/* P = Nil atau Ketemu */
+		down = baris(down);
+	}
 	return (P);
 }
 
@@ -155,7 +234,7 @@ void InsVFirst (List * L, infotype X, simboltype Y)
 	address P;
 
 	/* Aloritma */
-	P = Alokasi (X, Y);
+//	P = Alokasi (X, Y);
 	if (P != Nil)
 	{
 		InsertFirst (&(*L), P);
@@ -172,7 +251,7 @@ void InsVLast (List * L, infotype X, simboltype Y)
 	address P;
 
 	/* Algoritma */
-	P = Alokasi (X, Y);
+//	P = Alokasi (X, Y);
 	if (P != Nil)
 	{
 		InsertLast (&(*L), P);

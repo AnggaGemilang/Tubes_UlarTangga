@@ -14,6 +14,8 @@ struct {
     } SiPemain[4], SiAI[4];
 } PapanPermainan[100];
 
+
+
 //	1. Inti Permainan
 void Permainan(int PemainYangBermain, int AIYangBermain, List * map);
 
@@ -22,5 +24,9 @@ void Pemenang(int SiapaMenang, int MenangPemain, int Jml_Pemain,int MenangAI);
 
 //	3. Modul fungsi untuk mengecek petak
 int CekAdaUlarTangga(int Petak, int Dadu);
+
+void printBidak(address P, int i);
+
+void printBidakKosong(address P, int i);
 
 #endif // permainan_H
