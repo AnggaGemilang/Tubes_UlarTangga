@@ -21,4 +21,5 @@ simboltype generateSimbol(infotype baris, infotype kolom);
 //	6. Modul prosedur untuk menampilkan simbol
 void tampilkanSimbol(infotype counter, simboltype Simbol);
 
+void buatMapEasy(List * L1);
 #endif

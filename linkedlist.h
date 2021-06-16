@@ -17,7 +17,20 @@ typedef struct tElmtList {
 	simboltype simbol;
 	address  next;
 	address  baris;
+	int x;
+	int y;
 } ElmtList;
+
+typedef struct tlokasiBidak * addressP;
+typedef struct tlokasiBidak {
+    infotype info;
+    infotype posisi;
+    addressP next;
+} lokasiBidak;
+
+typedef struct {
+	  addressP First;
+} ListP;
 
 /* Definisi list : */
 /* List kosong ===> First(L) = Nil */
@@ -38,11 +51,16 @@ void CreateList (List * L);
 /* FS : Terbentuk List Kosong */
 
 /**** Manajemen Memory ****/
-address Alokasi (infotype X, simboltype Y);
+address Alokasi (infotype nPetak, simboltype simbolUT, int x, int y);
 /* Mengirimkan address hasil alokasi sebuah elemen */
 /* Jika alokasi berhasil, maka address != Nil, 	   */
 /*	dan misalnya menghasilkan P, maka Info(P) = X, Next(P) = Nil */
 /* Jika alokasi gagal, mengirimkan Nil */
+
+void CreateListP (ListP * LP);
+addressP AlokasiP (infotype X, infotype Y);
+void InsertLastP (ListP * LP, addressP PP);
+addressP SearchP (ListP LP, infotype X);
 
 void DeAlokasi (address P);
 /* IS : P terdefinisi */

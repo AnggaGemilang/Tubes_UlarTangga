@@ -28,6 +28,9 @@
 #define Info(P)  (P)->info
 #define Next(P)  (P)->next
 #define baris(P) (P)->baris
+#define posisi(P) (P)->posisi
+//#define x(P)     (P)->x
+//#define y(P)     (P)->y
 #define First(L) (L).First
 
 using namespace std;

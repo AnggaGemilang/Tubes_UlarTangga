@@ -8,7 +8,7 @@ void Permainan(int PemainYangBermain, int AIYangBermain, List * map) {
 	buatMap(&(*map));
     tampilkanMap(*map);
     PapanInfo();
-
+    address P;
     int i,j,k,l,m,n,o,p,q,
     DapetDadu,
     GiliranPemain=PemainYangBermain,
@@ -22,6 +22,7 @@ void Permainan(int PemainYangBermain, int AIYangBermain, List * map) {
     SebelumAI=0,
     SesudahAI=0;
 
+    P = First(*map);
     //mengisi tiap petak papan dengan koordinat tiap pemain atau komputer
     for (n=0; n<4; n++) {
         for (l=0; l<10; l++) {
@@ -41,17 +42,19 @@ void Permainan(int PemainYangBermain, int AIYangBermain, List * map) {
     //inisialisasi awal icon tiap pemain, dari mulai hati,wajik,keriting, dan sekop
     //namun penginisialisasian ini tergantung banyaknya pemain yang memainkan permainan
     //berurut dari pemain pertama sampai pemain ke-4: hati, diamond, keriting, sekop.
-    for (o=0; o<GiliranPemain; o++) {
-        gotoxy(PapanPermainan[0].SiPemain[o].x,PapanPermainan[0].SiPemain[o].y);
-        printf("%c",o+3);
+
+    P = Search(*map, 1);
+
+    for (o=1; o<=GiliranPemain; o++) {
+        printBidak(P, o);
     }
 
     //inisialisasi awal icon untuk komputer
     //komputer tidak akan mendapatkan icon hati, karena secara default icon hati hanya untuk pemain pertama
     //jadi komputer pertama sampai dengan komputer terakhir hanya mendapatkan icon wajik, keriting, dan sekop
-    for (p=0; p<GiliranAI; p++) {
-        gotoxy(PapanPermainan[0].SiAI[p+1].x,PapanPermainan[0].SiAI[p+1].y);
-        printf("%c",p+4);
+
+    for (p=1; p<=GiliranAI; p++) {
+        printBidak(P, p+1);
     }
 
     //Inisialisasi rute tiap pemain dan komputer
@@ -59,6 +62,20 @@ void Permainan(int PemainYangBermain, int AIYangBermain, List * map) {
         Pemain[k].Rute=0;
         AI[k].Rute=0;
     }
+
+//    lokasiBidak Rute;
+//    for (k=0; k<=3; k++){
+//        Rute.player = k+1;
+//        Rute.posisi = 0;
+//    }
+//    ListP LP1;
+//    addressP PP, PP1;
+//    CreateListP(&LP1);
+//    for (k=0;k<=3;k++){
+//        PP = AlokasiP(i, 0);
+//        InsertLastP(&LP1, PP);
+//    }
+//    PP = First(LP1);
 
     //JRENG! JRENG! disinilah "inti" dari permainan yang kami buat
     //Karena pengulangan "do...while" ini dilakukan hingga ada pemain atau komputer yang berhasi mengubah
@@ -76,57 +93,74 @@ void Permainan(int PemainYangBermain, int AIYangBermain, List * map) {
                 printf("=PEMAIN %c=,tekan enter untuk mengocok dadu",i+3);
                 _getch();
                 Sebelum=Pemain[i].Rute;
+//                PP1 = SearchP(LP1, i);
+//                int SebelumP;
+//                SebelumP = posisi(PP1);
                 DapetDadu=KocokDadu();
                 Pemain[i].Rute= Pemain[i].Rute + DapetDadu;
+//                posisi(PP1) += DapetDadu;
                 if (Pemain[i].Rute==99) {
                     Sesudah=Pemain[i].Rute;
-                    gotoxy(PapanPermainan[Sebelum].SiPemain[i].x,PapanPermainan[Sebelum].SiPemain[i].y);
-                    printf(" ");
-                    gotoxy(PapanPermainan[Sesudah].SiPemain[i].x,PapanPermainan[Sesudah].SiPemain[i].y);
-                    printf("%c",i+3);
+                    for (q=Sebelum; q<=99; q++) {
+                        P = Search(*map, q+1);
+                        printBidakKosong(P, i+1);
+                        P = Search(*map, q+2);
+                        printBidak(P, i+1);
+                        Sleep(500);
+                    }
                     gotoxy(80,12+i);
                     printf("PEMAIN %c ada di kotak %d",i+3,Sesudah+1);
                     StatusSelesai=1; //<--FINISH!!
                     Pemenang(Status,i+1,PemainYangBermain+AIYangBermain,j);
                     break;
-                } else if (Pemain[i].Rute>99) {
+                } else
+                if (Pemain[i].Rute>99) {
                     //dikurang dulu, misal dapat angka dadu 6 ketika di kotak 99, maka pemain/komputer
                     //akan ada di kotak  94
                     //dibawah ini dimulai dari 99, dikarenakan array di C dimulai dari angka nol.
                     Pemain[i].Rute=99-((Pemain[i].Rute)-99);
                     Sesudah=Pemain[i].Rute;
 
-                    //masih terdapat "bugs" disini.
-                    for (q=Sebelum; q<Sesudah; q++) {
-                        gotoxy(PapanPermainan[q].SiPemain[i].x,PapanPermainan[q].SiPemain[i].y);
-                        printf(" ");
-                        gotoxy(PapanPermainan[q+1].SiPemain[i].x,PapanPermainan[q+1].SiPemain[i].y);
-                        printf("%c",i+3);
+                    for (q=Sebelum; q<99; q++) {
+                        P = Search(*map, q+1);
+                        printBidakKosong(P, i+1);
+                        P = Search(*map, q+2);
+                        printBidak(P, i+1);
                         Sleep(500);
                     }
-                    Pemain[i].Rute= CekAdaUlarTangga(Pemain[i].Rute,DapetDadu);
-                    gotoxy(PapanPermainan[Sesudah].SiPemain[i].x,PapanPermainan[Sesudah].SiPemain[i].y);
-                    printf(" ");
-                    gotoxy(PapanPermainan[Pemain[i].Rute].SiPemain[i].x,PapanPermainan[Pemain[i].Rute].SiPemain[i].y);
-                    printf("%c",i+3);
-                } else if (Pemain[i].Rute<99) {
-                    Sesudah=Pemain[i].Rute;
+                    for (q=99; q>Sesudah; q--) {
+                        P = Search(*map, q+1);
+                        printBidakKosong(P, i+1);
+                        P = Search(*map, q);
+                        printBidak(P, i+1);
+                        Sleep(500);
+                    }
+                } else
+                if (Pemain[i].Rute < 99) {
+//                    int SesudahP;
+//                    SesudahP = posisi(PP1);
+                    Sesudah = Pemain[i].Rute;
                     //variabel bernama "sebelum" dan "sesudah" berguna untuk animasi gerak tiap bidak pemain/komputer
                     //yang digunakan oleh pengulangan dibawah ini
                     for (q=Sebelum; q<Sesudah; q++) {
-                        gotoxy(PapanPermainan[q].SiPemain[i].x,PapanPermainan[q].SiPemain[i].y);
-                        printf(" ");
-                        gotoxy(PapanPermainan[q+1].SiPemain[i].x,PapanPermainan[q+1].SiPemain[i].y);
-                        printf("%c",i+3);
+                        P = Search(*map, q+1);
+                        printBidakKosong(P, i+1);
+                        P = Search(*map, q+2);
+                        printBidak(P, i+1);
                         Sleep(500);
                     }
-                    //cek apakah menginjak ular atau tangga
-                    Pemain[i].Rute= CekAdaUlarTangga(Pemain[i].Rute,DapetDadu);
-                    gotoxy(PapanPermainan[Sesudah].SiPemain[i].x,PapanPermainan[Sesudah].SiPemain[i].y);
-                    printf(" ");
-                    gotoxy(PapanPermainan[Pemain[i].Rute].SiPemain[i].x,PapanPermainan[Pemain[i].Rute].SiPemain[i].y);
-                    printf("%c",i+3);
                 }
+                //cek apakah menginjak ular atau tangga
+                Pemain[i].Rute= CekAdaUlarTangga(Pemain[i].Rute,DapetDadu);
+                printBidakKosong(P, i+1);
+                P = Search(*map, Pemain[i].Rute + 1);
+                printBidak(P, i+1);
+
+//                posisi(PP1)= CekAdaUlarTangga(posisi(PP1), DapetDadu);
+//                printBidakKosong(P, i+1);
+//                P = Search(*map, posisi(PP1) + 1);
+//                printBidak(P, i+1);
+
                 gotoxy(80,12+i);
                 if (Pemain[i].Rute <= 9) {
                     printf("PEMAIN %c ada di kotak  %d",i+3,Pemain[i].Rute+1);
@@ -393,3 +427,60 @@ void Pemenang(int SiapaMenang,int MenangPemain,int Jml_Pemain,int MenangAI) {
     }
 
 }
+
+void printBidak(address P, int i){
+    int x, y, a, b;
+
+    if(i==1){
+        a = 0;
+        b = 0;
+    }
+    if(i==2){
+        a = 1;
+        b = 0;
+    }
+    if(i==3){
+        a = 0;
+        b = 1;
+    }
+    if(i==4){
+        a = 1;
+        b = 1;
+    }
+
+    x = P->x + a;
+    y = P->y + b;
+
+    gotoxy(x,y);
+    printf("%c",i+2);
+
+}
+
+void printBidakKosong(address P, int i){
+    int x, y, a, b;
+
+    if(i==1){
+        a = 0;
+        b = 0;
+    }
+    if(i==2){
+        a = 1;
+        b = 0;
+    }
+    if(i==3){
+        a = 0;
+        b = 1;
+    }
+    if(i==4){
+        a = 1;
+        b = 1;
+    }
+
+    x = P->x + a;
+    y = P->y + b;
+
+    gotoxy(x,y);
+    printf(" ");
+
+}
+
