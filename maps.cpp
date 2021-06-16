@@ -133,7 +133,6 @@ void buatMap(List * L1)
 	int i, j, isGanjil = true, ganjilGenap = 0;
 	infotype nilai = 101;
 	address P1, P2, down;
-
 	for(i=1; i<=10; i++)
 	{
 	    ganjilGenap += 1;
@@ -169,7 +168,9 @@ void buatMap(List * L1)
 			{
 				InsertLast(&L2, P1);
 				baris(down) = P1;
+				cout << Info(baris(down)) << endl;
 				down = Next(down);
+				cout << Info(down) << endl;
 			}
 		}
 		if(i > 1)
