@@ -5,6 +5,7 @@ bool ulangi=true;
 
 int main() {
 	int x, y, loop;
+	int width;
 
 	ShowWindow(GetConsoleWindow(),SW_MAXIMIZE); // mengatur display agar fullscreen
 
@@ -13,6 +14,8 @@ int main() {
 	do {
 		system("color b");//mengatur warna font
 		system("MODE 120,50");//mengatur ukuran windows
+
+        cout << GetSystemMetrics(width);
 
 		//mencetak sisi atas dan bawah kotak
 		gotoxy(62,5);		printf("____________________________________________");

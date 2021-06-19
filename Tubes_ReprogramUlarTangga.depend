@@ -101,7 +101,7 @@
 1624059287 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\linkedlist.cpp
 	"header.h"
 
-1623998367 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\header.h
+1624073797 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\header.h
 	<stdio.h>
 	<iostream>
 	<limits.h>
@@ -132,10 +132,10 @@
 
 1623463777 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\boolean.h
 
-1623583537 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\main.cpp
+1624073857 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\main.cpp
 	"header.h"
 
-1624069707 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\maps.cpp
+1624072513 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\maps.cpp
 	"header.h"
 
 1623584307 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\menu.cpp

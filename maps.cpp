@@ -283,11 +283,11 @@ void tampilkanSimbol(infotype counter, simboltype Simbol) {
     } else if (counter == 4) {
         setcolor(15);
     } else if (counter == 5) {
-        setcolor(14);
+        setcolor(10);
     } else if (counter == 6) {
         setcolor(11);
     } else if (counter == 7) {
-        setcolor(10);
+        setcolor(14);
     } else if (counter == 8) {
         setcolor(15);
     } else if (counter == 9) {
@@ -297,13 +297,13 @@ void tampilkanSimbol(infotype counter, simboltype Simbol) {
     } else if (counter == 11) {
         setcolor(15);
     } else if (counter == 12) {
-        setcolor(9);
-    } else if (counter == 13) {
-        setcolor(14);
-    } else if (counter == 14) {
-        setcolor(12);
-    } else if (counter == 15) {
         setcolor(13);
+    } else if (counter == 13) {
+        setcolor(12);
+    } else if (counter == 14) {
+        setcolor(14);
+    } else if (counter == 15) {
+        setcolor(9);
     } else if (counter == 16) {
         setcolor(12);
     } else if (counter == 17) {
@@ -321,9 +321,9 @@ void tampilkanSimbol(infotype counter, simboltype Simbol) {
     } else if (counter == 23) {
         setcolor(9);
     } else if (counter == 24) {
-        setcolor(10);
-    } else if (counter == 25) {
         setcolor(11);
+    } else if (counter == 25) {
+        setcolor(10);
     } else if (counter == 26) {
         setcolor(10);
     } else if (counter == 27) {
@@ -333,11 +333,11 @@ void tampilkanSimbol(infotype counter, simboltype Simbol) {
     } else if (counter == 29) {
         setcolor(8);
     } else if (counter == 30) {
-        setcolor(8);
+        setcolor(9);
     } else if (counter == 31) {
         setcolor(8);
     } else if (counter == 32) {
-        setcolor(9);
+        setcolor(8);
     }
     if(counter >= 30 && counter <= 32) {
         cout << "   " << Simbol;
