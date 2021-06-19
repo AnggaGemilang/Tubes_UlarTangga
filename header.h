@@ -24,14 +24,16 @@
 #define RIGHT_KEY 77
 
 #define Nil NULL
-#define Simbol(P) (P)->simbol
-#define Info(P)  (P)->info
-#define Next(P)  (P)->next
-#define baris(P) (P)->baris
-#define posisi(P) (P)->posisi
+#define Prev(P)     (P)->prev
+#define Info(P)     (P)->info
+#define Simbol(P)   (P)->simbol
+#define Jump(P)     (P)->jump
+#define Next(P)     (P)->next
+#define posisi(P)   (P)->posisi
 //#define x(P)     (P)->x
 //#define y(P)     (P)->y
 #define First(L) (L).First
+#define Last(L) (L).Last
 
 using namespace std;
 

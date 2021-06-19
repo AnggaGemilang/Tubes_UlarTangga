@@ -16,10 +16,14 @@ void buatMap(List * L1);
 void tampilkanMap(List L);
 
 //	5. Modul prosedur untuk mengenerate simbol
-simboltype generateSimbol(infotype baris, infotype kolom);
+simboltype generateSimbol(infotype info);
 
 //	6. Modul prosedur untuk menampilkan simbol
 void tampilkanSimbol(infotype counter, simboltype Simbol);
 
+//	7. Modul prosedur untuk mengenerate address jump
+address generateAddress(List L, infotype info);
+
 void buatMapEasy(List * L1);
+
 #endif

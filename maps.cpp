@@ -127,47 +127,20 @@ int KocokDadu() {
 //==============================================================
 //             3. Modul prosedur untuk membuat map
 //==============================================================
-void buatMap(List * L1) {
-    List L2;
-    int i, j, isGanjil = true, ganjilGenap = 0;
-    int x, y=6;
-    infotype nilai = 101;
-    address P1, P2, down;
-    for(i=1; i<=10; i++) {
-        x = 5;
-        ganjilGenap += 1;
-        CreateList(&L2);
-        if(ganjilGenap % 2 == 1) {
-            isGanjil = false;
-            if(ganjilGenap != 1) {
-                nilai -= 9;
-            }
-        } else {
-            isGanjil = true;
-            nilai -= 11;
+void buatMap(List * L) {
+    address P, Jump;
+    for(int i = 1; i <= 100; i++)
+    {
+        InsVLast(&(*L), i, generateSimbol(i));
+    }
+    P = First(*L);
+    while(P != Nil)
+    {
+        if(generateAddress(*L, Info(P)) != Nil)
+        {
+            Jump(P) = generateAddress(*L, Info(P));
         }
-        for(j=1; j<=10; j++) {
-            if(isGanjil) {
-                nilai += 1;
-            } else {
-                nilai -= 1;
-            }
-            P1 = Alokasi(nilai, generateSimbol(i, j), x, y);
-            x += 6;
-            if(i==1) {
-                InsertLast(&(*L1), P1);
-                P2 = First(*L1);
-            } else {
-                InsertLast(&L2, P1);
-                baris(down) = P1;
-                down = Next(down);
-            }
-        }
-        y += 4;
-        if(i > 1) {
-            P2 = baris(P2);
-        }
-        down = P2;
+        P = Next(P);
     }
 }
 
@@ -176,132 +149,125 @@ void buatMap(List * L1) {
 //             4. Modul prosedur untuk menampilkan map
 //==============================================================
 void tampilkanMap(List L) {
-    address P1,P2;
-    infotype counter = 0;
-
+    address P;
+    int x, y, columnCounter, baris, simbolCounter;
+    y = 5;
+    x = 4;
+    baris = 1;
+    columnCounter = 1;
+    simbolCounter = 1;
     if(First(L) == Nil) {
         printf("matriks kosong.\n\n");
     } else {
-        P1 = First(L);
-        printf("\n\n\n\n");
-        while(P1 != Nil) {
-            printf("    ฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮ\n");
-            printf("    ");
-            P2=P1;
-            while(P2 != Nil) {
-                printf("บ");
-                printf ("%d", Info(P2));
-                if(Simbol(P2) != ' ') {
-                    counter++;
-                    tampilkanSimbol(counter, Simbol(P2));
-                } else {
-                    if(Info(P2) == 100) {
-                        cout << "  ";
-                    } else if(Info(P2) >= 1 && Info(P2) <= 9) {
-                        cout << "    ";
-                    } else {
-                        cout << "   ";
-                    }
-                }
-                P2 = Next(P2);
-            }
+        P = Last(L);
+        printf("\n\n\n\n    ฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮ\n");
+        while(P != Nil){
+            gotoxy(x, y);
             printf("บ");
-            printf("\n    บ     บ     บ     บ     บ     บ     บ     บ     บ     บ     บ");
-            printf("\n    บ     บ     บ     บ     บ     บ     บ     บ     บ     บ     บ\n");
-            P1 = baris(P1);
+            cout << Info(P);
+            if(Simbol(P) != ' ') {
+                tampilkanSimbol(simbolCounter, Simbol(P));
+                simbolCounter++;
+            }
+            if(columnCounter == 10)
+            {
+                if(baris % 2 == 1){
+                    gotoxy(x+6, y);
+                    printf("บ");
+                } else {
+                    gotoxy(x+60, y);
+                    printf("บ");
+                }
+                baris++;
+                if(baris % 2 == 1){
+                    x = -2;
+                } else {
+                    x = 64;
+                }
+                y += 4;
+                columnCounter = 0;
+                printf("\n    บ     บ     บ     บ     บ     บ     บ     บ     บ     บ     บ");
+                printf("\n    บ     บ     บ     บ     บ     บ     บ     บ     บ     บ     บ");
+                printf("\n    ฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮ\n");
+            }
+            columnCounter++;
+            P = Prev(P);
+            ((baris % 2 == 1) ? x += 6 : x -= 6);
         }
-        printf("    ฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮ\n");
     }
 }
 
 //==============================================================
 //             5. Modul fungsi untuk mengenerate simbol
 //==============================================================
-simboltype generateSimbol(infotype baris, infotype kolom) {
-    if(baris == 1) {
-        if(kolom == 2) {
-            return 'ฎ';
-        } else if(kolom == 6) {
-            return 'ฎ';
-        } else if(kolom == 8) {
-            return 'ฎ';
-        } else if(kolom == 10) {
-            return 'Û';
-        }
-    } else if (baris == 2) {
-        if(kolom == 1) {
-            return 'Û';
-        } else if(kolom == 4) {
-            return 'Û';
-        } else if(kolom == 7) {
-            return 'ฎ';
-        }
-    } else if (baris == 3) {
-        if(kolom == 3) {
-            return 'ฏ';
-        } else if(kolom == 6) {
-            return 'ฏ';
-        } else if(kolom == 8) {
-            return 'ฏ';
-        } else if(kolom == 10) {
-            return 'Û';
-        }
-    } else if (baris == 4) {
-        if(kolom == 2) {
-            return 'ฎ';
-        } else if(kolom == 3) {
-            return 'Û';
-        } else if(kolom == 4) {
-            return 'ฎ';
-        } else if(kolom == 7) {
-            return 'Û';
-        }
-    } else if (baris == 5) {
-        if(kolom == 1) {
-            return 'ฏ';
-        } else if(kolom == 2) {
-            return 'Û';
-        } else if(kolom == 7) {
-            return 'ฎ';
-        } else if(kolom == 10) {
-            return 'Û';
-        }
-    } else if (baris == 7) {
-        if(kolom == 1) {
-            return 'Û';
-        } else if(kolom == 3) {
-            return 'Û';
-        } else if(kolom == 7) {
-            return 'ฏ';
-        } else if(kolom == 10) {
-            return 'Û';
-        }
-    } else if (baris == 8) {
-        if(kolom == 4) {
-            return 'ฏ';
-        } else if(kolom == 8) {
-            return 'Û';
-        }
-    } else if (baris == 9) {
-        if(kolom == 1) {
-            return 'Û';
-        } else if(kolom == 2) {
-            return 'ฏ';
-        } else if(kolom == 4) {
-            return 'ฎ';
-        } else if(kolom == 7) {
-            return 'Û';
-        }
-    } else if (baris == 10) {
-        if(kolom == 4) {
-            return 'Û';
-        } else if(kolom == 7) {
-            return 'ฏ';
-        } else if(kolom == 9) {
-            return 'Û';
-        }
+simboltype generateSimbol(infotype info) {
+    if(info == 99) {
+        return 'ฎ';
+    } else if(info == 95) {
+        return 'ฎ';
+    } else if(info == 93) {
+        return 'ฎ';
+    } else if(info == 91) {
+        return 'Û';
+    } else if(info == 81) {
+        return 'Û';
+    } else if(info == 84) {
+        return 'Û';
+    } else if(info == 87) {
+        return 'ฎ';
+    } else if(info == 78) {
+        return 'ฏ';
+    } else if(info == 75) {
+        return 'ฏ';
+    } else if(info == 73) {
+        return 'ฏ';
+    } else if(info == 71) {
+        return 'Û';
+    } else if(info == 62) {
+        return 'ฎ';
+    } else if(info == 63) {
+        return 'Û';
+    } else if(info == 64) {
+        return 'ฎ';
+    } else if(info == 67) {
+        return 'Û';
+    } else if(info == 60) {
+        return 'ฏ';
+    } else if(info == 59) {
+        return 'Û';
+    } else if(info == 54) {
+        return 'ฎ';
+    } else if(info == 51) {
+        return 'Û';
+    } else if(info == 40) {
+        return 'Û';
+    } else if(info == 38) {
+        return 'Û';
+    } else if(info == 34) {
+        return 'ฏ';
+    } else if(info == 31) {
+        return 'Û';
+    } else if(info == 24) {
+        return 'ฏ';
+    } else if(info == 28) {
+        return 'Û';
+    } else if(info == 20) {
+        return 'Û';
+    } else if(info == 19) {
+        return 'ฏ';
+    } else if(info == 17) {
+        return 'ฎ';
+    } else if(info == 14) {
+        return 'Û';
+    } else if(info == 4) {
+        return 'Û';
+    } else if(info == 7) {
+        return 'ฏ';
+    } else if(info == 9) {
+        return 'Û';
+    } else {
+        return ' ';
     }
-    return ' ';
 }
 
 //==============================================================
@@ -379,4 +345,45 @@ void tampilkanSimbol(infotype counter, simboltype Simbol) {
         cout << "  " << Simbol;
     }
     setcolor(11);
+}
+
+//==============================================================
+//             7. Modul fungsi untuk mengenerate address jump
+//==============================================================
+address generateAddress(List L, infotype info) {
+    if(info == 99) {
+        return Search(L, 78);
+    } else if(info == 95) {
+        return Search(L, 75);
+    } else if(info == 93) {
+        return Search(L, 73);
+    } else if(info == 87) {
+        return Search(L, 24);
+    } else if(info == 71) {
+        return Search(L, 91);
+    } else if(info == 62) {
+        return Search(L, 19);
+    } else if(info == 63) {
+        return Search(L, 81);
+    } else if(info == 64) {
+        return Search(L, 60);
+    } else if(info == 54) {
+        return Search(L, 34);
+    } else if(info == 51) {
+        return Search(L, 67);
+    } else if(info == 40) {
+        return Search(L, 59);
+    } else if(info == 28) {
+        return Search(L, 84);
+    } else if(info == 20) {
+        return Search(L, 38);
+    } else if(info == 17) {
+        return Search(L, 7);
+    } else if(info == 4) {
+        return Search(L, 14);
+    } else if(info == 9) {
+        return Search(L, 31);
+    } else {
+        return Nil;
+    }
 }

@@ -4,7 +4,7 @@
 //data komposit untuk rute pemain dan komputer
 struct {
     int Rute;
-} Pemain[4],AI[4];
+} Pemain[4], AI[4];
 
 //data komposit untuk koordinat tiap pemain atau komputer pada tiap petak papan
 struct {

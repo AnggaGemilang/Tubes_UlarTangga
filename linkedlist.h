@@ -13,36 +13,30 @@ typedef int infotype;
 typedef char simboltype;
 typedef struct tElmtList * address;
 typedef struct tElmtList {
-	infotype info;
-	simboltype simbol;
-	address  next;
-	address  baris;
-	int x;
-	int y;
+    address     prev;
+    infotype    info;
+    simboltype  simbol;
+    address     jump;
+    address     next;
 } ElmtList;
-
-typedef struct tlokasiBidak * addressP;
-typedef struct tlokasiBidak {
-    infotype info;
-    infotype posisi;
-    addressP next;
-} lokasiBidak;
-
-typedef struct {
-	  addressP First;
-} ListP;
 
 /* Definisi list : */
 /* List kosong ===> First(L) = Nil */
 /* Setiap elemen dengan address P dapat diacu info(P) dan Next(P);  */
 /* Elemen terakhir list ===> Jika addressnya Last maka Next(Last) = Nil */
 typedef struct {
-	  address First;
+	address First;
+	address Last;
 } List;
 
 /*********** PROTOTYPE ****************/
+
+/**** Predikat untuk test keadaan address apakah diterakhir  ****/
+boolean isAkhir (List L, address P);
+/* Mengirim true jika address terakhir */
+
 /**** Predikat untuk test keadaan LIST  ****/
-boolean ListEmpty (List L);
+boolean isEmpty (List L);
 /* Mengirim true jika List Kosong */
 
 /**** Konstruktor/Kreator List Kosong ****/
@@ -51,16 +45,11 @@ void CreateList (List * L);
 /* FS : Terbentuk List Kosong */
 
 /**** Manajemen Memory ****/
-address Alokasi (infotype nPetak, simboltype simbolUT, int x, int y);
+address Alokasi(infotype X, simboltype Y);
 /* Mengirimkan address hasil alokasi sebuah elemen */
 /* Jika alokasi berhasil, maka address != Nil, 	   */
 /*	dan misalnya menghasilkan P, maka Info(P) = X, Next(P) = Nil */
 /* Jika alokasi gagal, mengirimkan Nil */
-
-void CreateListP (ListP * LP);
-addressP AlokasiP (infotype X, infotype Y);
-void InsertLastP (ListP * LP, addressP PP);
-addressP SearchP (ListP LP, infotype X);
 
 void DeAlokasi (address P);
 /* IS : P terdefinisi */
@@ -76,6 +65,8 @@ address Search (List L, infotype X);
 boolean FSearch (List L, address P);
 /* Mencari apakah ada elemen list yang beralamat P */
 /* Mengirimkan true jika ada, false jika tidak ada */
+
+address SearchNext (List L, infotype X);
 
 address SearchPrec (List L, infotype X);
 /* Mengirimkan address elemen sebelum elemen yang nilainya = X */
@@ -93,6 +84,8 @@ void InsVFirst (List * L, infotype X, simboltype Y);
 /* FS : melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen pertama dengan nilai X jika alokasi berhasil */
 
+void InsVMiddle (List *L, infotype X, infotype Y, simboltype Z);
+
 void InsVLast (List * L, infotype X, simboltype Y);
 /* IS : L mungkin Kosong */
 /* FS : melakukan alokasi sebuah elemen dan */
@@ -104,6 +97,8 @@ void DelVFirst (List * L, infotype * X);
 /* IS : L TIDAK Kosong */
 /* FS : Elemen pertama List dihapus, nilai info disimpan ke X */
 /* 	dan alamat elemen pertama di dealokasi */
+
+void DelVMiddle (List *L, infotype *X, infotype Y);
 
 void DelVLast (List * L, infotype * X);
 /* IS : L TIDAK Kosong */
@@ -155,11 +150,81 @@ void PrintInfo (List L);
 /* FS : Jika List tidak kosong, semua info yang disimpan pada elemen list */
 /*	diprint. Jika list kosong, hanya menuliskan "List Kosong" */
 
+void PrintInfoReverse(List L);
+
+int NbElmt (List L);
+/* Mengirimkan banyaknya elemen list, mengirimkan 0 jika list kosong */
+
+infotype Max (List L);
+/* Mengirimkan nilai Info(P) yang maksimum */
+
+address AdrMax (List L);
+/* Mengirimkan address P, dengan info(P) yang bernilai maksimum */
+
+infotype Min (List L);
+/* Mengirimkan nilai Info(P) yang minimum */
+
+address AdrMin (List L);
+/* Mengirimkan address P, dengan info(P) yang bernilai minimum */
+
+infotype Average (List L);
+/* Mengirimkan nilai rata-rata Info(P) */
+
 /***************************************/
 /*******  PROSES TERHADAP LIST  ********/
 /***************************************/
 
 void DelAll (List * L);
 /* Delete semua elemen list dan alamat elemen di dealokasi */
+
+void InversList (List * L);
+/* IS : L sembarang */
+/* FS : Elemen List dibalik : elemen terakhir menjadi elemen pertama, dst */
+/*	Membalik elemen list, tanpa melakukan alokasi / dealokasi */
+
+List FInversList (List L);
+/* Mengirimkan list baru, hasil invers dari L */
+
+void CopyList (List L1, List * L2);
+/* IS : L1 sembarang */
+/* FS : L2 = l1 */
+/* L1 dan L2 "menunjuk" ke list yang sama, Tidak ada alokasi / dealokasi */
+
+List FCopyList (List L);
+/* Mengirimkan List yang merupakan salinan L */
+
+void CpAlokList (List Lin, List * Lout);
+/* IS : Lin Sembarang */
+/* FS : Jika semua alokasi berhasi, maka Lout berisi hasil copy Lin */
+/* 	Jika ada alokasi yang gagal, maka Lout = Nil dan semua elemen yang */
+/*	terlanjur di alokasi, maka didealokasikan */
+/* 	Dengan melakukan alokasi elemen */
+/*	Lout adalah  list kosong jika ada alokasi elemen yang gagal */
+
+void Konkat (List L1, List L2, List * L3);
+/* IS : L1 dan L2 sembarang */
+/* FS : L1 dan L2 tetap, L3 adalah hasil konkatenansi L1 dan L2 */
+/*	Jika semua alokasi berhasil , maka L3 adalah hasil konkatenasi */
+/*	Jika ada alokasi gagal, semua elemen yang sudah di alokasi harus */
+/* 	di dealokasi dan L3 = Nil */
+/* Konkatenasi dua buah list : L1 dan L2 menghasilkan L3 yang "baru" */
+/* Elemen L3 adalah hasil alokasi elemen yang "baru". Jika ada alokasi yang */
+/*	  GAGAL, maka L3 harus bernilai nil dan semua elemen yang pernah di */
+/*	  alokasi didealokasi */
+
+void Konkat1 (List * L1, List * L2, List * L3);
+/* IS : L1 dan L2 sembarang */
+/* FS : L1 dan L2 kosong, L3 adalah hasil konkatenansi L1 dan L2 */
+/*	Konkatenasi dua buah List L1 dan L2; menghasilkan L3 yang baru */
+/* 	(dengan elemen List L1 dan L2) */
+/*	dan L1 serta L2 menjadi list kosong */
+/* 	Tidak ada alokasi / dealokasi pada procedure ini */
+
+void PecahList (List * L1, List * L2, List L);
+/* IS : L mungkin kosong */
+/* FS : berdasarkan L, dibentuk dua buah list L1 dan L2 */
+/* L tidak berubah : untuk membentuk L1 dan L2 harus alokasi */
+/* L1 berisi separuh elemen L dan L2 berisi sisa elemen L */
+/* Jika elemen L ganjil , maka separuh adalah NbElmt (L) div 2 */
 
 #endif

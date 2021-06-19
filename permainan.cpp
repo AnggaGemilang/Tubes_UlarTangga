@@ -448,11 +448,11 @@ void printBidak(address P, int i){
         b = 1;
     }
 
-    x = P->x + a;
-    y = P->y + b;
+//    x = P->x + a;
+//    y = P->y + b;
 
-    gotoxy(x,y);
-    printf("%c",i+2);
+//    gotoxy(x,y);
+//    printf("%c",i+2);
 
 }
 
@@ -476,11 +476,11 @@ void printBidakKosong(address P, int i){
         b = 1;
     }
 
-    x = P->x + a;
-    y = P->y + b;
+//    x = P->x + a;
+//    y = P->y + b;
 
-    gotoxy(x,y);
-    printf(" ");
+//    gotoxy(x,y);
+//    printf(" ");
 
 }
 
