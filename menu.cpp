@@ -8,23 +8,23 @@ int pilihan;
 void BermainSendiri(List * map) {
     int JumlahAI, y;
 
-    //mencetak sisi atas dan bawah kotak
-    gotoxy(62,5);		printf("____________________________________________");
-	gotoxy(62,15);		printf("____________________________________________");
+    //  mencetak sisi atas dan bawah kotak
+    gotoxy(trunc(WDT_SCREEN/11/2),5);		printf("____________________________________________");
+    gotoxy(trunc(WDT_SCREEN/11/2),15);		printf("____________________________________________");
 
-    //mencetak sisi kiri dan kanan kotak
+    //  mencetak sisi kiri dan kanan kotak
     for(y=6;y<=15;y++){
-        gotoxy(61,y);		printf("|");
-		gotoxy(106,y);		printf("|");
-	}
+        gotoxy(trunc(WDT_SCREEN/11/2-1),y);		    printf("|");
+        gotoxy(trunc(WDT_SCREEN/11/2+44),y);		printf("|");
+    }
 
 	//mencetak isi tulisan dalam kotak
-    gotoxy(69,7);		printf(">>>>| Pilih Jumlah Lawan |<<<<");
-	gotoxy(65,8);		printf("______________________________________");
-	gotoxy(67,10);		printf("1. VS 1 KOMPUTER");
-	gotoxy(67,11);		printf("2. VS 2 KOMPUTER");
-	gotoxy(67,12);		printf("3. VS 3 KOMPUTER");
-	gotoxy(67,13);		printf("4. Kembali");
+    gotoxy(trunc(WDT_SCREEN/11/2+7),7);		printf(">>>>| Pilih Jumlah Lawan |<<<<");
+	gotoxy(trunc(WDT_SCREEN/11/2+3),8);		printf("______________________________________");
+	gotoxy(trunc(WDT_SCREEN/11/2+5),10);		printf("1. VS 1 KOMPUTER");
+	gotoxy(trunc(WDT_SCREEN/11/2+5),11);		printf("2. VS 2 KOMPUTER");
+	gotoxy(trunc(WDT_SCREEN/11/2+5),12);		printf("3. VS 3 KOMPUTER");
+	gotoxy(trunc(WDT_SCREEN/11/2+5),13);		printf("4. Kembali");
 
     pilihan = Cursor(4,64,10); //User memilih menu menggunakan tombol keyboard atas atau bawah
 
@@ -53,23 +53,23 @@ void BermainSendiri(List * map) {
 void BermainBersamaTeman(List * map) {
     int JumlahPemain, y;
 
-    //mencetak sisi atas dan bawah kotak
-    gotoxy(62,5);		printf("____________________________________________");
-	gotoxy(62,15);		printf("____________________________________________");
+    //  mencetak sisi atas dan bawah kotak
+    gotoxy(trunc(WDT_SCREEN/11/2),5);		printf("____________________________________________");
+    gotoxy(trunc(WDT_SCREEN/11/2),15);		printf("____________________________________________");
 
-    //mencetak sisi kiri dan kanan kotak
+    //  mencetak sisi kiri dan kanan kotak
     for(y=6;y<=15;y++){
-        gotoxy(61,y);		printf("|");
-		gotoxy(106,y);		printf("|");
-	}
+        gotoxy(trunc(WDT_SCREEN/11/2-1),y);		    printf("|");
+        gotoxy(trunc(WDT_SCREEN/11/2+44),y);		printf("|");
+    }
 
 	//mencetak isi tulisan dalam kotak
-    gotoxy(69,7);		printf(">>>>| Pilih Jumlah Pemain |<<<<");
-	gotoxy(65,8);		printf("______________________________________");
-	gotoxy(67,10);		printf("1. 2 Pemain");
-	gotoxy(67,11);		printf("2. 3 Pemain");
-	gotoxy(67,12);		printf("3. 4 Pemain");
-	gotoxy(67,13);		printf("4. Kembali");
+    gotoxy(trunc(WDT_SCREEN/11/2+7),7);		printf(">>>>| Pilih Jumlah Pemain |<<<<");
+	gotoxy(trunc(WDT_SCREEN/11/2+3),8);		printf("______________________________________");
+	gotoxy(trunc(WDT_SCREEN/11/2+5),10);		printf("1. 2 Pemain");
+	gotoxy(trunc(WDT_SCREEN/11/2+5),11);		printf("2. 3 Pemain");
+	gotoxy(trunc(WDT_SCREEN/11/2+5),12);		printf("3. 4 Pemain");
+	gotoxy(trunc(WDT_SCREEN/11/2+5),13);		printf("4. Kembali");
 
     pilihan = Cursor(4,64,10); //User memilih menu menggunakan tombol keyboard atas atau bawah
 

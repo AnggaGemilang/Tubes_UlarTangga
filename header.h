@@ -6,6 +6,7 @@
 #include <limits.h>
 #include <malloc.h>
 #include <math.h>
+#include <cmath>
 #include <windows.h>
 #include <conio.h>
 #include <stdlib.h>
@@ -22,6 +23,8 @@
 #define DOWN_KEY 80
 #define LEFT_KEY 75
 #define RIGHT_KEY 77
+#define WDT_SCREEN GetSystemMetrics(SM_CXSCREEN)
+#define HGT_SCREEN GetSystemMetrics(SM_CYSCREEN)
 
 #define Nil NULL
 #define Prev(P)     (P)->prev
