@@ -30,13 +30,13 @@ void PapanInfo() {
     }
     gotoxy(x=66,y=((8+i)+j));
     printf("ศออออออออออออออออออออออออออออออออออออออออออออออออออผ");
-    gotoxy(x=68,y=(8  + i + (j-7)));
+    gotoxy(x=68,y=(5  + i + (j-7)));
     printf("Legend:");
-    gotoxy(x=68,y=(9  + i + (j-6)));
+    gotoxy(x=68,y=(6  + i + (j-6)));
     printf("ฎ : Kepala Ular");
-    gotoxy(x=68,y=(10 + i + (j-5)));
+    gotoxy(x=68,y=(7 + i + (j-5)));
     printf("ฏ : Ekor Ular");
-    gotoxy(x=68,y=(11 + i + (j-4)));
+    gotoxy(x=68,y=(8 + i + (j-4)));
     printf("Û : Tangga");
 }
 

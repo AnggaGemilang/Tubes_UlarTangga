@@ -3,405 +3,449 @@
 //==============================================================
 //                      1. Inti Permainan
 //==============================================================
-void Permainan(int PemainYangBermain, int AIYangBermain, List * map) {
+void Permainan(int PemainYangBermain, int AIYangBermain, List * map)
+{
+    // Menampilkan map
     CreateList(&(*map));
 	buatMap(&(*map));
     tampilkanMap(*map);
     PapanInfo();
-    address P;
-    int i,j,k,l,m,n,o,p,q,
-    DapetDadu,
-    GiliranPemain=PemainYangBermain,
-    GiliranAI=AIYangBermain,
-    Status=1,
-    StatusSelesai=0,
-    StatusUlang=0,
-    AngkaPetak,
-    Sebelum,
-    Sesudah,
-    SebelumAI=0,
-    SesudahAI=0;
 
-    P = First(*map);
-    //mengisi tiap petak papan dengan koordinat tiap pemain atau komputer
-    for (n=0; n<4; n++) {
-        for (l=0; l<10; l++) {
-            for (m=0; m<10; m++) {
-                //((l+1)/2)*20+((l+1)%2)+(pow(-1,((l+1)-1))*((m+1)-1))
-                //rumus ini ditemukan ketika tugas "ANGKA MENGULAR" dari dosen Kognitif Komputasi
-                //Thanks to Pak Dosen Dewa Gede Parta
-                AngkaPetak=((l+1)/2)*20+((l+1)%2)+(pow(-1,((l+1)-1))*((m+1)-1));
-                PapanPermainan[AngkaPetak-1].SiPemain[n].x=(5+(n%2))+(6*m);
-                PapanPermainan[AngkaPetak-1].SiPemain[n].y=(42+(floor(n/2)))-(4*l);
-                PapanPermainan[AngkaPetak-1].SiAI[n].x=(5+(n%2))+(6*m);
-                PapanPermainan[AngkaPetak-1].SiAI[n].y=(42+(floor(n/2)))-(4*l);
-            }
-        }
+    // Kamus data address
+    address
+    P = First(*map),
+//    player1 = Last(*map),  //<-- buat langsung finish
+    player1 = First(*map),
+    player2 = First(*map),
+    player3 = First(*map),
+    player4 = First(*map),
+    addressSesudah;
+
+    // Kamus data boolean
+    boolean
+    loopPermainan = true,
+    giliranPlayer = true,
+    statusUlang = true;
+
+    // Kamus data integer
+    int player,
+    kotakSesudah,
+    playerMenang,
+    dapetDadu,
+    input;
+
+    // Print bidak awal player
+//    printBidak(1, Info(player1));  //<-- buat langsung finish
+    for( player = 1; player <= PemainYangBermain; player++ )
+    {
+        printBidak( player, Info(P) );
     }
 
-    //inisialisasi awal icon tiap pemain, dari mulai hati,wajik,keriting, dan sekop
-    //namun penginisialisasian ini tergantung banyaknya pemain yang memainkan permainan
-    //berurut dari pemain pertama sampai pemain ke-4: hati, diamond, keriting, sekop.
-
-    P = Search(*map, 1);
-
-    for (o=1; o<=GiliranPemain; o++) {
-        printBidak(P, o);
+    // Print bidak awal AI
+    for( player = 2; player <= AIYangBermain + 1; player++ )
+    {
+        printBidak( player, Info(P) );
     }
 
-    //inisialisasi awal icon untuk komputer
-    //komputer tidak akan mendapatkan icon hati, karena secara default icon hati hanya untuk pemain pertama
-    //jadi komputer pertama sampai dengan komputer terakhir hanya mendapatkan icon wajik, keriting, dan sekop
+    // Perulangan gameplay, akan terus diulang selama belum ada yang berhenti di kotak 100
+    while ( loopPermainan == true )
+    {
+        // jika giliran player yang bermain
+        if ( giliranPlayer == true )
+        {
+            // loop selama player 1 s.d 4 bermain
+            for( player = 1; player <= PemainYangBermain; player++ )
+            {
+                //merubah berdasar player berapa yang sedang bermain
+                if ( player == 1 ){ P = player1;}
+                if ( player == 2 ){ P = player2;}
+                if ( player == 3 ){ P = player3;}
+                if ( player == 4 ){ P = player4;}
 
-    for (p=1; p<=GiliranAI; p++) {
-        printBidak(P, p+1);
-    }
-
-    //Inisialisasi rute tiap pemain dan komputer
-    for (k=0; k<=3; k++) {
-        Pemain[k].Rute=0;
-        AI[k].Rute=0;
-    }
-
-//    lokasiBidak Rute;
-//    for (k=0; k<=3; k++){
-//        Rute.player = k+1;
-//        Rute.posisi = 0;
-//    }
-//    ListP LP1;
-//    addressP PP, PP1;
-//    CreateListP(&LP1);
-//    for (k=0;k<=3;k++){
-//        PP = AlokasiP(i, 0);
-//        InsertLastP(&LP1, PP);
-//    }
-//    PP = First(LP1);
-
-    //JRENG! JRENG! disinilah "inti" dari permainan yang kami buat
-    //Karena pengulangan "do...while" ini dilakukan hingga ada pemain atau komputer yang berhasi mengubah
-    //variabel "StatusFinish" menjadi 1 (TRUE, dalam artian mencapai kotak terakhir)
-    do {
-        //Variabel "Status" ini dijadikan "switch" agar pemain manusian dan pemain komputer bisa
-        //bergantian untuk "bermain"
-
-        if(Status==1) { //Status diisi 1 menandakan giliran pemain
-            for(i=0; i<GiliranPemain; i++) {
                 srand(time(NULL)); // <-- Agar tiap pengulangan dan buka aplikasi dadu dalam keadaan "random"
-                gotoxy(67,11);
-                printf("                                                  ");
-                gotoxy(67,11);
-                printf("=PEMAIN %c=,tekan enter untuk mengocok dadu",i+3);
-                _getch();
-                Sebelum=Pemain[i].Rute;
-//                PP1 = SearchP(LP1, i);
-//                int SebelumP;
-//                SebelumP = posisi(PP1);
-                DapetDadu=KocokDadu();
-                Pemain[i].Rute= Pemain[i].Rute + DapetDadu;
-//                posisi(PP1) += DapetDadu;
-                if (Pemain[i].Rute==99) {
-                    Sesudah=Pemain[i].Rute;
-                    for (q=Sebelum; q<=99; q++) {
-                        P = Search(*map, q+1);
-                        printBidakKosong(P, i+1);
-                        P = Search(*map, q+2);
-                        printBidak(P, i+1);
-                        Sleep(500);
-                    }
-                    gotoxy(80,12+i);
-                    printf("PEMAIN %c ada di kotak %d",i+3,Sesudah+1);
-                    StatusSelesai=1; //<--FINISH!!
-                    Pemenang(Status,i+1,PemainYangBermain+AIYangBermain,j);
-                    break;
-                } else
-                if (Pemain[i].Rute>99) {
-                    //dikurang dulu, misal dapat angka dadu 6 ketika di kotak 99, maka pemain/komputer
-                    //akan ada di kotak  94
-                    //dibawah ini dimulai dari 99, dikarenakan array di C dimulai dari angka nol.
-                    Pemain[i].Rute=99-((Pemain[i].Rute)-99);
-                    Sesudah=Pemain[i].Rute;
+                gotoxy(68,43);  printf("Tekan ESC untuk keluar dari permainan");
+                gotoxy(67,11);  printf("                                                  ");
+                gotoxy(67,11);  printf("=PLAYER %c=,tekan enter untuk mengocok dadu",player+2);
+                input = _getch();
 
-                    for (q=Sebelum; q<99; q++) {
-                        P = Search(*map, q+1);
-                        printBidakKosong(P, i+1);
-                        P = Search(*map, q+2);
-                        printBidak(P, i+1);
-                        Sleep(500);
-                    }
-                    for (q=99; q>Sesudah; q--) {
-                        P = Search(*map, q+1);
-                        printBidakKosong(P, i+1);
-                        P = Search(*map, q);
-                        printBidak(P, i+1);
-                        Sleep(500);
-                    }
-                } else
-                if (Pemain[i].Rute < 99) {
-//                    int SesudahP;
-//                    SesudahP = posisi(PP1);
-                    Sesudah = Pemain[i].Rute;
-                    //variabel bernama "sebelum" dan "sesudah" berguna untuk animasi gerak tiap bidak pemain/komputer
-                    //yang digunakan oleh pengulangan dibawah ini
-                    for (q=Sebelum; q<Sesudah; q++) {
-                        P = Search(*map, q+1);
-                        printBidakKosong(P, i+1);
-                        P = Search(*map, q+2);
-                        printBidak(P, i+1);
-                        Sleep(500);
-                    }
-                }
-                //cek apakah menginjak ular atau tangga
-                Pemain[i].Rute= CekAdaUlarTangga(Pemain[i].Rute,DapetDadu);
-                printBidakKosong(P, i+1);
-                P = Search(*map, Pemain[i].Rute + 1);
-                printBidak(P, i+1);
+                if ( input == 13 )
+                {
+                    dapetDadu = KocokDadu();
+                    kotakSesudah = Info(P) + dapetDadu;
+    //                kotakSesudah = 100;  //<-- buat langsung finish
+                    Sleep(800);
 
-//                posisi(PP1)= CekAdaUlarTangga(posisi(PP1), DapetDadu);
-//                printBidakKosong(P, i+1);
-//                P = Search(*map, posisi(PP1) + 1);
-//                printBidak(P, i+1);
-
-                gotoxy(80,12+i);
-                if (Pemain[i].Rute <= 9) {
-                    printf("PEMAIN %c ada di kotak  %d",i+3,Pemain[i].Rute+1);
-                } else if (Pemain[i].Rute==10) {
-                    printf("PEMAIN %c ada di kotak %d",i+3,Pemain[i].Rute+1);
-                } else {
-                    printf("PEMAIN %c ada di kotak %d",i+3,Pemain[i].Rute+1);
-                }
-                gotoxy(80,16);
-                printf("                              ");
-                gotoxy(67,20);
-                printf("tekan enter untuk melanjutkan");
-                _getch();
-                gotoxy(67,20);
-                printf("                              ");
-                Sebelum=0;
-                Sesudah=0;
-
-                //ulang giliran jika dapet 6
-                if (DapetDadu==6 && StatusUlang==0) { //jika mendapat dadu enam dan baru dapet dadu enam
-                    i--;
-                    StatusUlang=1;
-
-                } else if (StatusUlang==1) { //dilakukan jika statement if diatas false (dapet dadu gak 6 atau status ulang udah satu)
-                    StatusUlang=0;
-                }
-            }
-            if ((i=GiliranPemain) && (AIYangBermain !=0 )) {
-                Status=0;
-            }
-        } else if(Status==0) { //Giliran komputer
-            //srand(time(0000));
-            for(j=0; j<GiliranAI; j++) {
-                srand(time(NULL));
-                gotoxy(67,11);
-                printf("                                                  ");
-                gotoxy(67,11);
-                printf("=KOMPUTER %c= sedang bermain",j+4);
-                SebelumAI=AI[j].Rute;
-                DapetDadu=KocokDadu();
-                AI[j].Rute = AI[j].Rute + DapetDadu;
-                //AI[j].Rute = cekulartangga(AI[j].Rute);
-                if (AI[j].Rute==99) {
-                    SesudahAI=AI[j].Rute;
-                    gotoxy(PapanPermainan[SebelumAI].SiAI[j+1].x,PapanPermainan[SebelumAI].SiAI[j+1].y);
-                    printf(" ");
-                    gotoxy(PapanPermainan[SesudahAI].SiAI[j+1].x,PapanPermainan[SebelumAI].SiAI[j+1].y);
-                    printf("%c",j+4);
-                    gotoxy(80,13+j);
-                    printf("KOMPUTER %c ada di posisi %d",j+4,SesudahAI+1);
-                    StatusSelesai=1;
-                    Pemenang(Status,i+1,PemainYangBermain+AIYangBermain,j);
-                    break;
-                } else if (AI[j].Rute>99) {
-                    AI[j].Rute=99-((AI[j].Rute)-99);
-                    SesudahAI=AI[j].Rute;
-                    for (q=SebelumAI; q<SesudahAI; q++) {
-                        gotoxy(PapanPermainan[q].SiAI[j+1].x,PapanPermainan[q].SiAI[j+1].y);
-                        printf(" ");
-                        gotoxy(PapanPermainan[q+1].SiAI[j+1].x,PapanPermainan[q+1].SiAI[j+1].y);
-                        printf("%c",j+4);
-                        Sleep(500);
+                    // jika bidak belum mencapai kotak 100
+                    if( kotakSesudah < 100 )
+                    {
+                        addressSesudah = Search( *map, kotakSesudah);
+                        // looping untuk animasi pergerakan bidak
+                        while( P != addressSesudah )
+                        {
+                            printBidakKosong( player, Info(P) );
+                            printBidak( player, Info(Next(P)) );
+                            P = Next(P);
+                            Sleep(500);
+                        }
                     }
-                    AI[j].Rute = CekAdaUlarTangga(AI[j].Rute,DapetDadu);
-                    gotoxy(PapanPermainan[SesudahAI].SiAI[j+1].x,PapanPermainan[q].SiAI[j+1].y);
-                    printf(" ");
-                    gotoxy(PapanPermainan[AI[j].Rute].SiAI[j+1].x,PapanPermainan[AI[j].Rute].SiAI[j+1].y);
-                    printf("%c",j+4);
-                } else if (AI[j].Rute<99) {
-                    SesudahAI=AI[j].Rute;
-                    for (q=SebelumAI; q<SesudahAI; q++) {
-                        gotoxy(PapanPermainan[q].SiAI[j+1].x,PapanPermainan[q].SiAI[j+1].y);
-                        printf(" ");
-                        gotoxy(PapanPermainan[q+1].SiAI[j+1].x,PapanPermainan[q+1].SiAI[j+1].y);
-                        printf("%c",j+4);
-                        Sleep(500);
+
+                    // jika bidak melebihi kotak 100
+                    if( kotakSesudah > 100 )
+                    {
+                        // penjumlahan ulang sesudah
+                        kotakSesudah = 100 - (kotakSesudah - 100);
+
+                        addressSesudah = Search( *map, kotakSesudah);
+                        // looping untuk animasi pergerakan bidak
+                        // bergerak sampai 100
+                        while( P != Nil )
+                        {
+                            printBidakKosong( player, Info(P) );
+                            printBidak( player, Info(Next(P)) );
+                            P = Next(P);
+                            Sleep(500);
+                        }
+
+                        // bergerak sampai sisa dadu yang lebih
+                        while( P != addressSesudah )
+                        {
+                            printBidakKosong( player, Info(P) );
+                            printBidak( player, Info(Prev(P)) );
+                            P = Prev(P);
+                            Sleep(500);
+                        }
                     }
-                    AI[j].Rute = CekAdaUlarTangga(AI[j].Rute,DapetDadu);
-                    gotoxy(PapanPermainan[SesudahAI].SiAI[j+1].x,PapanPermainan[q].SiAI[j+1].y);
-                    printf(" ");
-                    gotoxy(PapanPermainan[AI[j].Rute].SiAI[j+1].x,PapanPermainan[AI[j].Rute].SiAI[j+1].y);
-                    printf("%c",j+4);
+
+                    // jika bidak mencapai kotak 100
+                    if ( kotakSesudah == 100 )
+                    {
+                        addressSesudah = Search( *map, kotakSesudah);
+                        // looping untuk animasi pergerakan bidak
+                        while( Next(P) != Nil )
+                        {
+                            printBidakKosong( player, Info(P) );
+                            printBidak( player, Info(Next(P)) );
+                            P = Next(P);
+                            Sleep(500);
+                        }
+
+                        gotoxy(80,12+player);
+                        printf("PLAYER %c ada di kotak %d", player+2, Info(P) );
+                        playerMenang = player;
+                        player = 5;
+                        giliranPlayer = 2;
+                        loopPermainan = false; //<--FINISH!!
+                        Pemenang(1, playerMenang, PemainYangBermain+AIYangBermain, playerMenang);
+                        break;
+                    }
+
+                    // cek apakah menginjak ular atau tangga
+                    P = cekAdaUlarTangga(P, player);
+
+                    // print lokasi Player
+                    gotoxy(80,12+player);
+                    if ( Info(P) < 10 ) {
+                        printf("PLAYER %c ada di kotak   %d", player+2, Info(P) );
+                    }
+                    else if ( Info(P) < 100 ) {
+                        printf("PLAYER %c ada di kotak  %d", player+2, Info(P) );
+                    }
+
+                    // menyimpan alamat P kembali ke alamat tiap bidak
+                    if ( player == 1 ){ player1 = P; }
+                    if ( player == 2 ){ player2 = P; }
+                    if ( player == 3 ){ player3 = P; }
+                    if ( player == 4 ){ player4 = P; }
+
+                    //ulang giliran jika dapet 6
+                    if ( dapetDadu == 6 && statusUlang == true ) //jika mendapat dadu enam dan baru dapet dadu enam
+                    {
+                        gotoxy(67,20);  printf("Mendapatkan dadu 6");
+                        gotoxy(67,21);  printf("PLAYER %c bermain kembali", player+2);
+                        _getch();
+                        gotoxy(67,20);  printf("                              ");
+                        gotoxy(67,21);  printf("                              ");
+                        player--;
+                        statusUlang = false;
+                    }
+                    else if ( statusUlang == false ) //dilakukan jika sudah pernah mendapat dadu 6
+                    {
+                        statusUlang = true;
+                    }
+                    else
+                    {
+                        gotoxy(67,20);  printf("Tekan enter untuk melanjutkan");
+                        _getch();
+                        gotoxy(67,20);  printf("                              ");
+                    }
+
+                    //menghentikan giliran player, ganti ke giliran AI
+                    if ( player == PemainYangBermain ) { giliranPlayer = false; }
                 }
-                gotoxy(80,13+j);
-                if (AI[j].Rute <= 9) {
-                    printf("KOMPUTER %c ada di posisi  %d",j+4,AI[j].Rute+1);
-                } else if (AI[j].Rute==10) {
-                    printf("KOMPUTER %c ada di posisi %d",j+4,AI[j].Rute+1);
-                } else {
-                    printf("KOMPUTER %c ada di posisi %d",j+4,AI[j].Rute+1);
+                else if ( input == 27 )
+                {
+                    gotoxy(67,19);  printf("Anda telah menekan tombol ESC");
+                    gotoxy(67,20);  printf("Kembali ke menu utama?");
+                    gotoxy(69,21);  printf("1. Ya");
+                    gotoxy(69,22);  printf("2. Exit");
+                    int pilihan = Cursor(2,67,21);
+
+                    if(pilihan == 1) {
+                        return;
+                    } else {
+                        system("cls");
+                        exit(1);
+                    }
                 }
-                Sleep(1500);
-                SebelumAI=0;
-                SesudahAI=0;
-                //ulang giliran jika dapet 6
-                if (DapetDadu==6 && StatusUlang==0) { //jika mendapat dadu enam dan baru dapet dadu enam
-                    j--;
-                    StatusUlang=1;
-                } else if (StatusUlang==1) { //dilakukan jika statement if diatas false (dapet dadu gak 6 atau status ulang udah satu)
-                    StatusUlang=0;
-                }
-            }
-            if ((j=GiliranAI)) {
-                Status=1;
             }
         }
-    } while(StatusSelesai != 1);
+
+        // jika giliran AI yang bermain
+        if ( giliranPlayer == false )
+        {
+            if ( AIYangBermain == 0 ) { giliranPlayer = true; }
+            else
+            {
+                // loop selama AI 1 s.d 4 bermain
+                for( player = 2; player <= AIYangBermain + 1; player++ )
+                {
+                    // merubah berdasar player AI berapa yang sedang bermain
+                    // dimulai dari 2 karena jika bermain dg AI, player hanya ada 1
+                    if ( player == 2 ){ P = player2;}
+                    if ( player == 3 ){ P = player3;}
+                    if ( player == 4 ){ P = player4;}
+
+                    srand(time(NULL)); // <-- Agar tiap pengulangan dan buka aplikasi dadu dalam keadaan "random"
+                    gotoxy(67,11);  printf("                                                  ");
+                    gotoxy(67,11);  printf("=KOMPUTER %c sedang bermain",player+2);
+                    dapetDadu = KocokDadu();
+                    kotakSesudah = Info(P) + dapetDadu;
+                    Sleep(800);
+
+                    // jika bidak belum mencapai kotak 100
+                    if( kotakSesudah < 100 )
+                    {
+                        addressSesudah = Search( *map, kotakSesudah);
+                        // looping untuk animasi pergerakan bidak
+                        while( P != addressSesudah )
+                        {
+                            printBidakKosong( player, Info(P) );
+                            printBidak( player, Info(Next(P)) );
+                            P = Next(P);
+                            Sleep(500);
+                        }
+                    }
+
+                    // jika bidak melebihi kotak 100
+                    if( kotakSesudah > 100 )
+                    {
+                        // penjumlahan ulang sesudah
+                        kotakSesudah = 100 - (kotakSesudah - 100);
+
+                        addressSesudah = Search( *map, kotakSesudah);
+                        // looping untuk animasi pergerakan bidak
+                        // bergerak sampai 100
+                        while( P != Nil )
+                        {
+                            printBidakKosong( player, Info(P) );
+                            printBidak( player, Info(Next(P)) );
+                            P = Next(P);
+                            Sleep(500);
+                        }
+
+                        // bergerak sampai sisa dadu yang lebih
+                        while( P != addressSesudah )
+                        {
+                            printBidakKosong( player, Info(P) );
+                            printBidak( player, Info(Prev(P)) );
+                            P = Prev(P);
+                            Sleep(500);
+                        }
+                    }
+
+                    // jika bidak mencapai kotak 100
+                    if ( kotakSesudah == 100 )
+                    {
+                        addressSesudah = Search( *map, kotakSesudah);
+                        // looping untuk animasi pergerakan bidak
+                        while( Next(P) != Nil )
+                        {
+                            printBidakKosong( player, Info(P) );
+                            printBidak( player, Info(Next(P)) );
+                            P = Next(P);
+                            Sleep(500);
+                        }
+
+                        gotoxy(80,12+player);
+                        printf("PEMAIN %c ada di kotak %d", player+2, Info(P) );
+                        playerMenang = player;
+                        player = 5;
+                        giliranPlayer = 2;
+                        loopPermainan = false; //<--FINISH!!
+                        Pemenang(0, playerMenang, PemainYangBermain+AIYangBermain, playerMenang);
+                        break;
+                    }
+
+                    // cek apakah menginjak ular atau tangga
+                    P = cekAdaUlarTangga(P, player);
+
+                    // print lokasi Komputer
+                    gotoxy(80,12+player);
+                    if ( Info(P) < 10) {
+                        printf("KOMPUTER %c ada di kotak   %d", player+2, Info(P) );
+                    }
+                    else if ( Info(P) <100 ) {
+                        printf("KOMPUTER %c ada di kotak  %d", player+2, Info(P) );
+                    }
+
+                    // menyimpan alamat P kembali ke alamat tiap bidak
+                    if ( player == 2 ){ player2 = P; }
+                    if ( player == 3 ){ player3 = P; }
+                    if ( player == 4 ){ player4 = P; }
+
+                    //ulang giliran jika dapet 6
+                    if ( dapetDadu == 6 && statusUlang == true ) //jika mendapat dadu enam dan baru dapet dadu enam
+                    {
+                        gotoxy(67,20);  printf("Mendapatkan dadu 6");
+                        gotoxy(67,21);  printf("KOMPUTER %c bermain kembali", player+2);
+                        Sleep(1500);
+                        gotoxy(67,20);  printf("                              ");
+                        gotoxy(67,21);  printf("                              ");
+                        player--;
+                        statusUlang = false;
+                    }
+                    else if ( statusUlang == false ) //dilakukan jika sudah pernah mendapat dadu 6
+                    {
+                        statusUlang = true;
+                    }
+
+                    //menghentikan giliran AI, ganti ke giliran player
+                    if ( player == AIYangBermain + 1) { giliranPlayer = true; }
+                }
+            }
+        }
+    }
 }
 
 //==============================================================
-//            2. Modul fungsi untuk mengecek petak
+//                2. Print Bidak di Koordinat x,y
 //==============================================================
-int CekAdaUlarTangga(int Petak, int Dadu) {
-    int StatusNaik,StatusTurun;
+void printBidak(int player, int info)
+{
+    int temp, x, y, a;
 
+    y = 42-(4*((info-1)/10));
 
-    //nginjek tangga
-    if (Petak==3,8,19,27,39,50,62,70) {
-        //Pengecekan apakah yang main Pemain manusia atau Pemain komputer
-        StatusNaik=1;
-        //yang main adalah Pemain Manusia
-//		if (status==1) {
-//			srand(time(NULL));
-//
-//		//yang main adalah Pemain komputer
-//		} else if (status==0) {
-//			srand(time(NULL));
-//		}
+	temp = ((info-1)/10)%2;
 
-        if (StatusNaik==1) {
-//			StatusNaik=1;
-            switch(Petak) {
-            case 3:
-                Petak=13;
-                break;
-            case 8:
-                Petak=30;
-                break;
-            case 19:
-                Petak=37;
-                break;
-            case 27:
-                Petak=83;
-                break;
-            case 39:
-                Petak=58;
-                break;
-            case 50:
-                Petak=66;
-                break;
-            case 62:
-                Petak=80;
-                break;
-            case 70:
-                Petak=90;
-                break;
-            }
-        }
+	if(temp == 0)
+	{
+    	x = 5 + ( 6 * ((info-1) % 10)  );
+	}
+	else if(temp == 1)
+	{
+		a = info%10;
+		x = 5 + ( 6 * (( (info-(2*a)) % 10)  ));
+	}
+
+    if(player == 1){
+        gotoxy(x, y);
+        printf("%c", player+2);
+    }
+    if(player == 2){
+        gotoxy(x+1, y);
+        printf("%c", player+2);
+    }
+    if(player == 3){
+        gotoxy(x, y+1);
+        printf("%c", player+2);
+    }
+    if(player == 4){
+        gotoxy(x+1, y+1);
+        printf("%c", player+2);
     }
 
-    //nginjek ular
-    if (Petak==98,94,92,86,63,61,53,16) {
-        StatusTurun=1;
-
-        if (StatusTurun==1) {
-            switch(Petak) {
-            case 98:
-                Petak=77;
-                break;
-            case 94:
-                Petak=74;
-                break;
-            case 92:
-                Petak=72;
-                break;
-            case 86:
-                Petak=23;
-                break;
-            case 63:
-                Petak=59;
-                break;
-            case 61:
-                Petak=18;
-                break;
-            case 53:
-                Petak=33;
-                break;
-            case 16:
-                Petak=6;
-                break;
-            }
-        }
-    }
-
-
-    if(Dadu==6) {
-        gotoxy(67,18);
-        printf("Berhasil mendapat dadu nomor 6");
-        gotoxy(67,19);
-        printf("pemain bermain bermain kembali");
-        Sleep(1000);
-        gotoxy(67,18);
-        printf("                                                  ");
-        gotoxy(67,19);
-        printf("                                                  ");
-    } else if(Dadu!=6) {
-        gotoxy(67,18);
-        printf("Mendapat dadu nomor %d", Dadu);
-        Sleep(1000);
-        gotoxy(67,18);
-        printf("                                                  ");
-    }
-
-    gotoxy(67,20);
-    printf("Pindah ke kotak %d",Petak+1);
-    Sleep(1000);
-    gotoxy(67,19);
-    printf("                                                  ");
-    gotoxy(67,20);
-    printf("                                                  ");
-    return Petak;
 }
 
 //==============================================================
-//       3. Modul menampilkan pesan jika ada yang menang
+//                3. Print Hitam di Koordinat x,y
 //==============================================================
-void Pemenang(int SiapaMenang,int MenangPemain,int Jml_Pemain,int MenangAI) {
-    int kembali;
+void printBidakKosong(int player, int info)
+{
+    int temp, x, y, a;
+
+    y = 42-(4*((info-1)/10));
+
+	temp = ((info-1)/10)%2;
+
+	if(temp == 0)
+	{
+    	x = 5 + ( 6 * ((info-1) % 10)  );
+	}
+	else if(temp == 1)
+	{
+		a = info%10;
+		x = 5 + ( 6 * (( (info-(2*a) ) % 10)  ));
+	}
+
+    if(player == 1){
+        gotoxy(x, y);
+        printf(" ");
+    }
+    if(player == 2){
+        gotoxy(x+1, y);
+        printf(" ");
+    }
+    if(player == 3){
+        gotoxy(x, y+1);
+        printf(" ");
+    }
+    if(player == 4){
+        gotoxy(x+1, y+1);
+        printf(" ");
+    }
+
+}
+
+
+//==============================================================
+//          4. Cek apakah ada Ular atau Tangga di Kotak
+//==============================================================
+address cekAdaUlarTangga( address P, int player )
+{
+    if( Jump(P) != Nil )
+    {
+        Sleep(500);
+        printBidakKosong( player, Info(P) );
+        printBidak( player, Info(Jump(P)) );
+        P = Jump(P);
+        return P;
+    }
+    else if ( Jump(P) == Nil )
+    {
+        return P;
+    }
+}
+
+//==============================================================
+//          5. Menampilkan pesan jika ada yang menang
+//==============================================================
+void Pemenang(boolean SiapaMenang,int MenangPemain,int Jml_Pemain,int MenangAI)
+{
+    int pilihan;
 
     if(SiapaMenang == 0) {
         gotoxy(67,17);
-        printf("Sayang Sekali~");
+        printf("Sayang Sekali");
         gotoxy(67,18);
         printf("Kamu Kalah!!");
         gotoxy(67,19);
-        printf("Pemenangnya adalah CPU %d",MenangAI);
+        printf("Pemenangnya adalah AI %d",MenangAI);
 
     } else if(SiapaMenang == 1) {
         if(Jml_Pemain > 1) {
             gotoxy(67,17);
-            printf("Selamat Pemain %d!!!",MenangPemain);
+            printf("Selamat Player %d!!!",MenangPemain);
             gotoxy(67,18);
             printf("Kamu lah takdir sang juara!");
 
@@ -409,78 +453,22 @@ void Pemenang(int SiapaMenang,int MenangPemain,int Jml_Pemain,int MenangAI) {
             gotoxy(67,17);
             printf("Waaaaaahhhhhhhh");
             gotoxy(67,18);
-            printf("Kamu Menang!! Sugoi!");
+            printf("Kamu Menang!!");
         }
     }
-    gotoxy(67,20);
-    printf("Kembali ke menu utama?");
-    gotoxy(67,21);
-    printf("1. Ya | 2. Exit : ");
-    gotoxy(67,22);
-    scanf("%d",&kembali);
+    gotoxy(67,20);  printf("Kembali ke menu utama?");
+    gotoxy(69,21);  printf("1. Ya");
+    gotoxy(69,22);  printf("2. Exit");
+    pilihan = Cursor(2,67,21);
 
-    if(kembali == 1) {
-//			main();
+    if(pilihan == 1) {
         return;
     } else {
-        system("exit");
+        system("cls");
+        exit(1);
     }
 
 }
 
-void printBidak(address P, int i){
-    int x, y, a, b;
 
-    if(i==1){
-        a = 0;
-        b = 0;
-    }
-    if(i==2){
-        a = 1;
-        b = 0;
-    }
-    if(i==3){
-        a = 0;
-        b = 1;
-    }
-    if(i==4){
-        a = 1;
-        b = 1;
-    }
-
-//    x = P->x + a;
-//    y = P->y + b;
-
-//    gotoxy(x,y);
-//    printf("%c",i+2);
-
-}
-
-void printBidakKosong(address P, int i){
-    int x, y, a, b;
-
-    if(i==1){
-        a = 0;
-        b = 0;
-    }
-    if(i==2){
-        a = 1;
-        b = 0;
-    }
-    if(i==3){
-        a = 0;
-        b = 1;
-    }
-    if(i==4){
-        a = 1;
-        b = 1;
-    }
-
-//    x = P->x + a;
-//    y = P->y + b;
-
-//    gotoxy(x,y);
-//    printf(" ");
-
-}
 

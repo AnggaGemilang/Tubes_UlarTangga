@@ -1,32 +1,20 @@
 #ifndef permainan_H
 #define permainan_H
 
-//data komposit untuk rute pemain dan komputer
-struct {
-    int Rute;
-} Pemain[4], AI[4];
-
-//data komposit untuk koordinat tiap pemain atau komputer pada tiap petak papan
-struct {
-    struct  {
-        int x;
-        int y;
-    } SiPemain[4], SiAI[4];
-} PapanPermainan[100];
-
-
-
-//	1. Inti Permainan
+// 1. Inti Permainan
 void Permainan(int PemainYangBermain, int AIYangBermain, List * map);
 
-//	2. Modul menampilkan pesan jika ada yang menang
-void Pemenang(int SiapaMenang, int MenangPemain, int Jml_Pemain,int MenangAI);
+// 2. Print Bidak di Koordinat x,y
+void printBidak(int player, int info);
 
-//	3. Modul fungsi untuk mengecek petak
-int CekAdaUlarTangga(int Petak, int Dadu);
+// 3. Print Hitam di Koordinat x,y
+void printBidakKosong(int player, int info);
 
-void printBidak(address P, int i);
+// 4. Cek apakah ada Ular atau Tangga di Kotak
+void Pemenang(boolean SiapaMenang,int MenangPemain,int Jml_Pemain,int MenangAI);
 
-void printBidakKosong(address P, int i);
+// 5. Menampilkan pesan jika ada yang menang
+address cekAdaUlarTangga( address P, int player );
+
 
 #endif // permainan_H
