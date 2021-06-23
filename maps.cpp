@@ -4,9 +4,7 @@
 //     1. Modul menampilkan box header untuk judul permainan
 //==============================================================
 void PapanInfo() {
-
     int x,y,i,j;
-
     //Box Pertama
     gotoxy(x=66,y=4);
     printf("浜様様様様様様様様様様様様様様様様様様様様様様様様融");

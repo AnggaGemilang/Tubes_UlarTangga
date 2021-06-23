@@ -19,8 +19,8 @@ void BermainSendiri(List * map) {
     }
 
 	//mencetak isi tulisan dalam kotak
-    gotoxy(trunc(WDT_SCREEN/11/2+7),7);		printf(">>>>| Pilih Jumlah Lawan |<<<<");
-	gotoxy(trunc(WDT_SCREEN/11/2+3),8);		printf("______________________________________");
+    gotoxy(trunc(WDT_SCREEN/11/2+7),7);		    printf(">>>>| Pilih Jumlah Lawan |<<<<");
+	gotoxy(trunc(WDT_SCREEN/11/2+3),8);		    printf("______________________________________");
 	gotoxy(trunc(WDT_SCREEN/11/2+5),10);		printf("1. VS 1 KOMPUTER");
 	gotoxy(trunc(WDT_SCREEN/11/2+5),11);		printf("2. VS 2 KOMPUTER");
 	gotoxy(trunc(WDT_SCREEN/11/2+5),12);		printf("3. VS 3 KOMPUTER");
@@ -35,7 +35,6 @@ void BermainSendiri(List * map) {
 
         //Pemilihan jumlah pemain komputer dilakukan dengan menggunakan tombol atas atau bawah keyboard
         JumlahAI = pilihan;
-
         system("cls");
 
         //Jumlah pemain dan jumlah pemain komputer "dilempar" ke modul yang bernama "Permainan"
