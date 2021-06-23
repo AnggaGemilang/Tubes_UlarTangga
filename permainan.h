@@ -16,5 +16,6 @@ void Pemenang(boolean SiapaMenang,int MenangPemain,int Jml_Pemain,int MenangAI);
 // 5. Menampilkan pesan jika ada yang menang
 address cekAdaUlarTangga( address P, int player );
 
+void tekanESC();
 
 #endif // permainan_H
