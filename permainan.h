@@ -10,12 +10,40 @@ void printBidak(int player, int info);
 // 3. Print Hitam di Koordinat x,y
 void printBidakKosong(int player, int info);
 
-// 4. Cek apakah ada Ular atau Tangga di Kotak
-void Pemenang(boolean SiapaMenang,int MenangPemain,int Jml_Pemain,int MenangAI);
+// 4. Print Bidak di kotak 1 ketika mulai permainan
+void printBidakAwal( int PemainYangBermain, int AIYangBermain );
 
-// 5. Menampilkan pesan jika ada yang menang
+// 5. Cek Giliran Player atau Komputer
+int cekGiliranPK( boolean giliranPlayer );
+
+// 6. Cek Hasil Perpindahan Bidak
+int cekHasilJalan( int hasilDadu, int kotakSebelum );
+
+// 7. Menggerakkan Bidak jika Hasil Perpindahan Bidak < 100
+address jalanKurang100 ( address P, int player, int kotakSesudah );
+
+// 8. Menggerakkan Bidak jika Hasil Perpindahan Bidak > 100
+address jalanLebih100 ( address P, int player, int kotakSesudah );
+
+// 9. Menggerakkan Bidak jika Hasil Perpindahan Bidak = 100
+address jalanSama100 ( address P, int player );
+
+// 10. Menggerakkan Bidak sesuai Kondisi
+address jalanBidak( address P, int player, int hasilJalan, int jmlPlayer, int giliran );
+
+// 11. Cek apakah ada Ular atau Tangga di Kotak
 address cekAdaUlarTangga( address P, int player );
 
+// 12. Menampilkan Informasi Lokasi Bidak
+void printLokasiPlayer (int giliran, int player, address P);
+
+// 13. Mengecek apakah Bermain Kembali atau Tidak
+void cekUlangGiliran ( int giliran, int dapetDadu, boolean *statusUlang, int *input, int *player );
+
+// 14. Menampilkan pesan jika ada yang menang
+void Pemenang(boolean SiapaMenang,int MenangPemain,int Jml_Pemain,int MenangAI);
+
+// 15. Menu untuk Keluar Paksa dari Permainan
 void tekanESC();
 
 #endif // permainan_H
