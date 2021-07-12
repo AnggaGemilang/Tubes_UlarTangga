@@ -34,8 +34,8 @@ void Permainan(int PemainYangBermain, int AIYangBermain, List * map)
     dapetDadu,
     input;
 
-    // Print bidak awal player
-//    printBidak(1, Info(player1));  //<-- buat langsung finish
+    //  Print bidak awal player
+      printBidak(1, Info(player1));  //<-- buat langsung finish
     for( player = 1; player <= PemainYangBermain; player++ )
     {
         printBidak( player, Info(P) );
