@@ -36,6 +36,8 @@ void PapanInfo() {
     printf("¯ : Ekor Ular");
     gotoxy(x=68,y=(8 + i + (j-4)));
     printf("Û : Tangga");
+
+    gotoxy(68,43);  printf("Tekan ESC untuk keluar dari permainan");
 }
 
 //==============================================================
