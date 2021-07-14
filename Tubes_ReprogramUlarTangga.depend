@@ -108,7 +108,7 @@
 1625033229 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\linkedlist.cpp
 	"header.h"
 
-1625033229 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\header.h
+1626150056 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\header.h
 	<stdio.h>
 	<iostream>
 	<limits.h>
@@ -126,7 +126,7 @@
 	"permainan.h"
 	"boolean.h"
 
-1625033229 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\linkedlist.h
+1626148275 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\linkedlist.h
 	"header.h"
 
 1625033229 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\maps.h
@@ -134,25 +134,25 @@
 
 1625033229 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\umum.h
 
-1625033229 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\menu.h
+1626149952 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\menu.h
 
 1626132878 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\permainan.h
 
 1625033229 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\boolean.h
 
-1625033229 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\main.cpp
+1626244168 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\main.cpp
 	"header.h"
 
 1626132878 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\maps.cpp
 	"header.h"
 
-1625033229 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\menu.cpp
+1626244323 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\menu.cpp
 	"header.h"
 
-1626133014 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\permainan.cpp
+1626157185 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\permainan.cpp
 	"header.h"
 
-1625033229 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\umum.cpp
+1626151409 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\umum.cpp
 	"header.h"
 
 1623549655 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga - copy\main.cpp

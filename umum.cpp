@@ -28,9 +28,9 @@ int Cursor(int BanyakPilihan,int x,int y) {
     printf("%c",62);
 
     do {
-        cursor=_getch();//diganti jadi _getch(); karena jika menggunakan getch(); ada error drawing operation was attempted when there was no current window error while using getch() in C saat runtime
-
+        cursor =_getch();//diganti jadi _getch(); karena jika menggunakan getch(); ada error drawing operation was attempted when there was no current window error while using getch() in C saat runtime
         if(cursor == DOWN_KEY) {//down key
+            Beep(500, 40);
             if(Pilih+1 > BanyakPilihan) {
                 gotoxy(x,y);
                 printf(" ");
@@ -48,7 +48,8 @@ int Cursor(int BanyakPilihan,int x,int y) {
             }
         }
 
-        if(cursor == UP_KEY) {//up key
+        else if(cursor == UP_KEY) {//up key
+            Beep(500, 40);
             if(Pilih-1 == 0) {
                 gotoxy(x,y);
                 printf(" ");
@@ -66,6 +67,8 @@ int Cursor(int BanyakPilihan,int x,int y) {
             }
         }
     } while(cursor != 13);
+
+	Beep(700, 40);
 
     return Pilih;
 }

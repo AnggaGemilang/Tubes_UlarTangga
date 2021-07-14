@@ -12,6 +12,7 @@
 typedef int infotype;
 typedef char simboltype;
 typedef struct tElmtList * address;
+
 typedef struct tElmtList {
     address     prev;
     infotype    info;

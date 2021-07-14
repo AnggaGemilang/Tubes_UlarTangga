@@ -13,4 +13,6 @@ void BermainBersamaTeman(List * map);
 // 4. Menampilkan Tatacara bermain permainan
 void CaraMain();
 
+void title(char mode);
+
 #endif // menu_H

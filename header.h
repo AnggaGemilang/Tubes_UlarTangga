@@ -25,6 +25,14 @@
 #define RIGHT_KEY 77
 #define WDT_SCREEN GetSystemMetrics(SM_CXSCREEN)
 #define HGT_SCREEN GetSystemMetrics(SM_CYSCREEN)
+#define BLACK           0
+#define PURPLE          5
+#define LIGHT_GRAY      7
+#define LIGHT_GREEN    10
+#define LIGHT_BLUE     11
+#define RED            12
+#define YELLOW         14
+#define WHITE          15
 
 #define Nil NULL
 #define Prev(P)     (P)->prev
