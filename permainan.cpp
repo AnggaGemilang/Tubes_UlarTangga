@@ -67,7 +67,6 @@ void Permainan(int PemainYangBermain, int AIYangBermain, List * map)
                 // jika sebelumnya mendapat dadu 6 dan bermain kembali, maka player tidak perlu menekan enter
                 if(statusUlang == true )
                     input = _getch();
-                    Beep(700, 40);
 
                 if ( input == 13 )
                 {
