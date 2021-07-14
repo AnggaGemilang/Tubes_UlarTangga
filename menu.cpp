@@ -200,6 +200,7 @@ void CaraMain() {
     }
 
     _getch();
+    Beep(700, 40);
 
     fclose(fp);
 }
@@ -346,5 +347,4 @@ void title(char mode){
 	gotoxy(88,19); printf("лл        лл\n");
 	gotoxy(88,20);printf("  лллллллл   \n");
 	setcolor(WHITE);
-//	Beep(300, 200);
 }

@@ -60,13 +60,14 @@ void Permainan(int PemainYangBermain, int AIYangBermain, List * map)
                 else if ( player == 4 ){ P = player4;}
 
                 srand(time(NULL)); // <-- Agar tiap pengulangan dan buka aplikasi dadu dalam keadaan "random"
-                gotoxy(67,11);  printf("                                                  ");
-                gotoxy(67,11);  printf("=PLAYER %c= Tekan enter untuk mengocok dadu", player+2);
+                gotoxy(90,11);  printf("                                                  ");
+                gotoxy(90,11);  printf("=PLAYER %c= Tekan enter untuk mengocok dadu", player+2);
 
                 // cek apakah perlu menekan enter atau tidak untuk mengocok dadu
                 // jika sebelumnya mendapat dadu 6 dan bermain kembali, maka player tidak perlu menekan enter
                 if(statusUlang == true )
                     input = _getch();
+                    Beep(700, 40);
 
                 if ( input == 13 )
                 {
@@ -125,8 +126,8 @@ void Permainan(int PemainYangBermain, int AIYangBermain, List * map)
                     else if ( player == 4 ){ P = player4;}
 
                     srand(time(NULL)); // <-- Agar tiap pengulangan dan buka aplikasi dadu dalam keadaan "random"
-                    gotoxy(67,11);  printf("                                                  ");
-                    gotoxy(67,11);  printf("=KOMPUTER %c= sedang bermain",player+2);
+                    gotoxy(90,11);  printf("                                                  ");
+                    gotoxy(90,11);  printf("=KOMPUTER %c= sedang bermain",player+2);
 
                     // kocok dadu
                     dapetDadu = KocokDadu();
@@ -167,12 +168,12 @@ void printBidak(int player, int info)
 
 	if(temp == 0)
 	{
-    	x = 5 + ( 6 * ((info-1) % 10)  );
+    	x = 27 + ( 6 * ((info-1) % 10)  );
 	}
 	else if(temp == 1)
 	{
 		a = info%10;
-		x = 5 + ( 6 * (( (info-(2*a)) % 10)  ));
+		x = 27 + ( 6 * (( (info-(2*a)) % 10)  ));
 	}
 
     if(player == 1){
@@ -207,12 +208,12 @@ void printBidakKosong(int player, int info)
 
 	if(temp == 0)
 	{
-    	x = 5 + ( 6 * ((info-1) % 10)  );
+    	x = 27 + ( 6 * ((info-1) % 10)  );
 	}
 	else if(temp == 1)
 	{
 		a = info%10;
-		x = 5 + ( 6 * (( (info-(2*a) ) % 10)  ));
+		x = 27 + ( 6 * (( (info-(2*a) ) % 10)  ));
 	}
 
     if(player == 1){
@@ -381,7 +382,7 @@ address cekAdaUlarTangga( address P, int player )
 //==============================================================
 void printLokasiPlayer (int giliran, int player, address P)
 {
-    gotoxy(80,12+player);
+    gotoxy(103,12+player);
     if ( Info(P) < 10 ) {
         if( giliran == 1 )
             printf("PLAYER %c ada di kotak   %d", player+2, Info(P) );
@@ -404,15 +405,16 @@ void cekUlangGiliran ( int giliran, int dapetDadu, boolean *statusUlang, int *in
     //ulang giliran jika dapet 6
     if ( dapetDadu == 6 && *statusUlang == true ) //jika mendapat dadu enam dan baru dapet dadu enam
     {
-        gotoxy(67,20);  printf("Mendapatkan dadu 6 (1x)");
+        gotoxy(90,20);  printf("Mendapatkan dadu 6 (1x)");
         if( giliran == 1 )
         {
-            gotoxy(67,21);  printf("PLAYER %c bermain kembali", *player+2);
-            gotoxy(67,22);  printf("Tekan enter untuk mengocok dadu");
+            gotoxy(90,21);  printf("PLAYER %c bermain kembali", *player+2);
+            gotoxy(90,22);  printf("Tekan enter untuk mengocok dadu");
             *input = 0;
             while ( *input != 1)
             {
                 *input = _getch();
+                Beep(700, 40);
                 if ( *input == 13 )
                 {
                     *input = 1;
@@ -426,37 +428,38 @@ void cekUlangGiliran ( int giliran, int dapetDadu, boolean *statusUlang, int *in
         }
         else
         {
-            gotoxy(67,21);  printf("KOMPUTER %c bermain kembali", *player+2);
+            gotoxy(90,21);  printf("KOMPUTER %c bermain kembali", *player+2);
             Sleep(1500);
             *input = 0;
         }
 
-        gotoxy(67,20);  printf("                              ");
-        gotoxy(67,21);  printf("                              ");
-        gotoxy(67,22);  printf("                                     ");
+        gotoxy(90,20);  printf("                              ");
+        gotoxy(90,21);  printf("                              ");
+        gotoxy(90,22);  printf("                                     ");
         *player -= 1;
         *statusUlang = false;
         *input = 13;
     }
     else if ( dapetDadu == 6 && *statusUlang == false ) //dilakukan jika sudah pernah mendapat dadu 6
     {
-        gotoxy(67,20);  printf("Mendapatkan dadu 6 (2x)");
-        gotoxy(67,21);
+        gotoxy(90,20);  printf("Mendapatkan dadu 6 (2x)");
+        gotoxy(90,21);
         if( giliran == 1 )
             printf("PLAYER %c tidak bermain kembali", player+2);
         else
             printf("KOMPUTER %c tidak bermain kembali", player+2);
-        gotoxy(67,20);  printf("                              ");
+        gotoxy(90,20);  printf("                              ");
         *statusUlang = true;
     }
     else
     {
-        gotoxy(67,20);
+        gotoxy(90,20);
         printf("Tekan enter untuk melanjutkan");
         *input = 0;
         while ( *input != 1)
         {
             *input = _getch();
+            Beep(700, 40);
             if ( *input == 13 ) { *input = 1; }
             if ( *input == 27 )
             {
@@ -465,7 +468,7 @@ void cekUlangGiliran ( int giliran, int dapetDadu, boolean *statusUlang, int *in
                 tekanESC();
             }
         }
-        gotoxy(67,20);  printf("                              ");
+        gotoxy(90,20);  printf("                              ");
         *statusUlang = true;
     }
 }
@@ -480,32 +483,32 @@ void Pemenang(boolean SiapaMenang,int MenangPemain,int Jml_Pemain,int MenangAI)
     if(SiapaMenang == 0) {
         gotoxy(80,12+MenangAI);
         printf("KOMPUTER %c ada di kotak 100", MenangAI+2);
-        gotoxy(67,17);
+        gotoxy(90,17);
         printf("Sayang Sekali");
-        gotoxy(67,18);
+        gotoxy(90,18);
         printf("Kamu Kalah!!");
-        gotoxy(67,19);
+        gotoxy(90,19);
         printf("Pemenangnya adalah AI %c",MenangAI+2);
 
     } else if(SiapaMenang == 1) {
         gotoxy(80,12+MenangPemain);
         printf("PLAYER %c ada di kotak 100", MenangPemain+2);
         if(Jml_Pemain > 1) {
-            gotoxy(67,17);
+            gotoxy(90,17);
             printf("Selamat Player %c!!!",MenangPemain+2);
-            gotoxy(67,18);
+            gotoxy(90,18);
             printf("Kamu lah takdir sang juara!");
 
         } else if(Jml_Pemain == 1) {
-            gotoxy(67,17);
+            gotoxy(90,17);
             printf("Waaaaaahhhhhhhh");
-            gotoxy(67,18);
+            gotoxy(90,18);
             printf("Kamu Menang!!");
         }
     }
-    gotoxy(67,20);  printf("Apakah anda ingin menutup program?");
-    gotoxy(69,21);  printf("1. Ya");
-    gotoxy(69,22);  printf("2. Kembali ke menu utama");
+    gotoxy(90,20);  printf("Apakah anda ingin menutup program?");
+    gotoxy(92,21);  printf("1. Ya");
+    gotoxy(92,22);  printf("2. Kembali ke menu utama");
     pilihan = Cursor(2,67,21);
 
     if(pilihan == 2) {
@@ -522,18 +525,18 @@ void Pemenang(boolean SiapaMenang,int MenangPemain,int Jml_Pemain,int MenangAI)
 //==============================================================
 void tekanESC()
 {
-    gotoxy(67,19);  printf("                                   ");
-    gotoxy(67,20);  printf("                                   ");
-    gotoxy(67,19);  printf("Anda telah menekan tombol ESC");
-    gotoxy(70,20);  printf("1. Lanjutkan Permainan");
-    gotoxy(70,21);  printf("2. Kembali Ke Menu");
-    gotoxy(70,22);  printf("3. Keluar Aplikasi");
-    int pilihan = Cursor(3,67,20);
+    gotoxy(90,19);  printf("                                   ");
+    gotoxy(90,20);  printf("                                   ");
+    gotoxy(90,19);  printf("Anda telah menekan tombol ESC");
+    gotoxy(93,20);  printf("1. Lanjutkan Permainan");
+    gotoxy(93,21);  printf("2. Kembali Ke Menu");
+    gotoxy(93,22);  printf("3. Keluar Aplikasi");
+    int pilihan = Cursor(3,90,20);
     if(pilihan == 1) {
-        gotoxy(67,19);  printf("                               ");
-        gotoxy(67,20);  printf("                               ");
-        gotoxy(67,21);  printf("                               ");
-        gotoxy(67,22);  printf("                               ");
+        gotoxy(90,19);  printf("                               ");
+        gotoxy(90,20);  printf("                               ");
+        gotoxy(90,21);  printf("                               ");
+        gotoxy(90,22);  printf("                               ");
         return;
     } else if (pilihan == 2) {
         menuUtama();

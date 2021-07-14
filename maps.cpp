@@ -6,38 +6,38 @@
 void PapanInfo() {
     int x,y,i,j;
     //Box Pertama
-    gotoxy(x=66,y=4);
+    gotoxy(x=89,y=4);
     printf("ษออออออออออออออออออออออออออออออออออออออออออออออออออป");
     for (i=0; i<3; i++) {
-        gotoxy(x=66,y=5+i);
+        gotoxy(x=89,y=5+i);
         printf("บ                                                  บ");
     }
-    gotoxy(x=66,y=5+i);
+    gotoxy(x=89,y=5+i);
     printf("ศออออออออออออออออออออออออออออออออออออออออออออออออออผ");
-    gotoxy(x=70,y=(1+i));
+    gotoxy(x=93,y=(1+i));
     printf("บUlar Tanggaบ");
-    gotoxy(x=83,y=(3+i));
+    gotoxy(x=106,y=(3+i));
     printf("Menuju 100!");
 
     //Box kedua
-    gotoxy(x=66,y=7+i);
+    gotoxy(x=89,y=7+i);
     printf("ษออออออออออออออออออออออออออออออออออออออออออออออออออป");
     for (j=0; j<(43-(7+i)); j++) {
-        gotoxy(x=66,y=(8+i)+j);
+        gotoxy(x=89,y=(8+i)+j);
         printf("บ                                                  บ");
     }
-    gotoxy(x=66,y=((8+i)+j));
+    gotoxy(x=89,y=((8+i)+j));
     printf("ศออออออออออออออออออออออออออออออออออออออออออออออออออผ");
-    gotoxy(x=68,y=(5  + i + (j-7)));
+    gotoxy(x=91,y=(5  + i + (j-7)));
     printf("Legend:");
-    gotoxy(x=68,y=(6  + i + (j-6)));
+    gotoxy(x=91,y=(6  + i + (j-6)));
     printf("ฎ : Kepala Ular");
-    gotoxy(x=68,y=(7 + i + (j-5)));
+    gotoxy(x=91,y=(7 + i + (j-5)));
     printf("ฏ : Ekor Ular");
-    gotoxy(x=68,y=(8 + i + (j-4)));
+    gotoxy(x=91,y=(8 + i + (j-4)));
     printf("Û : Tangga");
 
-    gotoxy(68,43);  printf("Tekan ESC untuk keluar dari permainan");
+    gotoxy(91,43);  printf("Tekan ESC untuk keluar dari permainan");
 }
 
 //==============================================================
@@ -48,75 +48,75 @@ int KocokDadu() {
     int dadu=rand()%6+1;
     switch(dadu) {
     case 1:
-        gotoxy(67,12);
+        gotoxy(90,12);
         printf("+---------+\n");
-        gotoxy(67,13);
+        gotoxy(90,13);
         printf("|         |\n");
-        gotoxy(67,14);
+        gotoxy(90,14);
         printf("|   (-)   |\n");
-        gotoxy(67,15);
+        gotoxy(90,15);
         printf("|         |\n");
-        gotoxy(67,16);
+        gotoxy(90,16);
         printf("+---------+\n");
         break;
     case 2:
-        gotoxy(67,12);
+        gotoxy(90,12);
         printf("+---------+\n");
-        gotoxy(67,13);
+        gotoxy(90,13);
         printf("|(-)      |\n");
-        gotoxy(67,14);
+        gotoxy(90,14);
         printf("|         |\n");
-        gotoxy(67,15);
+        gotoxy(90,15);
         printf("|      (-)|\n");
-        gotoxy(67,16);
+        gotoxy(90,16);
         printf("+---------+\n");
         break;
     case 3:
-        gotoxy(67,12);
+        gotoxy(90,12);
         printf("+---------+\n");
-        gotoxy(67,13);
+        gotoxy(90,13);
         printf("|      (-)|\n");
-        gotoxy(67,14);
+        gotoxy(90,14);
         printf("|   (-)   |\n");
-        gotoxy(67,15);
+        gotoxy(90,15);
         printf("|(-)      |\n");
-        gotoxy(67,16);
+        gotoxy(90,16);
         printf("+---------+\n");
         break;
     case 4:
-        gotoxy(67,12);
+        gotoxy(90,12);
         printf("+---------+\n");
-        gotoxy(67,13);
+        gotoxy(90,13);
         printf("|(-)   (-)|\n");
-        gotoxy(67,14);
+        gotoxy(90,14);
         printf("|         |\n");
-        gotoxy(67,15);
+        gotoxy(90,15);
         printf("|(-)   (-)|\n");
-        gotoxy(67,16);
+        gotoxy(90,16);
         printf("+---------+\n");
         break;
     case 5:
-        gotoxy(67,12);
+        gotoxy(90,12);
         printf("+---------+\n");
-        gotoxy(67,13);
+        gotoxy(90,13);
         printf("|(-)   (-)|\n");
-        gotoxy(67,14);
+        gotoxy(90,14);
         printf("|   (-)   |\n");
-        gotoxy(67,15);
+        gotoxy(90,15);
         printf("|(-)   (-)|\n");
-        gotoxy(67,16);
+        gotoxy(90,16);
         printf("+---------+\n");
         break;
     case 6:
-        gotoxy(67,12);
+        gotoxy(90,12);
         printf("+---------+\n");
-        gotoxy(67,13);
+        gotoxy(90,13);
         printf("|(-)   (-)|\n");
-        gotoxy(67,14);
+        gotoxy(90,14);
         printf("|(-)   (-)|\n");
-        gotoxy(67,15);
+        gotoxy(90,15);
         printf("|(-)   (-)|\n");
-        gotoxy(67,16);
+        gotoxy(90,16);
         printf("+---------+\n");
         break;
     }
@@ -152,7 +152,7 @@ void tampilkanMap(List L) {
     address P;
     int x, y, columnCounter, baris, simbolCounter;
     y = 5;
-    x = 4;
+    x = 26;
     baris = 1;
     columnCounter = 1;
     simbolCounter = 1;
@@ -160,7 +160,7 @@ void tampilkanMap(List L) {
         printf("matriks kosong.\n\n");
     } else {
         P = Last(L);
-        printf("\n\n\n\n    ฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮ\n");
+        printf("\n\n\n\n\t\t\t  ฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮ\n");
         while(P != Nil){
             gotoxy(x, y);
             printf("บ");
@@ -180,15 +180,15 @@ void tampilkanMap(List L) {
                 }
                 baris++;
                 if(baris % 2 == 1){
-                    x = -2;
+                    x = 20;
                 } else {
-                    x = 64;
+                    x = 86;
                 }
                 y += 4;
                 columnCounter = 0;
-                printf("\n    บ     บ     บ     บ     บ     บ     บ     บ     บ     บ     บ");
-                printf("\n    บ     บ     บ     บ     บ     บ     บ     บ     บ     บ     บ");
-                printf("\n    ฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮ\n");
+                printf("\n\t\t\t  บ     บ     บ     บ     บ     บ     บ     บ     บ     บ     บ");
+                printf("\n\t\t\t  บ     บ     บ     บ     บ     บ     บ     บ     บ     บ     บ");
+                printf("\n\t\t\t  ฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮ\n");
             }
             columnCounter++;
             P = Prev(P);
