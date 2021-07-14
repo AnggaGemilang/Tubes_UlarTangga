@@ -344,7 +344,7 @@ void tampilkanSimbol(infotype counter, simboltype Simbol) {
     } else {
         cout << "  " << Simbol;
     }
-    setcolor(11);
+    setcolor(WHITE);
 }
 
 //==============================================================

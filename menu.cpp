@@ -17,6 +17,8 @@ void menuUtama()
 
     mainMenu:
 
+  	setcolor(WHITE);
+
     do {
 
         system("cls");
@@ -242,9 +244,8 @@ void title(char mode){
 			Sleep(1);
 		}
 	}
-
-	setcolor(LIGHT_GREEN);
 	gotoxy(20,23); printf("\xc0");
+	setcolor(LIGHT_GREEN);
 	gotoxy(30,5); printf("лл     лл\n");
 	gotoxy(30,6); printf("лл     лл\n");
 	gotoxy(30,7); printf("лл     лл\n");
