@@ -98,7 +98,7 @@ void Permainan(int PemainYangBermain, int AIYangBermain, List * map)
                 else if ( input == 27 )
                 {
                     Beep(700, 40);
-                    tekanESC();
+                    menuKeluar();
                 }
 
                 // jika menekan tombol lain maka akan terjadi loop
@@ -355,7 +355,7 @@ address jalanBidak( address P, int player, int hasilJalan, int jmlPlayer, int gi
     if( hasilJalan == 100 )
     {
         P = jalanSama100(P, player);
-        Pemenang(giliran, player, jmlPlayer, player);
+        Pemenang(giliran, player, jmlPlayer);
     }
 
     return P;
@@ -422,7 +422,7 @@ void cekUlangGiliran ( int giliran, int dapetDadu, boolean *statusUlang, int *in
                 {
                     Beep(700, 40);
                     *input = 1;
-                    tekanESC();
+                    menuKeluar();
                 }
             }
         }
@@ -465,7 +465,7 @@ void cekUlangGiliran ( int giliran, int dapetDadu, boolean *statusUlang, int *in
             {
                 Beep(700, 40);
                 *input = 1;
-                tekanESC();
+                menuKeluar();
             }
         }
         gotoxy(90,20);  printf("                              ");
@@ -476,43 +476,46 @@ void cekUlangGiliran ( int giliran, int dapetDadu, boolean *statusUlang, int *in
 //==============================================================
 //          14. Menampilkan pesan jika ada yang menang
 //==============================================================
-void Pemenang(boolean SiapaMenang,int MenangPemain,int Jml_Pemain,int MenangAI)
+void Pemenang(int playerAtauAI,int pemenang,int jmlPemain)
 {
     int pilihan;
 
-    if(SiapaMenang == 0) {
-        gotoxy(80,12+MenangAI);
-        printf("KOMPUTER %c ada di kotak 100", MenangAI+2);
-        gotoxy(90,17);
+    if(playerAtauAI == 0) {
+        gotoxy(80,12+pemenang);
+        printf("KOMPUTER %c ada di kotak 100", pemenang+2);
+        gotoxy(67,17);
         printf("Sayang Sekali");
-        gotoxy(90,18);
+        gotoxy(67,18);
         printf("Kamu Kalah!!");
-        gotoxy(90,19);
-        printf("Pemenangnya adalah AI %c",MenangAI+2);
+        gotoxy(67,19);
+        printf("Pemenangnya adalah AI %c",pemenang+2);
 
-    } else if(SiapaMenang == 1) {
-        gotoxy(80,12+MenangPemain);
-        printf("PLAYER %c ada di kotak 100", MenangPemain+2);
-        if(Jml_Pemain > 1) {
+    } else if(playerAtauAI == 1) {
+        gotoxy(103,12+pemenang);
+        printf("PLAYER %c ada di kotak 100", pemenang+2);
+        if(jmlPemain > 1) {
             gotoxy(90,17);
-            printf("Selamat Player %c!!!",MenangPemain+2);
+            printf("Selamat Player %c!!!",pemenang+2);
             gotoxy(90,18);
             printf("Kamu lah takdir sang juara!");
 
-        } else if(Jml_Pemain == 1) {
+        } else if(jmlPemain == 1) {
             gotoxy(90,17);
             printf("Waaaaaahhhhhhhh");
             gotoxy(90,18);
             printf("Kamu Menang!!");
         }
     }
-    gotoxy(90,20);  printf("Apakah anda ingin menutup program?");
-    gotoxy(92,21);  printf("1. Ya");
-    gotoxy(92,22);  printf("2. Kembali ke menu utama");
-    pilihan = Cursor(2,67,21);
+    gotoxy(90,20);  printf("                                   ");
+    gotoxy(90,21);  printf("                                   ");
+    gotoxy(90,22);  printf("                                   ");
+    gotoxy(90,20);  printf("Apakah anda ingin menutup Program?");
+    gotoxy(93,21);  printf("1. Ya");
+    gotoxy(93,22);  printf("2. Kembali Ke Menu");
+    pilihan = Cursor(2,90,21);
 
     if(pilihan == 2) {
-        return;
+        menuUtama();
     } else {
         system("cls");
         exit(1);
@@ -523,13 +526,15 @@ void Pemenang(boolean SiapaMenang,int MenangPemain,int Jml_Pemain,int MenangAI)
 //==============================================================
 //          15. Menu untuk Keluar Paksa dari Permainan
 //==============================================================
-void tekanESC()
+void menuKeluar()
 {
     gotoxy(90,19);  printf("                                   ");
     gotoxy(90,20);  printf("                                   ");
+    gotoxy(90,21);  printf("                                   ");
+    gotoxy(90,22);  printf("                                   ");
     gotoxy(90,19);  printf("Anda telah menekan tombol ESC");
     gotoxy(93,20);  printf("1. Lanjutkan Permainan");
-    gotoxy(93,21);  printf("2. Kembali Ke Menu");
+    gotoxy(93,21);  printf("2. Kembali ke Menu Utama");
     gotoxy(93,22);  printf("3. Keluar Aplikasi");
     int pilihan = Cursor(3,90,20);
     if(pilihan == 1) {
