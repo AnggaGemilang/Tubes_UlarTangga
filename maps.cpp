@@ -6,38 +6,38 @@
 void PapanInfo() {
     int x,y,i,j;
     //Box Pertama
-    gotoxy(x=89,y=4);
+    gotoxy(x=89,y=3);
     printf("ษออออออออออออออออออออออออออออออออออออออออออออออออออป");
     for (i=0; i<3; i++) {
-        gotoxy(x=89,y=5+i);
+        gotoxy(x=89,y=4+i);
         printf("บ                                                  บ");
     }
-    gotoxy(x=89,y=5+i);
+    gotoxy(x=89,y=4+i);
     printf("ศออออออออออออออออออออออออออออออออออออออออออออออออออผ");
-    gotoxy(x=93,y=(1+i));
+    gotoxy(x=93,y=(i));
     printf("บUlar Tanggaบ");
-    gotoxy(x=106,y=(3+i));
+    gotoxy(x=108,y=(2+i));
     printf("Menuju 100!");
 
     //Box kedua
-    gotoxy(x=89,y=7+i);
+    gotoxy(x=89,y=6+i);
     printf("ษออออออออออออออออออออออออออออออออออออออออออออออออออป");
     for (j=0; j<(43-(7+i)); j++) {
-        gotoxy(x=89,y=(8+i)+j);
+        gotoxy(x=89,y=(7+i)+j);
         printf("บ                                                  บ");
     }
-    gotoxy(x=89,y=((8+i)+j));
+    gotoxy(x=89,y=((7+i)+j));
     printf("ศออออออออออออออออออออออออออออออออออออออออออออออออออผ");
-    gotoxy(x=91,y=(5  + i + (j-7)));
+    gotoxy(x=91,y=(4  + i + (j-7)));
     printf("Legend:");
-    gotoxy(x=91,y=(6  + i + (j-6)));
+    gotoxy(x=91,y=(5  + i + (j-6)));
     printf("ฎ : Kepala Ular");
-    gotoxy(x=91,y=(7 + i + (j-5)));
+    gotoxy(x=91,y=(6 + i + (j-5)));
     printf("ฏ : Ekor Ular");
-    gotoxy(x=91,y=(8 + i + (j-4)));
+    gotoxy(x=91,y=(7 + i + (j-4)));
     printf("Û : Tangga");
 
-    gotoxy(91,43);  printf("Tekan ESC untuk keluar dari permainan");
+    gotoxy(91,42);  printf("Tekan ESC untuk keluar dari permainan");
 }
 
 //==============================================================
@@ -151,7 +151,7 @@ void buatMap(List * L) {
 void tampilkanMap(List L) {
     address P;
     int x, y, columnCounter, baris, simbolCounter;
-    y = 5;
+    y = 4;
     x = 26;
     baris = 1;
     columnCounter = 1;
@@ -160,7 +160,7 @@ void tampilkanMap(List L) {
         printf("matriks kosong.\n\n");
     } else {
         P = Last(L);
-        printf("\n\n\n\n\t\t\t  ฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮ\n");
+        printf("\n\t\t\t  ฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮอออออฮ\n");
         while(P != Nil){
             gotoxy(x, y);
             printf("บ");

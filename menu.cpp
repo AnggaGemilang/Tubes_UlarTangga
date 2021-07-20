@@ -26,13 +26,20 @@ void menuUtama()
         title('n');
 
         //  mencetak sisi atas dan bawah kotak
-        gotoxy(trunc(WDT_SCREEN/11/2),25);		    printf("____________________________________________");
-        gotoxy(trunc(WDT_SCREEN/11/2),35);		    printf("____________________________________________");
+        for(x=trunc(WDT_SCREEN/11/2);x<=106;x++){
+            gotoxy(x,25);   printf("\xc4");
+            gotoxy(x,36);   printf("\xc4");
+        }
+
+		gotoxy(106,36); printf("\xd9");
+        gotoxy(106,25);  printf("\xbf");
+        gotoxy(61,25);   printf("\xda");
+        gotoxy(61,36);  printf("\xc0");
 
         //  mencetak sisi kiri dan kanan kotak
         for(y=26;y<=35;y++){
-            gotoxy(trunc(WDT_SCREEN/11/2-1),y);	    printf("|");
-            gotoxy(trunc(WDT_SCREEN/11/2+44),y);	printf("|");
+            gotoxy(trunc(WDT_SCREEN/11/2-1),y);	    printf("\xb3");
+            gotoxy(trunc(WDT_SCREEN/11/2+44),y);	printf("\xb3");
         }
 
         //  mencetak isi tulisan dalam kotak
@@ -40,10 +47,11 @@ void menuUtama()
         gotoxy(trunc(WDT_SCREEN/11/2+3),28);		printf("______________________________________");
         gotoxy(trunc(WDT_SCREEN/11/2+5),30);		printf("1. Bermain Sendiri");
         gotoxy(trunc(WDT_SCREEN/11/2+5),31);		printf("2. Bermain Dengan Teman");
-        gotoxy(trunc(WDT_SCREEN/11/2+5),32);		printf("3. Cara Bermain");
-        gotoxy(trunc(WDT_SCREEN/11/2+5),33);		printf("4. Keluar Permainan");
+        gotoxy(trunc(WDT_SCREEN/11/2+5),32);		printf("3. Leaderboard");
+        gotoxy(trunc(WDT_SCREEN/11/2+5),33);		printf("4. Cara Bermain");
+        gotoxy(trunc(WDT_SCREEN/11/2+5),34);		printf("5. Keluar Permainan");
 
-        PilihanUser = Cursor(4,64,30); //User memilih menu menggunakan tombol keyboard atas atau bawah
+        PilihanUser = Cursor(5,64,30); //User memilih menu menggunakan tombol keyboard atas atau bawah
 
         switch(PilihanUser) {
             case 1:
@@ -55,26 +63,29 @@ void menuUtama()
                 BermainBersamaTeman(&map);
                 break;
             case 3:
+                leaderboard();
+                break;
+            case 4:
                 system("cls");
                 CaraMain();
                 break;
-            case 4:
+            case 5:
                 gotoxy(61,36); printf("\xc0");
                 for(int i=61; i < 106; i++)
                 {
-                    gotoxy(i,39); printf("\xc4");
+                    gotoxy(i,40); printf("\xc4");
                 }
-                gotoxy(106,39); printf("\xd9");
-                for(int i=38; i > 35; i--)
+                gotoxy(106,40); printf("\xd9");
+                for(int i=39; i > 35; i--)
                 {
                     gotoxy(106,i); printf("\xb3");
                 }
-                gotoxy(61,39); printf("\xc0");
-                for(int i=38; i > 35; i--)
+                gotoxy(61,40); printf("\xc0");
+                for(int i=39; i > 35; i--)
                 {
                     gotoxy(61,i); printf("\xb3");
                 }
-                gotoxy(70,37); printf("Apakah Anda Yakin [Y/N]? "); pilihanUser = _getch();
+                gotoxy(70,38); printf("Apakah Anda Yakin [Y/N]? "); pilihanUser = _getch();
                 if(pilihanUser=='y' || pilihanUser=='Y')
                 {
                     Beep(700, 40);
@@ -95,18 +106,25 @@ void menuUtama()
 //             2. Mode Single Player 'Bermain Sendiri'
 //==============================================================
 void BermainSendiri(List * map) {
-    int JumlahAI, y;
+    int JumlahAI, x, y;
 
     title('n');
 
     //  mencetak sisi atas dan bawah kotak
-    gotoxy(trunc(WDT_SCREEN/11/2),25);		    printf("____________________________________________");
-    gotoxy(trunc(WDT_SCREEN/11/2),35);		    printf("____________________________________________");
+    for(x=trunc(WDT_SCREEN/11/2);x<=106;x++){
+        gotoxy(x,25);   printf("\xc4");
+        gotoxy(x,35);   printf("\xc4");
+    }
+
+    gotoxy(106,35); printf("\xd9");
+    gotoxy(61,35);  printf("\xc0");
+    gotoxy(106,25);  printf("\xbf");
+    gotoxy(61,25);   printf("\xda");
 
     //  mencetak sisi kiri dan kanan kotak
-    for(y=26;y<=35;y++){
-        gotoxy(trunc(WDT_SCREEN/11/2-1),y);	    printf("|");
-        gotoxy(trunc(WDT_SCREEN/11/2+44),y);	printf("|");
+    for(y=26;y<=34;y++){
+        gotoxy(trunc(WDT_SCREEN/11/2-1),y);	    printf("\xb3");
+        gotoxy(trunc(WDT_SCREEN/11/2+44),y);	printf("\xb3");
     }
 
 	//mencetak isi tulisan dalam kotak
@@ -141,18 +159,25 @@ void BermainSendiri(List * map) {
 //         3. Mode Multi Player 'Bermain Bersama Teman'
 //==============================================================
 void BermainBersamaTeman(List * map) {
-    int JumlahPemain, y;
+    int JumlahPemain, x, y;
 
     title('n');
 
     //  mencetak sisi atas dan bawah kotak
-    gotoxy(trunc(WDT_SCREEN/11/2),25);		    printf("____________________________________________");
-    gotoxy(trunc(WDT_SCREEN/11/2),35);		    printf("____________________________________________");
+    for(x=trunc(WDT_SCREEN/11/2);x<=106;x++){
+        gotoxy(x,25);   printf("\xc4");
+        gotoxy(x,35);   printf("\xc4");
+    }
+
+    gotoxy(106,35); printf("\xd9");
+    gotoxy(61,35);  printf("\xc0");
+    gotoxy(106,25);  printf("\xbf");
+    gotoxy(61,25);   printf("\xda");
 
     //  mencetak sisi kiri dan kanan kotak
-    for(y=26;y<=35;y++){
-        gotoxy(trunc(WDT_SCREEN/11/2-1),y);	    printf("|");
-        gotoxy(trunc(WDT_SCREEN/11/2+44),y);	printf("|");
+    for(y=26;y<=34;y++){
+        gotoxy(trunc(WDT_SCREEN/11/2-1),y);	    printf("\xb3");
+        gotoxy(trunc(WDT_SCREEN/11/2+44),y);	printf("\xb3");
     }
 
 	//mencetak isi tulisan dalam kotak
@@ -190,13 +215,15 @@ void BermainBersamaTeman(List * map) {
 void CaraMain() {
     FILE *fp;
     char Kalimat;
+    int i = 2;
 
     if((fp=fopen("assets\\file\\HowTo.txt","r")) != NULL) {
+        gotoxy(trunc(WDT_SCREEN/11/2), 2);
         while((Kalimat=getc(fp)) != EOF) {
             putch(Kalimat);
         }
     } else {
-        gotoxy(43,10);       printf("File Tata Cara Bermain Tidak Ditemukan!");
+        gotoxy(43,10); printf("File Tata Cara Bermain Tidak Ditemukan!");
     }
 
     _getch();

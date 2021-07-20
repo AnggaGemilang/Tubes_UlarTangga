@@ -30,6 +30,8 @@ address Alokasi(infotype X, simboltype Y){
 	{
 		Info(P) = X;
 		Simbol(P) = Y;
+        Nama(P) = Nil;
+        Bidak(P) = Nil;
 		Next(P) = Nil;
 		Prev(P) = Nil;
 		Jump(P) = Nil;

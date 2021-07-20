@@ -6,12 +6,15 @@
 #include <limits.h>
 #include <malloc.h>
 #include <math.h>
+#include <chrono>
+#include <thread>
 #include <cmath>
 #include <windows.h>
 #include <conio.h>
 #include <stdlib.h>
 #include <time.h>
 
+#include "users.h"
 #include "linkedlist.h"
 #include "maps.h"
 #include "umum.h"
@@ -19,10 +22,12 @@
 #include "permainan.h"
 #include "boolean.h"
 
+#define ENTER_KEY 13
 #define UP_KEY 72
 #define DOWN_KEY 80
 #define LEFT_KEY 75
 #define RIGHT_KEY 77
+#define ESC_KEY 27
 #define WDT_SCREEN GetSystemMetrics(SM_CXSCREEN)
 #define HGT_SCREEN GetSystemMetrics(SM_CYSCREEN)
 #define BLACK           0
@@ -41,6 +46,8 @@
 #define Jump(P)     (P)->jump
 #define Next(P)     (P)->next
 #define posisi(P)   (P)->posisi
+#define Nama(P)     (P)->nama
+#define Bidak(P)    (P)->bidak
 //#define x(P)     (P)->x
 //#define y(P)     (P)->y
 #define First(L) (L).First

@@ -1,6 +1,10 @@
 #ifndef umum_H
 #define umum_H
 
+typedef struct {
+    int jam, menit, detik;
+} Timestamp;
+
 // 1. Modul GoToXY
 void gotoxy(int x, int y);
 
@@ -9,5 +13,9 @@ void setcolor(unsigned short color);
 
 // 3. Modul fugsi untuk menggerakkan cursor
 int Cursor(int BanyakPilihan,int x,int y);
+
+void stopwatch(Timestamp timestamp);
+
+void displayTime(Timestamp timestamp);
 
 #endif // umum_H

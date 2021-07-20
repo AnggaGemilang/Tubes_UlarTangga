@@ -1,18 +1,19 @@
 
-                                                         =============================================
-                                                         ||              HOW TO PLAY                ||
-                                                         ||                  ***                    ||
-                                                         ||              Ular Tangga                ||
-                                                         =============================================
+                                                              =============================================
+                                                              ||              HOW TO PLAY                ||
+                                                              ||                  ***                    ||
+                                                              ||              Ular Tangga                ||
+                                                              =============================================
 
-		 	+==================================================================================================================+
-			|                                                                                                                  |
-  			|      1. Pilih mode permainan                                                                                     |
-  			|      2. Pilih jumlah pemain                                                                                      |
-  			|      3. Tekan enter untuk mengocok dadu                                                                          |
-  			|      4. Permainan selesai ketika ada pemain yang berhasil mencapai kotak seratus                                 |
-  			|      5. Let's all have fun and play together!                                                                    |
-  			|                                                                                                                  |
-  			|      Tekan Enter untuk kembali ke Menu Utama                                                                     |
-			|                                                                                                                  |
-  			+==================================================================================================================+
+
+		 	  +==================================================================================================================+
+			  |                                                                                                                  |
+  			  |      1. Pilih mode permainan                                                                                     |
+  		 	  |      2. Pilih jumlah pemain                                                                                      |
+  			  |      3. Tekan enter untuk mengocok dadu                                                                          |
+  			  |      4. Permainan selesai ketika ada pemain yang berhasil mencapai kotak seratus                                 |
+  			  |      5. Let's all have fun and play together!                                                                    |
+  		 	  |                                                                                                                  |
+  			  |      Tekan Enter untuk kembali ke Menu Utama                                                                     |
+			  |                                                                                                                  |
+  			  +==================================================================================================================+

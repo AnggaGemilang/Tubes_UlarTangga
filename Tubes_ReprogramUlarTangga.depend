@@ -105,20 +105,23 @@
 1626254760 source:d:\one drive - ikram m b a\onedrive - politeknik negeri bandung\semester 2\7. sda pr\9 juni - 21 juli 2021\tubes ular tangga reprogram - remote github\tubes_ulartangga\umum.cpp
 	"header.h"
 
-1625033229 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\linkedlist.cpp
+1626269912 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\linkedlist.cpp
 	"header.h"
 
-1626150056 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\header.h
+1626750005 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\header.h
 	<stdio.h>
 	<iostream>
 	<limits.h>
 	<malloc.h>
 	<math.h>
+	<chrono>
+	<thread>
 	<cmath>
 	<windows.h>
 	<conio.h>
 	<stdlib.h>
 	<time.h>
+	"users.h"
 	"linkedlist.h"
 	"maps.h"
 	"umum.h"
@@ -126,33 +129,33 @@
 	"permainan.h"
 	"boolean.h"
 
-1626148275 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\linkedlist.h
+1626269801 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\linkedlist.h
 	"header.h"
 
-1625033229 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\maps.h
+1626656874 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\maps.h
 	"header.h"
 
-1625033229 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\umum.h
+1626660435 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\umum.h
 
-1626149952 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\menu.h
+1626749550 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\menu.h
 
-1626261250 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\permainan.h
+1626658740 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\permainan.h
 
 1625033229 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\boolean.h
 
 1626250706 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\main.cpp
 	"header.h"
 
-1626251543 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\maps.cpp
+1626655833 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\maps.cpp
 	"header.h"
 
-1626248975 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\menu.cpp
+1626750009 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\menu.cpp
 	"header.h"
 
-1626261250 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\permainan.cpp
+1626660455 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\permainan.cpp
 	"header.h"
 
-1626151409 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\umum.cpp
+1626660400 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\umum.cpp
 	"header.h"
 
 1623549655 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga - copy\main.cpp
@@ -311,4 +314,9 @@
 	"header.h"
 
 1623587494 d:\one drive - ikram m b a\onedrive - politeknik negeri bandung\semester 2\7. sda pr\9 juni - 21 juli 2021\tubes ular tangga reprogram - remote github\tubes_ulartangga\boolean.h
+
+1626749906 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\users.h
+
+1626749660 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\users.cpp
+	"header.h"
 

@@ -1,10 +1,14 @@
 #include "header.h"
 
+Timestamp timestamp;
+
 //==============================================================
 //                      1. Inti Permainan
 //==============================================================
 void Permainan(int PemainYangBermain, int AIYangBermain, List * map)
 {
+    displayTime(timestamp);
+
     // Menampilkan map
     CreateList(&(*map));
 	buatMap(&(*map));
@@ -21,6 +25,11 @@ void Permainan(int PemainYangBermain, int AIYangBermain, List * map)
     player2 = First(*map),
     player3 = First(*map),
     player4 = First(*map);
+
+    Nama(player1) = (char *) "Angga";
+    Nama(player2) = (char *) "Angga1";
+    Nama(player3) = (char *) "Angga2";
+    Nama(player4) = (char *) "Angga3";
 
     // Kamus data boolean
     boolean
@@ -60,8 +69,8 @@ void Permainan(int PemainYangBermain, int AIYangBermain, List * map)
                 else if ( player == 4 ){ P = player4;}
 
                 srand(time(NULL)); // <-- Agar tiap pengulangan dan buka aplikasi dadu dalam keadaan "random"
-                gotoxy(90,11);  printf("                                                  ");
-                gotoxy(90,11);  printf("=PLAYER %c= Tekan enter untuk mengocok dadu", player+2);
+                gotoxy(90,10);  printf("                                                  ");
+                gotoxy(90,10);  printf("=PLAYER %c= Tekan enter untuk mengocok dadu", player+2);
 
                 // cek apakah perlu menekan enter atau tidak untuk mengocok dadu
                 // jika sebelumnya mendapat dadu 6 dan bermain kembali, maka player tidak perlu menekan enter
@@ -70,6 +79,8 @@ void Permainan(int PemainYangBermain, int AIYangBermain, List * map)
 
                 if ( input == 13 )
                 {
+                    Beep(700, 40);
+
                     // kocok dadu
                     dapetDadu = KocokDadu();
 
@@ -125,8 +136,8 @@ void Permainan(int PemainYangBermain, int AIYangBermain, List * map)
                     else if ( player == 4 ){ P = player4;}
 
                     srand(time(NULL)); // <-- Agar tiap pengulangan dan buka aplikasi dadu dalam keadaan "random"
-                    gotoxy(90,11);  printf("                                                  ");
-                    gotoxy(90,11);  printf("=KOMPUTER %c= sedang bermain",player+2);
+                    gotoxy(90,10);  printf("                                                  ");
+                    gotoxy(90,10);  printf("=KOMPUTER %c= sedang bermain",player+2);
 
                     // kocok dadu
                     dapetDadu = KocokDadu();
@@ -161,7 +172,7 @@ void printBidak(int player, int info)
 {
     int temp, x, y, a;
 
-    y = 42-(4*((info-1)/10));
+    y = 41-(4*((info-1)/10));
 
 	temp = ((info-1)/10)%2;
 
@@ -171,7 +182,7 @@ void printBidak(int player, int info)
 	}
 	else if(temp == 1)
 	{
-		a = info%10;
+		a = info % 10;
 		x = 27 + ( 6 * (( (info-(2*a)) % 10)  ));
 	}
 
@@ -201,7 +212,7 @@ void printBidakKosong(int player, int info)
 {
     int temp, x, y, a;
 
-    y = 42-(4*((info-1)/10));
+    y = 41-(4*((info-1)/10));
 
 	temp = ((info-1)/10)%2;
 
@@ -370,6 +381,18 @@ address cekAdaUlarTangga( address P, int player )
         Sleep(500);
         printBidakKosong( player, Info(P) );
         printBidak( player, Info(Jump(P)) );
+        if(Info(P) < Info(Jump(P)))
+        {
+            Beep(600, 50);
+            Beep(650, 50);
+            Beep(800, 100);
+        } else
+        {
+            Beep(800, 600);
+            Beep(700, 600);
+            Beep(600, 600);
+            Beep(400, 1000);
+        }
         P = Jump(P);
         return P;
     }
@@ -413,14 +436,13 @@ void cekUlangGiliran ( int giliran, int dapetDadu, boolean *statusUlang, int *in
             while ( *input != 1)
             {
                 *input = _getch();
-                Beep(700, 40);
                 if ( *input == 13 )
                 {
+                    Beep(700, 40);
                     *input = 1;
                 } else if ( *input == 27 )
                 {
                     Beep(700, 40);
-                    *input = 1;
                     menuKeluar();
                 }
             }
@@ -458,9 +480,12 @@ void cekUlangGiliran ( int giliran, int dapetDadu, boolean *statusUlang, int *in
         while ( *input != 1)
         {
             *input = _getch();
-            Beep(700, 40);
-            if ( *input == 13 ) { *input = 1; }
-            if ( *input == 27 )
+            if ( *input == 13 )
+            {
+                Beep(700, 40);
+                *input = 1;
+
+            } else if ( *input == 27 )
             {
                 Beep(700, 40);
                 *input = 1;

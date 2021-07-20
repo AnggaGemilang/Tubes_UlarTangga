@@ -30,6 +30,10 @@
 		<Unit filename="permainan.h" />
 		<Unit filename="umum.cpp" />
 		<Unit filename="umum.h" />
+		<Unit filename="users.cpp">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="users.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
