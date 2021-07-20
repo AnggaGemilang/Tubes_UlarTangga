@@ -13,6 +13,7 @@
 #include <conio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <unistd.h>
 
 #include "users.h"
 #include "linkedlist.h"
