@@ -443,8 +443,8 @@ address cekAdaUlarTangga( address P, int player )
         printBidak( player, Info(Jump(P)) );
         if(Info(P) < Info(Jump(P)))
         {
-            Beep(700, 75);
-            Beep(750, 100);
+            Beep(600, 75);
+            Beep(700, 120);
             Beep(800, 400);
         } else
         {
@@ -513,7 +513,6 @@ void cekUlangGiliran ( int giliran, int dapetDadu, boolean *statusUlang, int *in
             Sleep(1500);
             *input = 0;
         }
-
         gotoxy(90,20);  printf("                              ");
         gotoxy(90,21);  printf("                              ");
         gotoxy(90,22);  printf("                                     ");
@@ -567,7 +566,8 @@ void Pemenang(int playerAtauAI,int pemenang,int jmlPemain)
 
     atomicStopwatch = false;
 
-    if(playerAtauAI == 0) {
+    if(playerAtauAI == 0)
+    {
         gotoxy(80,12+pemenang);
         printf("KOMPUTER %c ada di kotak 100", pemenang+2);
         gotoxy(67,17);
@@ -576,16 +576,19 @@ void Pemenang(int playerAtauAI,int pemenang,int jmlPemain)
         printf("Kamu Kalah!!");
         gotoxy(67,19);
         printf("Pemenangnya adalah AI %c",pemenang+2);
-    } else if(playerAtauAI == 1) {
+    } else if(playerAtauAI == 1)
+    {
         gotoxy(103,12+pemenang);
         printf("PLAYER %c ada di kotak 100", pemenang+2);
-        if(jmlPemain > 1) {
+        if(jmlPemain > 1)
+        {
             gotoxy(91,18);
             printf("Selamat Player %c!!!",pemenang+2);
             gotoxy(91,19);
             printf("Kamu lah takdir sang juara!");
             gotoxy(91,20);
-        } else if(jmlPemain == 1) {
+        } else if(jmlPemain == 1)
+        {
             gotoxy(91,18);
             printf("Waaaaaahhhhhhhh");
             gotoxy(91,19);

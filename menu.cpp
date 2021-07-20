@@ -215,7 +215,7 @@ void BermainBersamaTeman(List * map) {
 void CaraMain() {
     FILE *fp;
     char Kalimat;
-    int i = 2;
+    int i = 2, click;
 
     if((fp=fopen("assets\\file\\HowTo.txt","r")) != NULL) {
         gotoxy(trunc(WDT_SCREEN/11/2), 2);
@@ -226,8 +226,12 @@ void CaraMain() {
         gotoxy(43,10); printf("File Tata Cara Bermain Tidak Ditemukan!");
     }
 
-    _getch();
+    kembali:
+  	click = _getch();
+    if(click != ENTER_KEY)
+        goto kembali;
     Beep(700, 40);
+
 
     fclose(fp);
 }
@@ -303,7 +307,6 @@ void title(char mode){
 	gotoxy(53,7); printf("ллллллллл\n");
 	gotoxy(53,8); printf("лл     лл\n");
 	gotoxy(53,9); printf("лл     лл\n");
-
 
 	setcolor(LIGHT_GREEN);
 	gotoxy(30,12); printf("лллллллллллллл\n");
