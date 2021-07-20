@@ -1,7 +1,6 @@
 Yang diubah:
-1. Memperbaiki posisi pesan jika komputer yang menang
-2. List map dijadikan variabel lokal di modul permainan meh teu loba oper parameter
+1. Menambah modul untuk input nama
 
 Bug:
 1. Kalo mencet ESC ketika permainan dan memilih menu mulai ulang, kadang eror yaitu print
-   sesuatu tidak pada tempatnya
+   sesuatu tidak pada tempatnya (belum diperbaiki)

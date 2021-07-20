@@ -144,6 +144,7 @@ void BermainSendiri() {
 
         //Pemilihan jumlah pemain komputer dilakukan dengan menggunakan tombol atas atau bawah keyboard
         JumlahAI = pilihan;
+        inputNama(1);
         system("cls");
 
         //Jumlah pemain dan jumlah pemain komputer "dilempar" ke modul yang bernama "Permainan"
@@ -197,7 +198,7 @@ void BermainBersamaTeman() {
 
             //Pelilihan jumlah pemain yang dilawan dilakukan dengan menggunakan tombol atas atau bawah keyboard
             JumlahPemain = pilihan+1;
-
+            inputNama(JumlahPemain);
             system("cls");
 
             //Jumlah pemain dan jumlah pemain komputer "dilempar" ke modul yang bernama "Permainan"

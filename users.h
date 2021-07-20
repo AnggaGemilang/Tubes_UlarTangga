@@ -16,4 +16,6 @@ void Sort_file();
 
 void storeNamaFile(const char * nama);
 
+void inputNama(int jumlahPemain);
+
 #endif

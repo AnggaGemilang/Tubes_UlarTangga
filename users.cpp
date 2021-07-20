@@ -152,4 +152,43 @@ void storeNamaFile(const char * nama)
             fwrite(&user, sizeof(user), 1, fptr);
         }
    	}
+    fclose(fptr);
+}
+
+void inputNama(int jumlahPemain)
+{
+    system("cls");
+    int JumlahAI, x, y, a = 30;
+    char nama[50];
+
+    title('n');
+
+    //  mencetak sisi atas dan bawah kotak
+    for(x=trunc(WDT_SCREEN/11/2);x<=106;x++){
+        gotoxy(x,25);   printf("\xc4");
+        gotoxy(x,35);   printf("\xc4");
+    }
+
+    gotoxy(106,35); printf("\xd9");
+    gotoxy(61,35);  printf("\xc0");
+    gotoxy(106,25);  printf("\xbf");
+    gotoxy(61,25);   printf("\xda");
+
+    //  mencetak sisi kiri dan kanan kotak
+    for(y=26;y<=34;y++){
+        gotoxy(trunc(WDT_SCREEN/11/2-1),y);	    printf("\xb3");
+        gotoxy(trunc(WDT_SCREEN/11/2+44),y);	printf("\xb3");
+    }
+
+	//mencetak isi tulisan dalam kotak
+    gotoxy(trunc(WDT_SCREEN/11/2+7),27);	    printf(">>>>| Inputkan Nama Player |<<<<");
+	gotoxy(trunc(WDT_SCREEN/11/2+3),28);	    printf("______________________________________");
+
+	for (int i = 1; i <= jumlahPemain; i++){
+        gotoxy(trunc(WDT_SCREEN/11/2+5),a);
+        a++;
+        printf("Player %d: ", i);
+        cin >> nama;
+        storeNamaFile(nama);
+	}
 }
