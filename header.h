@@ -6,7 +6,7 @@
 #include <limits.h>
 #include <malloc.h>
 #include <math.h>
-#include <chrono>
+#include <atomic>
 #include <thread>
 #include <cmath>
 #include <windows.h>

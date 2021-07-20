@@ -108,13 +108,13 @@
 1626269912 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\linkedlist.cpp
 	"header.h"
 
-1626750005 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\header.h
+1626762685 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\header.h
 	<stdio.h>
 	<iostream>
 	<limits.h>
 	<malloc.h>
 	<math.h>
-	<chrono>
+	<atomic>
 	<thread>
 	<cmath>
 	<windows.h>
@@ -135,27 +135,27 @@
 1626656874 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\maps.h
 	"header.h"
 
-1626660435 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\umum.h
+1626764680 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\umum.h
 
-1626749550 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\menu.h
+1626761468 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\menu.h
 
-1626658740 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\permainan.h
+1626769139 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\permainan.h
 
 1625033229 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\boolean.h
 
 1626250706 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\main.cpp
 	"header.h"
 
-1626655833 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\maps.cpp
+1626762768 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\maps.cpp
 	"header.h"
 
-1626750009 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\menu.cpp
+1626761461 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\menu.cpp
 	"header.h"
 
-1626660455 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\permainan.cpp
+1626768901 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\permainan.cpp
 	"header.h"
 
-1626660400 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\umum.cpp
+1626764657 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\umum.cpp
 	"header.h"
 
 1623549655 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga - copy\main.cpp

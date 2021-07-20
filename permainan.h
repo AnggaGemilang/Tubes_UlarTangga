@@ -2,6 +2,9 @@
 #define permainan_H
 
 // 1. Inti Permainan
+void PermainandanStopwatch(int PemainYangBermain, int AIYangBermain, List * map);
+
+// 1. Inti Permainan
 void Permainan(int PemainYangBermain, int AIYangBermain, List * map);
 
 // 2. Print Bidak di Koordinat x,y
@@ -38,12 +41,16 @@ address cekAdaUlarTangga( address P, int player );
 void printLokasiPlayer (int giliran, int player, address P);
 
 // 13. Mengecek apakah Bermain Kembali atau Tidak
-void cekUlangGiliran ( int giliran, int dapetDadu, boolean *statusUlang, int *input, int *player );
+void cekUlangGiliran ( int giliran, int dapetDadu, boolean *statusUlang, int *input, int *player, int PemainYangBermain, int AIYangBermain, List * map );
 
 // 14. Menampilkan pesan jika ada yang menang
 void Pemenang(int playerAtauAI,int pemenang,int jmlPemain);
 
 // 15. Menu untuk Keluar Paksa dari Permainan
-void menuKeluar();
+void menuKeluar(int PemainYangBermain, int AIYangBermain, List * map, Timestamp * timestamp);
+
+void stopwatch(Timestamp * timestamp);
+
+void displayTime(Timestamp timestamp);
 
 #endif // permainan_H

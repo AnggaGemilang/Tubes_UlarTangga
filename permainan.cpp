@@ -2,13 +2,62 @@
 
 Timestamp timestamp;
 
+atomic <bool> atomicStopwatch(false);
+
+atomic <bool> atomicPermainan(false);
+
+int whileStopwatch;
+
+void stopwatch(Timestamp * timestamp)
+{
+    while(whileStopwatch) {
+        if(atomicStopwatch.load())
+        {
+            sleep(1);
+            timestamp->detik++;
+            if(timestamp->detik > 59) {
+                timestamp->menit++;
+                timestamp->detik = 0;
+            }
+            if(timestamp->menit > 59) {
+                timestamp->jam++;
+                timestamp->detik = 0;
+                timestamp->menit = 0;
+            }
+            displayTime(*timestamp);
+        }
+    }
+    printf("asdasdasd");
+}
+
+void displayTime(Timestamp timestamp)
+{
+    gotoxy(26, 1); cout << "                                                                         ";
+    gotoxy(26, 1); cout << "Waktu Bermain : ";
+    gotoxy(42, 1);
+    cout << timestamp.jam << " : "
+         << timestamp.menit << " : "
+         << timestamp.detik << endl;
+}
+
+
 //==============================================================
 //                      1. Inti Permainan
 //==============================================================
+void PermainandanStopwatch(int PemainYangBermain, int AIYangBermain, List * map)
+{
+    atomicPermainan = true;
+    atomicStopwatch = true;
+    whileStopwatch = true;
+    displayTime(timestamp);
+    thread t1(stopwatch, &timestamp);
+    thread t2(Permainan, PemainYangBermain, AIYangBermain, map);
+    t1.join();
+    t2.join();
+}
+
 void Permainan(int PemainYangBermain, int AIYangBermain, List * map)
 {
-    displayTime(timestamp);
-
     // Menampilkan map
     CreateList(&(*map));
 	buatMap(&(*map));
@@ -19,17 +68,14 @@ void Permainan(int PemainYangBermain, int AIYangBermain, List * map)
     // Kamus data address
     address
     P = First(*map),
-//    player1 = Last(*map),  //<-- buat langsung finish
-//    player1 = Search(*map, 97),  //<-- buat langsung ke kotak 97
-    player1 = First(*map),
+    // player1 = Last(*map),  //<-- buat langsung finish
+    player1 = Search(*map, 98),  //<-- buat langsung ke kotak 97
+    // player1 = First(*map),
     player2 = First(*map),
     player3 = First(*map),
     player4 = First(*map);
 
-    Nama(player1) = (char *) "Angga";
-    Nama(player2) = (char *) "Angga1";
-    Nama(player3) = (char *) "Angga2";
-    Nama(player4) = (char *) "Angga3";
+    // HESE MERE NGARAN ASLII, CEMUNGUDHH QQ *) Stiker teteh korea WKWKWK
 
     // Kamus data boolean
     boolean
@@ -53,112 +99,126 @@ void Permainan(int PemainYangBermain, int AIYangBermain, List * map)
     // Perulangan gameplay, akan terus diulang selama belum ada yang berhenti di kotak 100
     while ( loopPermainan == true )
     {
-        // cek giliran player atau AI
-        giliran = cekGiliranPK(giliranPlayer);
-
-        // jika giliran player yang bermain
-        if ( giliran == 1 )
+        if(atomicPermainan.load())
         {
-            // loop selama player 1 s.d 4 bermain
-            for( player = 1; player <= PemainYangBermain; player++ )
+            // cek giliran player atau AI
+            giliran = cekGiliranPK(giliranPlayer);
+
+            // jika giliran player yang bermain
+            if ( giliran == 1 )
             {
-                //merubah berdasar player berapa yang sedang bermain
-                if ( player == 1 ){ P = player1;}
-                else if ( player == 2 ){ P = player2;}
-                else if ( player == 3 ){ P = player3;}
-                else if ( player == 4 ){ P = player4;}
-
-                srand(time(NULL)); // <-- Agar tiap pengulangan dan buka aplikasi dadu dalam keadaan "random"
-                gotoxy(90,10);  printf("                                                  ");
-                gotoxy(90,10);  printf("=PLAYER %c= Tekan enter untuk mengocok dadu", player+2);
-
-                // cek apakah perlu menekan enter atau tidak untuk mengocok dadu
-                // jika sebelumnya mendapat dadu 6 dan bermain kembali, maka player tidak perlu menekan enter
-                if(statusUlang == true )
-                    input = _getch();
-
-                if ( input == 13 )
+                // loop selama player 1 s.d 4 bermain
+                for( player = 1; player <= PemainYangBermain; player++ )
                 {
-                    Beep(700, 40);
+                    if(atomicPermainan.load())
+                    {
+                        //merubah berdasar player berapa yang sedang bermain
+                        if ( player == 1 ){ P = player1;}
+                        else if ( player == 2 ){ P = player2;}
+                        else if ( player == 3 ){ P = player3;}
+                        else if ( player == 4 ){ P = player4;}
 
-                    // kocok dadu
-                    dapetDadu = KocokDadu();
+                        srand(time(NULL)); // <-- Agar tiap pengulangan dan buka aplikasi dadu dalam keadaan "random"
+                        gotoxy(91,10);  printf("                                                 ");
+                        gotoxy(91,10);  printf("=PLAYER %c= Tekan enter untuk mengocok dadu", player+2);
 
-                    // pergerakan bidak
-                    hasilJalan = cekHasilJalan(dapetDadu, Info(P) );
-                    P = jalanBidak( P, player, hasilJalan, PemainYangBermain+AIYangBermain, giliran );
+                        // cek apakah perlu menekan enter atau tidak untuk mengocok dadu
+                        // jika sebelumnya mendapat dadu 6 dan bermain kembali, maka player tidak perlu menekan enter
+                        if(statusUlang == true )
+                            input = _getch();
 
-                    // print keterangan lokasi Player
-                    printLokasiPlayer(giliran, player, P);
+                        if ( input == 13 )
+                        {
+                            Beep(700, 40);
 
-                    // menyimpan alamat P kembali ke alamat tiap bidak
-                    if ( player == 1 ){ player1 = P; }
-                    else if ( player == 2 ){ player2 = P; }
-                    else if ( player == 3 ){ player3 = P; }
-                    else if ( player == 4 ){ player4 = P; }
+                            // kocok dadu
+                            dapetDadu = KocokDadu();
 
-                    // cek apakah bermain kembali
-                    cekUlangGiliran( giliran, dapetDadu, &statusUlang, &input, &player );
+                            // dapetDadu = 2; // <-- Atur Sendiri angka dadu
 
-                    //menghentikan giliran player, ganti ke giliran AI
-                    if ( player == PemainYangBermain ) { giliranPlayer = false; }
+                            // pergerakan bidak
+                            hasilJalan = cekHasilJalan(dapetDadu, Info(P) );
+                            P = jalanBidak( P, player, hasilJalan, PemainYangBermain+AIYangBermain, giliran );
+
+                            // print keterangan lokasi Player
+                            printLokasiPlayer(giliran, player, P);
+
+                            // menyimpan alamat P kembali ke alamat tiap bidak
+                            if ( player == 1 ){ player1 = P; }
+                            else if ( player == 2 ){ player2 = P; }
+                            else if ( player == 3 ){ player3 = P; }
+                            else if ( player == 4 ){ player4 = P; }
+
+                            // cek apakah bermain kembali
+                            cekUlangGiliran( giliran, dapetDadu, &statusUlang, &input, &player, PemainYangBermain, AIYangBermain, map );
+
+                            //menghentikan giliran player, ganti ke giliran AI
+                            if ( player == PemainYangBermain ) { giliranPlayer = false; }
+                        }
+
+                        // jika menekan ESC
+                        else if ( input == 27 )
+                        {
+                            Beep(700, 40);
+                            atomicStopwatch = false;
+                            menuKeluar(PemainYangBermain, AIYangBermain, map, &timestamp);
+                        }
+
+                        // jika menekan tombol lain maka akan terjadi loop
+                        else
+                            player--;
+
+                    }
                 }
+            }
 
-                // jika menekan ESC
-                else if ( input == 27 )
+            // jika giliran AI yang bermain
+            else if ( giliran == 0 )
+            {
+                if ( AIYangBermain == 0 )
                 {
-                    Beep(700, 40);
-                    menuKeluar();
+                    giliranPlayer = true;
                 }
-
-                // jika menekan tombol lain maka akan terjadi loop
                 else
-                    player--;
-            }
-        }
-
-        // jika giliran AI yang bermain
-        else if ( giliran == 0 )
-        {
-            if ( AIYangBermain == 0 )
-            {
-                giliranPlayer = true;
-            }
-            else
-            {
-                // loop selama AI 2 s.d 4 bermain
-                for( player = 2; player <= AIYangBermain + 1; player++ )
                 {
-                    // merubah berdasar player AI berapa yang sedang bermain
-                    // dimulai dari 2 karena jika bermain dg AI, player hanya ada 1
-                    if ( player == 2 ){ P = player2;}
-                    else if ( player == 3 ){ P = player3;}
-                    else if ( player == 4 ){ P = player4;}
+                    // loop selama AI 2 s.d 4 bermain
+                    for( player = 2; player <= AIYangBermain + 1; player++ )
+                    {
 
-                    srand(time(NULL)); // <-- Agar tiap pengulangan dan buka aplikasi dadu dalam keadaan "random"
-                    gotoxy(90,10);  printf("                                                  ");
-                    gotoxy(90,10);  printf("=KOMPUTER %c= sedang bermain",player+2);
+                        if(atomicPermainan.load())
+                        {
+                            // merubah berdasar player AI berapa yang sedang bermain
+                            // dimulai dari 2 karena jika bermain dg AI, player hanya ada 1
+                            if ( player == 2 ){ P = player2;}
+                            else if ( player == 3 ){ P = player3;}
+                            else if ( player == 4 ){ P = player4;}
 
-                    // kocok dadu
-                    dapetDadu = KocokDadu();
+                            srand(time(NULL)); // <-- Agar tiap pengulangan dan buka aplikasi dadu dalam keadaan "random"
+                            gotoxy(91,10);  printf("                                                 ");
+                            gotoxy(91,10);  printf("=KOMPUTER %c= sedang bermain",player+2);
 
-                    // pergerakan bidak
-                    hasilJalan = cekHasilJalan(dapetDadu, Info(P) );
-                    P = jalanBidak( P, player, hasilJalan, PemainYangBermain+AIYangBermain, giliran );
+                            // kocok dadu
+                            dapetDadu = KocokDadu();
 
-                    // print keterangan lokasi Komputer
-                    printLokasiPlayer(giliran, player, P);
+                            // pergerakan bidak
+                            hasilJalan = cekHasilJalan(dapetDadu, Info(P) );
+                            P = jalanBidak( P, player, hasilJalan, PemainYangBermain+AIYangBermain, giliran );
 
-                    // menyimpan alamat P kembali ke alamat tiap bidak
-                    if ( player == 2 ){ player2 = P; }
-                    else if ( player == 3 ){ player3 = P; }
-                    else if ( player == 4 ){ player4 = P; }
+                            // print keterangan lokasi Komputer
+                            printLokasiPlayer(giliran, player, P);
 
-                    // cek apakah bermain kembali
-                    cekUlangGiliran( giliran, dapetDadu, &statusUlang, &input, &player );
+                            // menyimpan alamat P kembali ke alamat tiap bidak
+                            if ( player == 2 ){ player2 = P; }
+                            else if ( player == 3 ){ player3 = P; }
+                            else if ( player == 4 ){ player4 = P; }
 
-                    //menghentikan giliran AI, ganti ke giliran player
-                    if ( player == AIYangBermain + 1) { giliranPlayer = true; }
+                            // cek apakah bermain kembali
+                            cekUlangGiliran( giliran, dapetDadu, &statusUlang, &input, &player, PemainYangBermain, AIYangBermain, map );
+
+                            //menghentikan giliran AI, ganti ke giliran player
+                            if ( player == AIYangBermain + 1) { giliranPlayer = true; }
+                        }
+                    }
                 }
             }
         }
@@ -383,15 +443,15 @@ address cekAdaUlarTangga( address P, int player )
         printBidak( player, Info(Jump(P)) );
         if(Info(P) < Info(Jump(P)))
         {
-            Beep(600, 50);
-            Beep(650, 50);
-            Beep(800, 100);
+            Beep(700, 75);
+            Beep(750, 100);
+            Beep(800, 400);
         } else
         {
-            Beep(800, 600);
-            Beep(700, 600);
-            Beep(600, 600);
-            Beep(400, 1000);
+            Beep(800, 300);
+            Beep(700, 300);
+            Beep(600, 300);
+            Beep(400, 700);
         }
         P = Jump(P);
         return P;
@@ -404,7 +464,7 @@ address cekAdaUlarTangga( address P, int player )
 //==============================================================
 void printLokasiPlayer (int giliran, int player, address P)
 {
-    gotoxy(103,12+player);
+    gotoxy(104,12+player);
     if ( Info(P) < 10 ) {
         if( giliran == 1 )
             printf("PLAYER %c ada di kotak   %d", player+2, Info(P) );
@@ -422,34 +482,34 @@ void printLokasiPlayer (int giliran, int player, address P)
 //==============================================================
 //        13. Mengecek apakah Bermain Kembali atau Tidak
 //==============================================================
-void cekUlangGiliran ( int giliran, int dapetDadu, boolean *statusUlang, int *input, int *player )
+void cekUlangGiliran ( int giliran, int dapetDadu, boolean *statusUlang, int *input, int *player, int PemainYangBermain, int AIYangBermain, List * map )
 {
     //ulang giliran jika dapet 6
     if ( dapetDadu == 6 && *statusUlang == true ) //jika mendapat dadu enam dan baru dapet dadu enam
     {
-        gotoxy(90,20);  printf("Mendapatkan dadu 6 (1x)");
+        gotoxy(91,20);  printf("Mendapatkan dadu 6 (1x)");
         if( giliran == 1 )
         {
-            gotoxy(90,21);  printf("PLAYER %c bermain kembali", *player+2);
-            gotoxy(90,22);  printf("Tekan enter untuk mengocok dadu");
+            gotoxy(91,21);  printf("PLAYER %c bermain kembali", *player+2);
+            gotoxy(91,22);  printf("Tekan enter untuk mengocok dadu");
             *input = 0;
             while ( *input != 1)
             {
                 *input = _getch();
                 if ( *input == 13 )
                 {
-                    Beep(700, 40);
                     *input = 1;
                 } else if ( *input == 27 )
                 {
                     Beep(700, 40);
-                    menuKeluar();
+                    atomicStopwatch = false;
+                    menuKeluar(PemainYangBermain, AIYangBermain, map, &timestamp);
                 }
             }
         }
         else
         {
-            gotoxy(90,21);  printf("KOMPUTER %c bermain kembali", *player+2);
+            gotoxy(91,21);  printf("KOMPUTER %c bermain kembali", *player+2);
             Sleep(1500);
             *input = 0;
         }
@@ -463,18 +523,18 @@ void cekUlangGiliran ( int giliran, int dapetDadu, boolean *statusUlang, int *in
     }
     else if ( dapetDadu == 6 && *statusUlang == false ) //dilakukan jika sudah pernah mendapat dadu 6
     {
-        gotoxy(90,20);  printf("Mendapatkan dadu 6 (2x)");
-        gotoxy(90,21);
+        gotoxy(91,20);  printf("Mendapatkan dadu 6 (2x)");
+        gotoxy(91,21);
         if( giliran == 1 )
             printf("PLAYER %c tidak bermain kembali", player+2);
         else
             printf("KOMPUTER %c tidak bermain kembali", player+2);
-        gotoxy(90,20);  printf("                              ");
+        gotoxy(91,20);  printf("                             ");
         *statusUlang = true;
     }
     else
     {
-        gotoxy(90,20);
+        gotoxy(91,20);
         printf("Tekan enter untuk melanjutkan");
         *input = 0;
         while ( *input != 1)
@@ -489,7 +549,8 @@ void cekUlangGiliran ( int giliran, int dapetDadu, boolean *statusUlang, int *in
             {
                 Beep(700, 40);
                 *input = 1;
-                menuKeluar();
+                atomicStopwatch = false;
+                menuKeluar(PemainYangBermain, AIYangBermain, map, &timestamp);
             }
         }
         gotoxy(90,20);  printf("                              ");
@@ -504,6 +565,8 @@ void Pemenang(int playerAtauAI,int pemenang,int jmlPemain)
 {
     int pilihan;
 
+    atomicStopwatch = false;
+
     if(playerAtauAI == 0) {
         gotoxy(80,12+pemenang);
         printf("KOMPUTER %c ada di kotak 100", pemenang+2);
@@ -513,35 +576,35 @@ void Pemenang(int playerAtauAI,int pemenang,int jmlPemain)
         printf("Kamu Kalah!!");
         gotoxy(67,19);
         printf("Pemenangnya adalah AI %c",pemenang+2);
-
     } else if(playerAtauAI == 1) {
         gotoxy(103,12+pemenang);
         printf("PLAYER %c ada di kotak 100", pemenang+2);
         if(jmlPemain > 1) {
-            gotoxy(90,17);
+            gotoxy(91,18);
             printf("Selamat Player %c!!!",pemenang+2);
-            gotoxy(90,18);
+            gotoxy(91,19);
             printf("Kamu lah takdir sang juara!");
-
+            gotoxy(91,20);
         } else if(jmlPemain == 1) {
-            gotoxy(90,17);
+            gotoxy(91,18);
             printf("Waaaaaahhhhhhhh");
-            gotoxy(90,18);
+            gotoxy(91,19);
             printf("Kamu Menang!!");
         }
     }
-    gotoxy(90,20);  printf("                                   ");
-    gotoxy(90,21);  printf("                                   ");
-    gotoxy(90,22);  printf("                                   ");
-    gotoxy(90,20);  printf("Apakah anda ingin menutup Program?");
-    gotoxy(93,21);  printf("1. Ya");
-    gotoxy(93,22);  printf("2. Kembali Ke Menu");
-    pilihan = Cursor(2,90,21);
+    gotoxy(91,20);  printf("                                   ");
+    gotoxy(91,21);  printf("                                   ");
+    gotoxy(91,22);  printf("                                   ");
+    gotoxy(91,20);  printf("Permainan Berjalan Selama : %d : %d : %d", timestamp.jam, timestamp.menit, timestamp.detik+1);
+    gotoxy(91,22);  printf("Apakah anda ingin menutup Program?");
+    gotoxy(94,23);  printf("1. Ya");
+    gotoxy(94,24);  printf("2. Kembali Ke Menu");
+    pilihan = Cursor(2,91,23);
 
     if(pilihan == 2) {
         menuUtama();
     } else {
-        system("cls");
+        gotoxy(94, 25); printf("Terima Kasih Telah Bermain..^^\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         exit(1);
     }
 
@@ -550,28 +613,49 @@ void Pemenang(int playerAtauAI,int pemenang,int jmlPemain)
 //==============================================================
 //          15. Menu untuk Keluar Paksa dari Permainan
 //==============================================================
-void menuKeluar()
+void menuKeluar(int PemainYangBermain, int AIYangBermain, List * map, Timestamp * timestamp)
 {
-    gotoxy(90,19);  printf("                                   ");
-    gotoxy(90,20);  printf("                                   ");
-    gotoxy(90,21);  printf("                                   ");
-    gotoxy(90,22);  printf("                                   ");
-    gotoxy(90,19);  printf("Anda telah menekan tombol ESC");
-    gotoxy(93,20);  printf("1. Lanjutkan Permainan");
-    gotoxy(93,21);  printf("2. Kembali ke Menu Utama");
-    gotoxy(93,22);  printf("3. Keluar Aplikasi");
-    int pilihan = Cursor(3,90,20);
+    gotoxy(91,19);  printf("                                   ");
+    gotoxy(91,20);  printf("                                   ");
+    gotoxy(91,21);  printf("                                   ");
+    gotoxy(91,22);  printf("                                   ");
+    gotoxy(91,23);  printf("                                   ");
+    gotoxy(91,19);  printf("Anda telah menekan tombol ESC");
+    gotoxy(94,20);  printf("1. Lanjutkan Permainan");
+    gotoxy(94,21);  printf("2. Ulangi Permainan");
+    gotoxy(94,22);  printf("3. Kembali ke Menu Utama");
+    gotoxy(94,23);  printf("4. Keluar Aplikasi");
+    int pilihan = Cursor(4,91,20);
     if(pilihan == 1) {
-        gotoxy(90,19);  printf("                               ");
-        gotoxy(90,20);  printf("                               ");
-        gotoxy(90,21);  printf("                               ");
-        gotoxy(90,22);  printf("                               ");
+        atomicStopwatch = true;
+        gotoxy(91,19);  printf("                               ");
+        gotoxy(91,20);  printf("                               ");
+        gotoxy(91,21);  printf("                               ");
+        gotoxy(91,22);  printf("                               ");
+        gotoxy(91,23);  printf("                               ");
         return;
     } else if (pilihan == 2) {
+        gotoxy(26, 1); cout << "                                                                         ";
+        atomicStopwatch = false;
+        atomicPermainan = false;
+        whileStopwatch = false;
+        timestamp->detik = 0;
+        timestamp->menit = 0;
+        timestamp->jam = 0;
+        PermainandanStopwatch(PemainYangBermain, AIYangBermain, map);
+    } else if (pilihan == 3)
+    {
+        atomicStopwatch = false;
+        atomicPermainan = false;
+        whileStopwatch = false;
+        timestamp->detik = 0;
+        timestamp->menit = 0;
+        timestamp->jam = 0;
         menuUtama();
     } else
     {
-        system("cls");
+        atomicStopwatch = false;
+        gotoxy(94, 25); printf("Terima Kasih Telah Bermain..^^\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         exit(1);
     }
 }

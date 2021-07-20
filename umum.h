@@ -14,8 +14,4 @@ void setcolor(unsigned short color);
 // 3. Modul fugsi untuk menggerakkan cursor
 int Cursor(int BanyakPilihan,int x,int y);
 
-void stopwatch(Timestamp timestamp);
-
-void displayTime(Timestamp timestamp);
-
 #endif // umum_H

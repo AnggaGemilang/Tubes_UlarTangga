@@ -72,32 +72,3 @@ int Cursor(int BanyakPilihan,int x,int y) {
 
     return Pilih;
 }
-
-void stopwatch(Timestamp timestamp)
-{
-    while(true) {
-        sleep(1);
-        timestamp.detik++;
-        if(timestamp.detik > 59) {
-            timestamp.menit++;
-            timestamp.detik = 0;
-        }
-        if(timestamp.menit > 59) {
-            timestamp.jam++;
-            timestamp.detik = 0;
-            timestamp.menit = 0;
-        }
-        displayTime(timestamp);
-    }
-}
-
-void displayTime(Timestamp timestamp)
-{
-    system("cls");
-    gotoxy(26, 1);
-    cout << "Waktu Bermain : ";
-    gotoxy(42, 1);
-    cout << timestamp.jam << " : "
-         << timestamp.menit << " : "
-         << timestamp.detik << endl;
-}

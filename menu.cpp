@@ -147,7 +147,7 @@ void BermainSendiri(List * map) {
         system("cls");
 
         //Jumlah pemain dan jumlah pemain komputer "dilempar" ke modul yang bernama "Permainan"
-        Permainan(1, JumlahAI, &(*map));
+        PermainandanStopwatch(1, JumlahAI, &(*map));
         break;
     case 4:
         return;
@@ -201,7 +201,7 @@ void BermainBersamaTeman(List * map) {
             system("cls");
 
             //Jumlah pemain dan jumlah pemain komputer "dilempar" ke modul yang bernama "Permainan"
-            Permainan(JumlahPemain,0, &(*map));
+            PermainandanStopwatch(JumlahPemain,0, &(*map));
             break;
         case 4:
             return;
