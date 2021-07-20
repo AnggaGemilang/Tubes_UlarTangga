@@ -32,7 +32,7 @@ address jalanLebih100 ( address P, int player, int kotakSesudah );
 address jalanSama100 ( address P, int player );
 
 // 10. Menggerakkan Bidak sesuai Kondisi
-address jalanBidak( address P, int player, int hasilJalan, int jmlPlayer, int giliran );
+address jalanBidak( address P, int player, int hasilJalan, int jmlPlayer, int giliran, address player1, address player2, address player3, address player4 );
 
 // 11. Cek apakah ada Ular atau Tangga di Kotak
 address cekAdaUlarTangga( address P, int player );
@@ -44,7 +44,7 @@ void printLokasiPlayer (int giliran, int player, address P);
 void cekUlangGiliran ( int giliran, int dapetDadu, boolean *statusUlang, int *input, int *player, int PemainYangBermain, int AIYangBermain, List * map );
 
 // 14. Menampilkan pesan jika ada yang menang
-void Pemenang(int playerAtauAI,int pemenang,int jmlPemain);
+void Pemenang(int playerAtauAI,int pemenang,int jmlPemain, address player1, address player2, address player3, address player4);
 
 // 15. Menu untuk Keluar Paksa dari Permainan
 void menuKeluar(int PemainYangBermain, int AIYangBermain, List * map, Timestamp * timestamp);
