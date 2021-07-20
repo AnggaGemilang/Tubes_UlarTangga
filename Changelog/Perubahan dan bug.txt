@@ -1,0 +1,7 @@
+Yang diubah:
+1. Memperbaiki posisi pesan jika komputer yang menang
+2. List map dijadikan variabel lokal di modul permainan meh teu loba oper parameter
+
+Bug:
+1. Kalo mencet ESC ketika permainan dan memilih menu mulai ulang, kadang eror yaitu print
+   sesuatu tidak pada tempatnya

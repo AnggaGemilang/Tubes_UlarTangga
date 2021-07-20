@@ -13,7 +13,7 @@ void menuUtama()
 	int x, y, loop;
 	int width;
 
-    List map;
+//    List map;
 
     mainMenu:
 
@@ -56,11 +56,11 @@ void menuUtama()
         switch(PilihanUser) {
             case 1:
                 system("cls");
-                BermainSendiri(&map);
+                BermainSendiri();
             break;
             case 2:
                 system("cls");
-                BermainBersamaTeman(&map);
+                BermainBersamaTeman();
                 break;
             case 3:
                 leaderboard();
@@ -105,7 +105,7 @@ void menuUtama()
 //==============================================================
 //             2. Mode Single Player 'Bermain Sendiri'
 //==============================================================
-void BermainSendiri(List * map) {
+void BermainSendiri() {
     int JumlahAI, x, y;
 
     title('n');
@@ -147,7 +147,7 @@ void BermainSendiri(List * map) {
         system("cls");
 
         //Jumlah pemain dan jumlah pemain komputer "dilempar" ke modul yang bernama "Permainan"
-        PermainandanStopwatch(1, JumlahAI, &(*map));
+        PermainandanStopwatch(1, JumlahAI);
         break;
     case 4:
         return;
@@ -158,7 +158,7 @@ void BermainSendiri(List * map) {
 //==============================================================
 //         3. Mode Multi Player 'Bermain Bersama Teman'
 //==============================================================
-void BermainBersamaTeman(List * map) {
+void BermainBersamaTeman() {
     int JumlahPemain, x, y;
 
     title('n');
@@ -201,7 +201,7 @@ void BermainBersamaTeman(List * map) {
             system("cls");
 
             //Jumlah pemain dan jumlah pemain komputer "dilempar" ke modul yang bernama "Permainan"
-            PermainandanStopwatch(JumlahPemain,0, &(*map));
+            PermainandanStopwatch(JumlahPemain,0);
             break;
         case 4:
             return;
