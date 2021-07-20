@@ -27,7 +27,6 @@ void stopwatch(Timestamp * timestamp)
             displayTime(*timestamp);
         }
     }
-    printf("asdasdasd");
 }
 
 void displayTime(Timestamp timestamp)
@@ -69,8 +68,8 @@ void Permainan(int PemainYangBermain, int AIYangBermain, List * map)
     address
     P = First(*map),
     // player1 = Last(*map),  //<-- buat langsung finish
-    player1 = Search(*map, 98),  //<-- buat langsung ke kotak 97
-    // player1 = First(*map),
+    // player1 = Search(*map, 98),  //<-- buat langsung ke kotak 97
+    player1 = First(*map),
     player2 = First(*map),
     player3 = First(*map),
     player4 = First(*map);
@@ -199,6 +198,7 @@ void Permainan(int PemainYangBermain, int AIYangBermain, List * map)
 
                             // kocok dadu
                             dapetDadu = KocokDadu();
+                            // dapetDadu = 2; // <-- Custom dadu
 
                             // pergerakan bidak
                             hasilJalan = cekHasilJalan(dapetDadu, Info(P) );
