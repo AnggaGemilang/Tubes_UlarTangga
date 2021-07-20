@@ -17,8 +17,7 @@ typedef struct tElmtList {
     address     prev;
     infotype    info;
     simboltype  simbol;
-    char *      nama;
-    simboltype  bidak;
+    Users       user;
     address     jump;
     address     next;
 } ElmtList;

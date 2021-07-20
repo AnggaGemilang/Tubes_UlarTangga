@@ -1,19 +1,10 @@
 #ifndef users_H
 #define users_H
 
-/*typedef struct
-{
-    char username[50];
-    int score;
-} Users; */
-
 typedef struct
 {
     int id;
-    char nama_lengkap[50];
-    char username[50];
-    char password[50];
-    int status;
+    char * username;
     int score;
 } Users;
 

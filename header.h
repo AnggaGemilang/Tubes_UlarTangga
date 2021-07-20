@@ -47,8 +47,8 @@
 #define Jump(P)     (P)->jump
 #define Next(P)     (P)->next
 #define posisi(P)   (P)->posisi
-#define Nama(P)     (P)->nama
-#define Bidak(P)    (P)->bidak
+#define Nama(P)     (P)->user.username
+#define Id(P)       (P)->user.id
 //#define x(P)     (P)->x
 //#define y(P)     (P)->y
 #define First(L) (L).First

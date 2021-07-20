@@ -33,7 +33,7 @@ void leaderboard()
             gotoxy(trunc(WDT_SCREEN/12.5/2)+4, tinggi);
             printf("%d", n);
             gotoxy(trunc(WDT_SCREEN/12.5/2)+27, tinggi);
-            printf("%s", user.nama_lengkap);
+            printf("%s", user.username);
             gotoxy(trunc(WDT_SCREEN/12.5/2)+58, tinggi);
             printf("%d", user.score);
             tinggi++;
@@ -131,10 +131,11 @@ void storeNamaFile(const char * nama)
    	} else {
    	    while(fread(&user, sizeof(Users), 1, fptr)==1)
         {
-            if(strcmp(user.nama_lengkap, nama)==1)
+            if(strcmp(user.username, nama)==1)
             {
                 status = true;
-                strcpy(user.nama_lengkap, nama);
+                user.id = random_number(1, 9999999);
+                strcpy(user.username, nama);
                 user.score = 0;
                 fseek(fptr, (long) -sizeof(user), SEEK_CUR);
                 fwrite(&user, sizeof(user), 1, fptr);
@@ -146,7 +147,7 @@ void storeNamaFile(const char * nama)
         }
         if(status == false)
         {
-            strcpy(user.nama_lengkap, nama);
+            strcpy(user.username, nama);
             user.score = 0;
             fwrite(&user, sizeof(user), 1, fptr);
         }

@@ -75,10 +75,15 @@ void Permainan(int PemainYangBermain, int AIYangBermain)
     player3 = First(map),
     player4 = First(map);
 
-    Nama(player1) = (char *) "Angga";
-    Nama(player2) = (char *) "Angga1";
-    Nama(player3) = (char *) "Angga2";
-    Nama(player4) = (char *) "Angga3";
+    Nama(player1) = (char *) "Joni";
+    Nama(player2) = (char *) "Tatang";
+    Nama(player3) = (char *) "Jaja";
+    Nama(player4) = (char *) "Sabihis";
+
+    Id(player1) = 1;
+    Id(player2) = 2;
+    Id(player3) = 3;
+    Id(player4) = 4;
 
     // HESE MERE NGARAN ASLII, CEMUNGUDHH QQ *) Stiker teteh korea WKWKWK
 
@@ -565,12 +570,44 @@ void cekUlangGiliran ( int giliran, int dapetDadu, boolean *statusUlang, int *in
     }
 }
 
+int poinPermainan(int peringkat_ke)
+{
+    switch(peringkat_ke)
+    {
+        case 1 :
+        {
+            return 5000;
+            break;
+        }
+        case 2 :
+        {
+            return 4000;
+            break;
+        }
+        case 3 :
+        {
+            return 3000;
+            break;
+        }
+        case 4 :
+        {
+            return 1000;
+            break;
+        }
+    }
+    return 0;
+}
+
 //==============================================================
 //          14. Menampilkan pesan jika ada yang menang
 //==============================================================
 void Pemenang(int playerAtauAI,int pemenang,int jmlPemain, address player1, address player2, address player3, address player4)
 {
     int pilihan, i, j, counter;
+
+    Users user;
+
+    FILE *fptr;
 
     address arrPlayer[4] = {player1, player2, player3, player4}, temp;
 
@@ -634,6 +671,26 @@ void Pemenang(int playerAtauAI,int pemenang,int jmlPemain, address player1, addr
         {
             gotoxy(91,counter++);
             cout << counterBaris++ << ". " << Nama(arrPlayer[i]) << endl;
+            if((fptr = fopen("assets/file/users.dat","rb+")) == NULL){
+               printf("Error! File Tidak Dapat Dibuka...");
+               exit(1);
+            } else {
+                while(fread(&user, sizeof(Users), 1, fptr)==1)
+                {
+                    if(user.id == Id(arrPlayer[i]))
+                    {
+                        user.id = user.id;
+                        strcpy(user.username, user.username);
+                        user.score = poinPermainan(counterBaris);
+                        fseek(fptr, (long) -sizeof(user), SEEK_CUR);
+                        fwrite(&user, sizeof(user), 1, fptr);
+                        break;
+                    } else
+                    {
+                        continue;
+                    }
+                }
+            }
         }
     }
 

@@ -72,3 +72,10 @@ int Cursor(int BanyakPilihan,int x,int y) {
 
     return Pilih;
 }
+
+int random_number(int batas_awal, int batas_akhir)
+{
+    srand(time(NULL));
+    int random_number = (rand() % (batas_akhir - batas_awal + 1)) + batas_awal;
+    return random_number;
+}

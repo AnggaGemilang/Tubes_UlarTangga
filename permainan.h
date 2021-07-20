@@ -53,4 +53,6 @@ void stopwatch(Timestamp * timestamp);
 
 void displayTime(Timestamp timestamp);
 
+int poinPermainan(int peringkat_ke);
+
 #endif // permainan_H
