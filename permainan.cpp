@@ -70,7 +70,9 @@ void Permainan(int PemainYangBermain, int AIYangBermain)
     P = First(map),
     //  player1 = Last(map),  //<-- buat langsung finish
     player1 = Search(map, 98),  //<-- buat langsung ke kotak 97
-    // player1 = First(map),
+
+    //  player1 = First(map),
+
     player2 = First(map),
     player3 = First(map),
     player4 = First(map);
@@ -145,6 +147,16 @@ void Permainan(int PemainYangBermain, int AIYangBermain)
                             // dapetDadu = KocokDadu();
 
                             dapetDadu = 2; // <-- Atur Sendiri angka dadu
+                            gotoxy(91,12);
+                            printf("+---------+\n");
+                            gotoxy(91,13);
+                            printf("|(-)      |\n");
+                            gotoxy(91,14);
+                            printf("|         |\n");
+                            gotoxy(91,15);
+                            printf("|      (-)|\n");
+                            gotoxy(91,16);
+                            printf("+---------+\n");
 
                             // pergerakan bidak
                             hasilJalan = cekHasilJalan(dapetDadu, Info(P) );
@@ -437,7 +449,7 @@ address jalanBidak( address P, int player, int hasilJalan, int jmlPlayer, int gi
     if( hasilJalan == 100 )
     {
         P = jalanSama100(P, player);
-        Pemenang(giliran, player, jmlPlayer, player1, player2, player3, player4);
+        Pemenang(giliran, player, jmlPlayer, player1, player2, player3, player4, &timestamp);
     }
 
     return P;
@@ -601,7 +613,7 @@ int poinPermainan(int peringkat_ke)
 //==============================================================
 //          14. Menampilkan pesan jika ada yang menang
 //==============================================================
-void Pemenang(int playerAtauAI,int pemenang,int jmlPemain, address player1, address player2, address player3, address player4)
+void Pemenang(int playerAtauAI, int pemenang, int jmlPemain, address player1, address player2, address player3, address player4, Timestamp * timestamp)
 {
     int pilihan, i, j, counter;
 
@@ -644,11 +656,11 @@ void Pemenang(int playerAtauAI,int pemenang,int jmlPemain, address player1, addr
     gotoxy(91,20);  printf("                                   ");
     gotoxy(91,21);  printf("                                   ");
     gotoxy(91,22);  printf("                                   ");
-    gotoxy(91,21);  printf("Permainan Berjalan Selama : %d : %d : %d", timestamp.jam, timestamp.menit, timestamp.detik+1);
+    gotoxy(91,21);  printf("Permainan Berjalan Selama : %d : %d : %d", timestamp->jam, timestamp->menit, timestamp->detik+1);
 
-    for(i=0; i<4; i++)
+    for(i=0; i<jmlPemain; i++)
     {
-        for(j=i+1; j<4; j++)
+        for(j=i+1; j<jmlPemain; j++)
         {
             if(Info(arrPlayer[j]) < Info(arrPlayer[i]))
             {
@@ -665,30 +677,27 @@ void Pemenang(int playerAtauAI,int pemenang,int jmlPemain, address player1, addr
 
     int counterBaris = 1;
 
-    for(i=0; i<4; i++)
+    for(i=0; i<jmlPemain; i++)
     {
-        if(Info(arrPlayer[i]) != 1)
-        {
-            gotoxy(91,counter++);
-            cout << counterBaris++ << ". " << Nama(arrPlayer[i]) << endl;
-            if((fptr = fopen("assets/file/users.dat","rb+")) == NULL){
-               printf("Error! File Tidak Dapat Dibuka...");
-               exit(1);
-            } else {
-                while(fread(&user, sizeof(Users), 1, fptr)==1)
+        gotoxy(91,counter++);
+        cout << counterBaris++ << ". " << Nama(arrPlayer[i]) << endl;
+        if((fptr = fopen("assets/file/users.dat","rb+")) == NULL){
+            printf("Error! File Tidak Dapat Dibuka...");
+            exit(1);
+        } else {
+            while(fread(&user, sizeof(Users), 1, fptr)==1)
+            {
+                if(user.id == Id(arrPlayer[i]))
                 {
-                    if(user.id == Id(arrPlayer[i]))
-                    {
-                        user.id = user.id;
-                        strcpy(user.username, user.username);
-                        user.score = poinPermainan(counterBaris);
-                        fseek(fptr, (long) -sizeof(user), SEEK_CUR);
-                        fwrite(&user, sizeof(user), 1, fptr);
-                        break;
-                    } else
-                    {
-                        continue;
-                    }
+                    user.id = user.id;
+                    strcpy(user.username, user.username);
+                    user.score = poinPermainan(counterBaris);
+                    fseek(fptr, (long) -sizeof(user), SEEK_CUR);
+                    fwrite(&user, sizeof(user), 1, fptr);
+                    break;
+                } else
+                {
+                    continue;
                 }
             }
         }
@@ -701,9 +710,19 @@ void Pemenang(int playerAtauAI,int pemenang,int jmlPemain, address player1, addr
     pilihan = Cursor(2,91,counter+2);
 
     if(pilihan == 2) {
+        atomicStopwatch = false;
+        whileStopwatch = false;
+        timestamp->detik = 0;
+        timestamp->menit = 0;
+        timestamp->jam = 0;
         menuUtama();
     } else {
-        gotoxy(94, counter+5); printf("Terima Kasih Telah Bermain..^^\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        atomicStopwatch = false;
+        atomicPermainan = false;
+        whileStopwatch = false;
+        timestamp->detik = 0;
+        timestamp->menit = 0;
+        timestamp->jam = 0;
         gotoxy(94, counter+5); printf("Terima Kasih Telah Bermain..^^\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         exit(1);
     }

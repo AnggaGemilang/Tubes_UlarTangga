@@ -44,7 +44,7 @@ void printLokasiPlayer (int giliran, int player, address P);
 void cekUlangGiliran ( int giliran, int dapetDadu, boolean *statusUlang, int *input, int *player, int PemainYangBermain, int AIYangBermain);
 
 // 14. Menampilkan pesan jika ada yang menang
-void Pemenang(int playerAtauAI,int pemenang,int jmlPemain, address player1, address player2, address player3, address player4);
+void Pemenang(int playerAtauAI,int pemenang,int jmlPemain, address player1, address player2, address player3, address player4, Timestamp * timestamp);
 
 // 15. Menu untuk Keluar Paksa dari Permainan
 void menuKeluar(int PemainYangBermain, int AIYangBermain, Timestamp * timestamp);

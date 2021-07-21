@@ -24,6 +24,4 @@ void tampilkanSimbol(infotype counter, simboltype Simbol);
 //	7. Modul prosedur untuk mengenerate address jump
 address generateAddress(List L, infotype info);
 
-void buatMapEasy(List * L1);
-
 #endif

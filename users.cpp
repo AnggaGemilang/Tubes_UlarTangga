@@ -92,32 +92,34 @@ void Sort_file(){
 	if ((fptr=fopen("assets/file/users.dat", "rb+"))==NULL)
     {
         printf ("File tidak dapat dibuka\n");
-    }
-	f_struct = sizeof(Users);
-	fseek(fptr, 0, SEEK_END);
-	f_file = ftell(fptr);
-	rewind(fptr);
-	for(i=0;i< f_file; i += f_struct)
+    } else
     {
-		for(x=0;x< f_file - f_struct; x += f_struct)
-		{
-			fread(&dt, f_struct, 1, fptr);
-			fread(&temp, f_struct, 1, fptr);
-			if(dt.score<temp.score)
-			{
-				fseek(fptr, -(f_struct * 2), SEEK_CUR);
-				fwrite(&temp, f_struct, 1, fptr);
-				fwrite(&dt, f_struct, 1, fptr);
-				fseek(fptr, -f_struct , SEEK_CUR);
-			}
-			else
-			{
-				fseek(fptr, -f_struct , SEEK_CUR);
-			}
-		}
-		rewind(fptr);
-	}
-	fclose(fptr);
+        f_struct = sizeof(Users);
+        fseek(fptr, 0, SEEK_END);
+        f_file = ftell(fptr);
+        rewind(fptr);
+        for(i=0;i< f_file; i += f_struct)
+        {
+            for(x=0;x< f_file - f_struct; x += f_struct)
+            {
+                fread(&dt, f_struct, 1, fptr);
+                fread(&temp, f_struct, 1, fptr);
+                if(dt.score<temp.score)
+                {
+                    fseek(fptr, -(f_struct * 2), SEEK_CUR);
+                    fwrite(&temp, f_struct, 1, fptr);
+                    fwrite(&dt, f_struct, 1, fptr);
+                    fseek(fptr, -f_struct , SEEK_CUR);
+                }
+                else
+                {
+                    fseek(fptr, -f_struct , SEEK_CUR);
+                }
+            }
+            rewind(fptr);
+        }
+        fclose(fptr);
+    }
 }
 
 void storeNamaFile(const char * nama)
@@ -134,9 +136,9 @@ void storeNamaFile(const char * nama)
             if(strcmp(user.username, nama)==1)
             {
                 status = true;
-                user.id = random_number(1, 9999999);
-                strcpy(user.username, nama);
-                user.score = 0;
+                user.id = user.id;
+                strcpy(user.username, user.username);
+                user.score = user.score;
                 fseek(fptr, (long) -sizeof(user), SEEK_CUR);
                 fwrite(&user, sizeof(user), 1, fptr);
                 break;
@@ -147,6 +149,7 @@ void storeNamaFile(const char * nama)
         }
         if(status == false)
         {
+            user.id = random_number(1, 9999999);
             strcpy(user.username, nama);
             user.score = 0;
             fwrite(&user, sizeof(user), 1, fptr);
