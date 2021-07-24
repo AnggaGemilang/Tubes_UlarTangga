@@ -3,7 +3,7 @@
 int main() {
 
     ShowWindow(GetConsoleWindow(),SW_MAXIMIZE); // mengatur display agar fullscreen
-    title('t');
+    title('n');
 	menuUtama();
 	return 0;
 

@@ -69,9 +69,9 @@ void Permainan(int PemainYangBermain, int AIYangBermain)
     address
     P = First(map),
     //  player1 = Last(map),  //<-- buat langsung finish
-    player1 = Search(map, 98),  //<-- buat langsung ke kotak 97
+    //  player1 = Search(map, 98),  //<-- buat langsung ke kotak 97
 
-    //  player1 = First(map),
+    player1 = First(map),
 
     player2 = First(map),
     player3 = First(map),
@@ -144,9 +144,9 @@ void Permainan(int PemainYangBermain, int AIYangBermain)
                             Beep(700, 40);
 
                             // kocok dadu
-                            // dapetDadu = KocokDadu();
+                            dapetDadu = KocokDadu();
 
-                            dapetDadu = 2; // <-- Atur Sendiri angka dadu
+                            /* dapetDadu = 2; // <-- Atur Sendiri angka dadu
                             gotoxy(91,12);
                             printf("+---------+\n");
                             gotoxy(91,13);
@@ -156,7 +156,7 @@ void Permainan(int PemainYangBermain, int AIYangBermain)
                             gotoxy(91,15);
                             printf("|      (-)|\n");
                             gotoxy(91,16);
-                            printf("+---------+\n");
+                            printf("+---------+\n"); */
 
                             // pergerakan bidak
                             hasilJalan = cekHasilJalan(dapetDadu, Info(P) );
