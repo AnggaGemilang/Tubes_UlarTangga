@@ -13,25 +13,36 @@
 1623399895 source:d:\one drive - ikram m b a\onedrive - politeknik negeri bandung\semester 2\7. sda pr\9 juni 2021\kelas_tugas1_47 dan lubban a.jihad_62_43\kelas_tugas1_47 dan lubban a.jihad_62_43\kel 2\maps.cpp
 	"maps.h"
 
-1623418002 source:d:\one drive - ikram m b a\onedrive - politeknik negeri bandung\semester 2\7. sda pr\9 juni - 21 juli 2021\tubes ular tangga reprogram - buat edit\main.cpp
+1626784824 source:d:\one drive - ikram m b a\onedrive - politeknik negeri bandung\semester 2\7. sda pr\9 juni - 21 juli 2021\tubes ular tangga reprogram - buat edit\main.cpp
 	"header.h"
 
-1623415993 d:\one drive - ikram m b a\onedrive - politeknik negeri bandung\semester 2\7. sda pr\9 juni - 21 juli 2021\tubes ular tangga reprogram - buat edit\maps.h
+1626848310 d:\one drive - ikram m b a\onedrive - politeknik negeri bandung\semester 2\7. sda pr\9 juni - 21 juli 2021\tubes ular tangga reprogram - buat edit\maps.h
+	"header.h"
 
 1623418002 source:d:\one drive - ikram m b a\onedrive - politeknik negeri bandung\semester 2\7. sda pr\9 juni - 21 juli 2021\tubes ular tangga reprogram - buat edit\fungsimenu.cpp
 	"header.h"
 
-1623418300 d:\one drive - ikram m b a\onedrive - politeknik negeri bandung\semester 2\7. sda pr\9 juni - 21 juli 2021\tubes ular tangga reprogram - buat edit\header.h
+1627087626 d:\one drive - ikram m b a\onedrive - politeknik negeri bandung\semester 2\7. sda pr\9 juni - 21 juli 2021\tubes ular tangga reprogram - buat edit\header.h
 	<stdio.h>
-	<windows.h>
+	<iostream>
+	<limits.h>
+	<malloc.h>
 	<math.h>
+	<atomic>
+	<thread>
+	<cmath>
+	<windows.h>
 	<conio.h>
-	<stdbool.h>
+	<stdlib.h>
 	<time.h>
+	<unistd.h>
+	"users.h"
+	"linkedlist.h"
 	"maps.h"
 	"umum.h"
 	"menu.h"
 	"permainan.h"
+	"boolean.h"
 
 1623415850 d:\one drive - ikram m b a\onedrive - politeknik negeri bandung\semester 2\7. sda pr\9 juni - 21 juli 2021\tubes ular tangga reprogram - buat edit\fungsiumum.h
 
@@ -45,22 +56,22 @@
 1623415993 source:d:\one drive - ikram m b a\onedrive - politeknik negeri bandung\semester 2\7. sda pr\9 juni - 21 juli 2021\tubes ular tangga reprogram - buat edit\fungsiumum.cpp
 	"header.h"
 
-1623415993 source:d:\one drive - ikram m b a\onedrive - politeknik negeri bandung\semester 2\7. sda pr\9 juni - 21 juli 2021\tubes ular tangga reprogram - buat edit\maps.cpp
+1626784824 source:d:\one drive - ikram m b a\onedrive - politeknik negeri bandung\semester 2\7. sda pr\9 juni - 21 juli 2021\tubes ular tangga reprogram - buat edit\maps.cpp
 	"header.h"
 
-1623418300 d:\one drive - ikram m b a\onedrive - politeknik negeri bandung\semester 2\7. sda pr\9 juni - 21 juli 2021\tubes ular tangga reprogram - buat edit\umum.h
+1626804368 d:\one drive - ikram m b a\onedrive - politeknik negeri bandung\semester 2\7. sda pr\9 juni - 21 juli 2021\tubes ular tangga reprogram - buat edit\umum.h
 
-1623418300 d:\one drive - ikram m b a\onedrive - politeknik negeri bandung\semester 2\7. sda pr\9 juni - 21 juli 2021\tubes ular tangga reprogram - buat edit\menu.h
+1626797557 d:\one drive - ikram m b a\onedrive - politeknik negeri bandung\semester 2\7. sda pr\9 juni - 21 juli 2021\tubes ular tangga reprogram - buat edit\menu.h
 
-1623418300 d:\one drive - ikram m b a\onedrive - politeknik negeri bandung\semester 2\7. sda pr\9 juni - 21 juli 2021\tubes ular tangga reprogram - buat edit\permainan.h
+1627102489 d:\one drive - ikram m b a\onedrive - politeknik negeri bandung\semester 2\7. sda pr\9 juni - 21 juli 2021\tubes ular tangga reprogram - buat edit\permainan.h
 
-1623418002 source:d:\one drive - ikram m b a\onedrive - politeknik negeri bandung\semester 2\7. sda pr\9 juni - 21 juli 2021\tubes ular tangga reprogram - buat edit\menu.cpp
+1627096722 source:d:\one drive - ikram m b a\onedrive - politeknik negeri bandung\semester 2\7. sda pr\9 juni - 21 juli 2021\tubes ular tangga reprogram - buat edit\menu.cpp
 	"header.h"
 
-1623415993 source:d:\one drive - ikram m b a\onedrive - politeknik negeri bandung\semester 2\7. sda pr\9 juni - 21 juli 2021\tubes ular tangga reprogram - buat edit\permainan.cpp
+1627100454 source:d:\one drive - ikram m b a\onedrive - politeknik negeri bandung\semester 2\7. sda pr\9 juni - 21 juli 2021\tubes ular tangga reprogram - buat edit\permainan.cpp
 	"header.h"
 
-1623415993 source:d:\one drive - ikram m b a\onedrive - politeknik negeri bandung\semester 2\7. sda pr\9 juni - 21 juli 2021\tubes ular tangga reprogram - buat edit\umum.cpp
+1626804368 source:d:\one drive - ikram m b a\onedrive - politeknik negeri bandung\semester 2\7. sda pr\9 juni - 21 juli 2021\tubes ular tangga reprogram - buat edit\umum.cpp
 	"header.h"
 
 1626784824 source:d:\one drive - ikram m b a\onedrive - politeknik negeri bandung\semester 2\7. sda pr\9 juni - 21 juli 2021\tubes ular tangga reprogram - remote github\tubes_ulartangga\main.cpp
@@ -112,7 +123,7 @@
 1626803316 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\linkedlist.cpp
 	"header.h"
 
-1626803291 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\header.h
+1627104899 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\header.h
 	<stdio.h>
 	<iostream>
 	<limits.h>
@@ -134,7 +145,7 @@
 	"permainan.h"
 	"boolean.h"
 
-1626802958 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\linkedlist.h
+1627104899 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\linkedlist.h
 	"header.h"
 
 1626824135 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\maps.h
@@ -144,7 +155,7 @@
 
 1626801667 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\menu.h
 
-1626842908 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\permainan.h
+1627104899 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\permainan.h
 
 1625033229 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\boolean.h
 
@@ -154,10 +165,10 @@
 1626762768 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\maps.cpp
 	"header.h"
 
-1626822874 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\menu.cpp
+1627104899 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\menu.cpp
 	"header.h"
 
-1626970242 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\permainan.cpp
+1627105022 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\permainan.cpp
 	"header.h"
 
 1626802239 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\umum.cpp
@@ -324,9 +335,10 @@
 
 1626784824 d:\one drive - ikram m b a\onedrive - politeknik negeri bandung\semester 2\7. sda pr\9 juni - 21 juli 2021\tubes ular tangga reprogram - remote github\tubes_ulartangga\boolean.h
 
-1626824044 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\users.h
+1627104899 d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\users.h
+	"linkedlist.h"
 
-1626826900 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\users.cpp
+1627104899 source:d:\angga\documents\tugas\polban\sda\praktek\tubes_ulartangga\users.cpp
 	"header.h"
 
 1626792639 d:\one drive - ikram m b a\onedrive - politeknik negeri bandung\semester 2\7. sda pr\9 juni - 21 juli 2021\tubes ular tangga reprogram - edit dr angga\users.h
@@ -335,4 +347,18 @@
 	"header.h"
 
 1626804820 d:\one drive - ikram m b a\onedrive - politeknik negeri bandung\semester 2\7. sda pr\9 juni - 21 juli 2021\tubes ular tangga reprogram - remote github\tubes_ulartangga\users.h
+
+1626804368 source:d:\one drive - ikram m b a\onedrive - politeknik negeri bandung\semester 2\7. sda pr\9 juni - 21 juli 2021\tubes ular tangga reprogram - buat edit\linkedlist.cpp
+	"header.h"
+
+1627096737 d:\one drive - ikram m b a\onedrive - politeknik negeri bandung\semester 2\7. sda pr\9 juni - 21 juli 2021\tubes ular tangga reprogram - buat edit\users.h
+	"linkedlist.h"
+
+1627087626 d:\one drive - ikram m b a\onedrive - politeknik negeri bandung\semester 2\7. sda pr\9 juni - 21 juli 2021\tubes ular tangga reprogram - buat edit\linkedlist.h
+	"header.h"
+
+1626784824 d:\one drive - ikram m b a\onedrive - politeknik negeri bandung\semester 2\7. sda pr\9 juni - 21 juli 2021\tubes ular tangga reprogram - buat edit\boolean.h
+
+1627097546 source:d:\one drive - ikram m b a\onedrive - politeknik negeri bandung\semester 2\7. sda pr\9 juni - 21 juli 2021\tubes ular tangga reprogram - buat edit\users.cpp
+	"header.h"
 
