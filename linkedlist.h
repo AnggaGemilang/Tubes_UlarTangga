@@ -17,7 +17,6 @@ typedef struct tElmtList {
     address     prev;
     infotype    info;
     simboltype  simbol;
-    Users       user;
     address     jump;
     address     next;
 } ElmtList;

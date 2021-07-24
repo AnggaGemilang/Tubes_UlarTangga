@@ -63,6 +63,7 @@ void menuUtama()
                 BermainBersamaTeman();
                 break;
             case 3:
+                Sort_file();
                 leaderboard();
                 break;
             case 4:

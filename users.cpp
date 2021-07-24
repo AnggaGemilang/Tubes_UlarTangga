@@ -122,7 +122,7 @@ void Sort_file(){
     }
 }
 
-void storeNamaFile(const char * nama)
+void storeNamaFile(Users userBaru)
 {
     Users user;
     FILE *fptr;
@@ -131,14 +131,16 @@ void storeNamaFile(const char * nama)
        printf("Error! File Tidak Dapat Dibuka...");
        exit(1);
    	} else {
+   	    // perulangan membaca isi file users.dat
    	    while(fread(&user, sizeof(Users), 1, fptr)==1)
         {
-            if(strcmp(user.username, nama)==1)
+            // jika username sudah terdaftar
+            if(strcmp(user.username, userBaru.username) == 0)
             {
                 status = true;
                 user.id = user.id;
                 strcpy(user.username, user.username);
-                user.score = user.score;
+                user.score = user.score + userBaru.score - 40;
                 fseek(fptr, (long) -sizeof(user), SEEK_CUR);
                 fwrite(&user, sizeof(user), 1, fptr);
                 break;
@@ -147,11 +149,13 @@ void storeNamaFile(const char * nama)
                 continue;
             }
         }
+
+        // jika username belum terdaftar
         if(status == false)
         {
-            user.id = random_number(1, 9999999);
-            strcpy(user.username, nama);
-            user.score = 0;
+            user.id = userBaru.id;
+            strcpy(user.username, userBaru.username);
+            user.score = userBaru.score - 40; // dikurangi 40 karena jika tidak akan menambah 40 otomatis (bug)
             fwrite(&user, sizeof(user), 1, fptr);
         }
    	}
@@ -162,8 +166,9 @@ void inputNama(int jumlahPemain)
 {
     system("cls");
     int JumlahAI, x, y, a = 30;
-    char nama[50];
+    Users user;
 
+    // mencetak judul permainan
     title('n');
 
     //  mencetak sisi atas dan bawah kotak
@@ -187,11 +192,20 @@ void inputNama(int jumlahPemain)
     gotoxy(trunc(WDT_SCREEN/11/2+7),27);	    printf(">>>>| Inputkan Nama Player |<<<<");
 	gotoxy(trunc(WDT_SCREEN/11/2+3),28);	    printf("______________________________________");
 
+	// membuka file users-baru.dat dalam mode tulis ulang
+	FILE *fp;
+	fp = fopen("assets/file/users-baru.dat","wb");
+
+	// perulangan untuk input nama player 1 s.d 4
 	for (int i = 1; i <= jumlahPemain; i++){
         gotoxy(trunc(WDT_SCREEN/11/2+5),a);
         a++;
         printf("Player %d: ", i);
-        cin >> nama;
-        storeNamaFile(nama);
+        fflush(stdin); gets(user.username);
+        user.id = i;
+
+        // menyimpan nama dan id ke dalam file users-baru.id
+        fwrite(&user, sizeof(user), 1, fp);
 	}
+	fclose(fp);
 }

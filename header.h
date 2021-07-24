@@ -41,16 +41,12 @@
 #define WHITE          15
 
 #define Nil NULL
-#define Prev(P)     (P)->prev
 #define Info(P)     (P)->info
+#define Prev(P)     (P)->prev
 #define Simbol(P)   (P)->simbol
 #define Jump(P)     (P)->jump
 #define Next(P)     (P)->next
 #define posisi(P)   (P)->posisi
-#define Nama(P)     (P)->user.username
-#define Id(P)       (P)->user.id
-//#define x(P)     (P)->x
-//#define y(P)     (P)->y
 #define First(L) (L).First
 #define Last(L) (L).Last
 
