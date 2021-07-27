@@ -6,7 +6,4 @@ int main() {
     title('n');
 	menuUtama();
 	return 0;
-
 }
-
-

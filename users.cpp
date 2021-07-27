@@ -140,7 +140,7 @@ void storeNamaFile(Users userBaru)
                 status = true;
                 user.id = user.id;
                 strcpy(user.username, user.username);
-                user.score = user.score + userBaru.score - 40;
+                user.score = user.score + userBaru.score;
                 fseek(fptr, (long) -sizeof(user), SEEK_CUR);
                 fwrite(&user, sizeof(user), 1, fptr);
                 break;
@@ -149,13 +149,11 @@ void storeNamaFile(Users userBaru)
                 continue;
             }
         }
-
         // jika username belum terdaftar
         if(status == false)
         {
-            user.id = userBaru.id;
             strcpy(user.username, userBaru.username);
-            user.score = userBaru.score - 40; // dikurangi 40 karena jika tidak akan menambah 40 otomatis (bug)
+            user.score = userBaru.score + 2;
             fwrite(&user, sizeof(user), 1, fptr);
         }
    	}
@@ -165,8 +163,8 @@ void storeNamaFile(Users userBaru)
 void inputNama(int jumlahPemain)
 {
     system("cls");
-    int JumlahAI, x, y, a = 30;
-    Users user;
+    int JumlahAI, x, y, a = 29;
+    Users user, user1;
 
     // mencetak judul permainan
     title('n');
@@ -193,16 +191,94 @@ void inputNama(int jumlahPemain)
 	gotoxy(trunc(WDT_SCREEN/11/2+3),28);	    printf("______________________________________");
 
 	// membuka file users-baru.dat dalam mode tulis ulang
-	FILE *fp;
+	FILE *fp, *fp1;
 	fp = fopen("assets/file/users-baru.dat","wb");
 
 	// perulangan untuk input nama player 1 s.d 4
 	for (int i = 1; i <= jumlahPemain; i++){
-        gotoxy(trunc(WDT_SCREEN/11/2+5),a);
+        for(int i=40; i > 35; i--)
+        {
+            gotoxy(61,i); printf("                                              ");
+        }
+        gotoxy(106,35); printf("\xd9");
+        gotoxy(61,35);  printf("\xc0");
         a++;
+        ulangiInputNama:
+        gotoxy(trunc(WDT_SCREEN/11/2+5),a);
         printf("Player %d: ", i);
-        fflush(stdin); gets(user.username);
-        user.id = i;
+        fflush(stdin);
+        gets(user.username);
+        if(strlen(user.username) == 0)
+        {
+            Beep(700, 39);
+            gotoxy(61,35); printf("\xc0");
+            for(int i=61; i < 106; i++)
+            {
+                gotoxy(i,39); printf("\xc4");
+            }
+            gotoxy(106,39); printf("\xd9");
+            for(int i=38; i > 34; i--)
+            {
+                gotoxy(106,i); printf("\xb3");
+            }
+            gotoxy(61,39); printf("\xc0");
+            for(int i=38; i > 34; i--)
+            {
+                gotoxy(61,i); printf("\xb3");
+            }
+            gotoxy(64,37); printf("                                        ");
+            gotoxy(72,37); printf("Nama tidak boleh kosong!");
+            goto ulangiInputNama;
+        } else if (strlen(user.username) > 12)
+        {
+            Beep(700, 39);
+            gotoxy(61,35); printf("\xc0");
+            for(int i=61; i < 106; i++)
+            {
+                gotoxy(i,39); printf("\xc4");
+            }
+            gotoxy(106,39); printf("\xd9");
+            for(int i=38; i > 34; i--)
+            {
+                gotoxy(106,i); printf("\xb3");
+            }
+            gotoxy(61,39); printf("\xc0");
+            for(int i=38; i > 34; i--)
+            {
+                gotoxy(61,i); printf("\xb3");
+            }
+            gotoxy(64,37); printf("Nama tidak boleh lebih dari 12 karakter!");
+            gotoxy(trunc(WDT_SCREEN/11/2+5),a); printf("                                      ");
+            goto ulangiInputNama;
+        }
+
+        user.id = random_number(11111, 99999);
+        user.order = i;
+
+        boolean isAda = false;
+
+        if((fp1 = fopen("assets/file/users.dat","rb+")) == NULL){
+            printf("Error! File Tidak Dapat Dibuka...");
+            exit(1);
+        } else {
+            while(fread(&user1, sizeof(Users), 1, fp1)==1)
+            {
+                if(strcmp(user1.username, user.username))
+                {
+                    isAda = true;
+                    user.score = user1.score;
+                    break;
+                } else
+                {
+                    continue;
+                }
+            }
+            if(isAda = false)
+            {
+                user.score = 0;
+            }
+        }
+        fclose(fp1);
 
         // menyimpan nama dan id ke dalam file users-baru.id
         fwrite(&user, sizeof(user), 1, fp);

@@ -88,26 +88,26 @@ void Permainan(int PemainYangBermain, int AIYangBermain)
     user4.player = First(map);
 
 //    user1.player = Last(map);  //<-- buat langsung finish
-    user2.player = Search(map, 94);  //<-- buat langsung ke kotak 98
+    user2.player = Search(map, 92);  //<-- buat langsung ke kotak 98
 
     FILE * fptr; //<-- pengisian id (urutan bermain player) dan username
     fptr = fopen("assets/file/users-baru.dat","rb");
     while(fread(&user, sizeof(user), 1, fptr)){
         if(user.order == 1){
             strcpy(user1.username, user.username); //<-- pengisian dilakukan dengan copas dari file
-            user1.order = 1;
+            user1.id = 1;
         }
         if(user.order == 2){
             strcpy(user2.username, user.username);
-            user2.order = 2;
+            user2.id = 2;
         }
         if(user.order == 3){
             strcpy(user3.username, user.username);
-            user3.order = 3;
+            user3.id = 3;
         }
         if(user.order == 4){
             strcpy(user4.username, user.username);
-            user4.order = 4;
+            user4.id = 4;
         }
     }
     fclose(fptr);
@@ -762,7 +762,7 @@ void Pemenang(int playerAtauAI, int lambang, int jmlPemain,
     fclose(tempF);
 
     // memindahkan data user dari file sementara ke file utama (users.dat)
-    tempF = fopen("assets/file/users-kosong.dat","rb");
+    tempF = fopen("assets/file/users-Kosong.dat","rb");
     while(fread(&user, sizeof(Users), 1, tempF)){
         storeNamaFile(user);
     }
@@ -803,7 +803,7 @@ void menuKeluar(int PemainYangBermain, int AIYangBermain, Timestamp * timestamp)
 
     for(int i = 19; i <= 23; i++)
     {
-        gotoxy(91,i);  printf("                                   ");
+        gotoxy(91,19);  printf("                                   ");
     }
 
     gotoxy(91,19);  printf("Anda telah menekan tombol ESC");
@@ -814,10 +814,11 @@ void menuKeluar(int PemainYangBermain, int AIYangBermain, Timestamp * timestamp)
     int pilihan = Cursor(4,91,20);
     if(pilihan == 1) {
         atomicStopwatch = true;
-        for(int i = 19; i <= 23; i++)
-        {
-            gotoxy(91,i);  printf("                                   ");
-        }
+        gotoxy(91,19);  printf("                               ");
+        gotoxy(91,20);  printf("                               ");
+        gotoxy(91,21);  printf("                               ");
+        gotoxy(91,22);  printf("                               ");
+        gotoxy(91,23);  printf("                               ");
         return;
     } else if (pilihan == 2) {
         gotoxy(26, 1); cout << "                                                                         ";

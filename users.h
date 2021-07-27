@@ -4,6 +4,7 @@
 typedef struct
 {
     int id;
+    int order;
     char username[50];
     int score;
     address player;
