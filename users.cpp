@@ -1,5 +1,8 @@
 #include "header.h"
 
+//==============================================================
+//          1. Untuk menampilkan peringkat ke layar
+//==============================================================
 void leaderboard()
 {
     Users user;
@@ -83,6 +86,9 @@ void leaderboard()
     Beep(700, 40);
 }
 
+//=====================================================================================
+//  2. Untuk mengurutkan file agar yang yang memiliki score tertinggi berada di atas
+//=====================================================================================
 void Sort_file(){
 	Users dt,temp;
 	int i,x;
@@ -122,6 +128,9 @@ void Sort_file(){
     }
 }
 
+//=====================================================================
+//          3. Untuk memasukkan data pemain ke dalam file
+//=====================================================================
 void storeNamaFile(Users userBaru)
 {
     Users user;
@@ -160,6 +169,9 @@ void storeNamaFile(Users userBaru)
     fclose(fptr);
 }
 
+//=====================================================================
+//  4. Untuk menginput nama yang nantinya dikirim ke modul permainan
+//=====================================================================
 void inputNama(int jumlahPemain)
 {
     system("cls");

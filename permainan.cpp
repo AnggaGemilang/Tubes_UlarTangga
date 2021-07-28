@@ -1,4 +1,6 @@
 #include "header.h"
+#include <mutex>
+#include <chrono>
 
 // variabel global
 Timestamp timestamp;
@@ -9,12 +11,15 @@ atomic <bool> atomicPermainan(false);
 
 int whileStopwatch;
 
+std::mutex myMutex;
+
 //==============================================================
 //                          1. Stopwatch
 //==============================================================
 void stopwatch(Timestamp * timestamp)
 {
     while(whileStopwatch) {
+        std::this_thread::sleep_for(std::chrono::seconds(2));
         if(atomicStopwatch.load())
         {
             sleep(1);
@@ -30,6 +35,7 @@ void stopwatch(Timestamp * timestamp)
             }
             displayTime(*timestamp);
         }
+        std::lock_guard<std::mutex> lock(myMutex);
     }
 }
 
@@ -137,6 +143,7 @@ void Permainan(int PemainYangBermain, int AIYangBermain)
     // Perulangan gameplay, akan terus diulang selama belum ada yang berhenti di kotak 100
     while ( loopPermainan == true )
     {
+        std::this_thread::sleep_for(std::chrono::seconds(1));
         if(atomicPermainan.load())
         {
             // cek giliran player atau AI
@@ -276,6 +283,7 @@ void Permainan(int PemainYangBermain, int AIYangBermain)
                 }
             }
         }
+        std::lock_guard<std::mutex> lock(myMutex);
     }
 }
 

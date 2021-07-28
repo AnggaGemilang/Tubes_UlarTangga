@@ -8,12 +8,10 @@
 #include <math.h>
 #include <atomic>
 #include <thread>
-#include <cmath>
 #include <windows.h>
 #include <conio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <unistd.h>
 
 #include "users.h"
 #include "linkedlist.h"

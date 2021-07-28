@@ -1,8 +1,8 @@
 #include "header.h"
 
-//==============================================================
-//                      1. Modul GoToXY
-//==============================================================
+//========================================================================
+//  1. Modul untuk mengatur posisi output berdasarkan koordinat tertentu
+//========================================================================
 void gotoxy(int x, int y) { //goes to x,y console
     COORD coord;
     coord.X = x;
@@ -73,6 +73,9 @@ int Cursor(int BanyakPilihan,int x,int y) {
     return Pilih;
 }
 
+//==============================================================
+//          4. Modul untuk mengambil nomor secara acak
+//==============================================================
 int random_number(int batas_awal, int batas_akhir)
 {
     srand(time(NULL));
