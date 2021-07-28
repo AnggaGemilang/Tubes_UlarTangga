@@ -153,7 +153,7 @@ void storeNamaFile(Users userBaru)
         if(status == false)
         {
             strcpy(user.username, userBaru.username);
-            user.score = userBaru.score + 2;
+            user.score = userBaru.score;
             fwrite(&user, sizeof(user), 1, fptr);
         }
    	}
@@ -165,6 +165,13 @@ void inputNama(int jumlahPemain)
     system("cls");
     int JumlahAI, x, y, a = 29;
     Users user, user1;
+
+    string arrNama[jumlahPemain], inputNama;
+
+    for(int i=0; i < jumlahPemain; i++)
+    {
+        arrNama[i] = "-1";
+    }
 
     // mencetak judul permainan
     title('n');
@@ -206,8 +213,9 @@ void inputNama(int jumlahPemain)
         ulangiInputNama:
         gotoxy(trunc(WDT_SCREEN/11/2+5),a);
         printf("Player %d: ", i);
-        fflush(stdin);
         gets(user.username);
+        inputNama = user.username;
+
         if(strlen(user.username) == 0)
         {
             Beep(700, 39);
@@ -250,6 +258,38 @@ void inputNama(int jumlahPemain)
             gotoxy(64,37); printf("Nama tidak boleh lebih dari 12 karakter!");
             gotoxy(trunc(WDT_SCREEN/11/2+5),a); printf("                                      ");
             goto ulangiInputNama;
+        } else
+        {
+            arrNama[i-1] = inputNama;
+            for(int j=0; j < i; j++)
+            {
+                if(j != i-1)
+                {
+                    if(inputNama == arrNama[j])
+                    {
+                        Beep(700, 39);
+                        gotoxy(61,35); printf("\xc0");
+                        for(int i=61; i < 106; i++)
+                        {
+                            gotoxy(i,39); printf("\xc4");
+                        }
+                        gotoxy(106,39); printf("\xd9");
+                        for(int i=38; i > 34; i--)
+                        {
+                            gotoxy(106,i); printf("\xb3");
+                        }
+                        gotoxy(61,39); printf("\xc0");
+                        for(int i=38; i > 34; i--)
+                        {
+                            gotoxy(61,i); printf("\xb3");
+                        }
+                        gotoxy(64,37); printf("                                        ");
+                        gotoxy(70,37); printf("Nama pemain tidak boleh sama");
+                        gotoxy(trunc(WDT_SCREEN/11/2+5),a); printf("                                      ");
+                        goto ulangiInputNama;
+                    }
+                }
+            }
         }
 
         user.id = random_number(11111, 99999);

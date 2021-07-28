@@ -83,12 +83,12 @@ void Permainan(int PemainYangBermain, int AIYangBermain)
     Users user, user1, user2, user3, user4;
 
     user1.player = First(map);//<-- pengisian address tiap bidak di kotak pertama
-//    user2.player = First(map);
+    user2.player = First(map);
     user3.player = First(map);
     user4.player = First(map);
 
 //    user1.player = Last(map);  //<-- buat langsung finish
-    user2.player = Search(map, 94);  //<-- buat langsung ke kotak 98
+//    user2.player = Search(map, 94);  //<-- buat langsung ke kotak 98
 
     FILE * fptr; //<-- pengisian id (urutan bermain player) dan username
     fptr = fopen("assets/file/users-baru.dat","rb");
@@ -170,10 +170,11 @@ void Permainan(int PemainYangBermain, int AIYangBermain)
                             Beep(700, 40);
 
                             // kocok dadu
-                            // dapetDadu = KocokDadu();
+                            dapetDadu = KocokDadu();
 
-                            dapetDadu = 2; // <-- Atur Sendiri angka dadu
-                            gotoxy(91,12);
+                            // dapetDadu = 2; // <-- Atur Sendiri angka dadu
+
+                            /* gotoxy(91,12); // <-- Menampilkan dadu bernomor pada secara manual
                             printf("+---------+\n");
                             gotoxy(91,13);
                             printf("|(-)      |\n");
@@ -182,7 +183,7 @@ void Permainan(int PemainYangBermain, int AIYangBermain)
                             gotoxy(91,15);
                             printf("|      (-)|\n");
                             gotoxy(91,16);
-                            printf("+---------+\n");
+                            printf("+---------+\n"); */
 
                             // pergerakan bidak
                             hasilJalan = cekHasilJalan(dapetDadu, Info(P) );
